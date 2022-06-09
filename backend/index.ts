@@ -10,10 +10,5 @@ app.listen(port, () :void => {
     console.log(`Server listening on ${port}`);
  });
 
- app.get ("/api/all" ,(req :Request , res : Response) =>{
-
-    res.status(200).json({asd:"ssssss"})
- }
- 
- )
+ app.use("/api/products",require("./routes/productsRoute"))
 
