@@ -1,18 +1,16 @@
-import express ,{Request,Response} from "express"
-// import {getProducts} from "../controllers/productsController" 
-import {getProducts , addProduct , updateProduct , deleteProduct   } from "../controllers/productsController"
+import express from "express"
+import {getProducts ,
+        addProduct , 
+        updateProduct ,
+        deleteProduct   }
+      from "../controllers/productsController"
 
 
 const router = express.Router()
 
+router.route("/").get(getProducts).post(addProduct)
+router.route("/:id").put(updateProduct).delete(deleteProduct)
 
-router.get ("/" , getProducts ) 
-
-router.post ("/" , addProduct )
-
-router.put ("/:id" ,updateProduct)
-
-router.delete ("/:id" , deleteProduct)
 
 
 module.exports = router

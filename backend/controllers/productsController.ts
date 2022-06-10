@@ -1,10 +1,10 @@
-import express ,{Request,Response} from "express"
+import {Request,Response} from "express"
 
 
 
 // all products  
 export function getProducts(req :Request , res : Response) :void {
-
+   console.log(req.body)
     res.status(200).json({response:"get all"})
  }
 
@@ -27,14 +27,3 @@ export function deleteProduct(req :Request , res : Response) :void {
 }
 
 
-
-
-
-
-  // export default  {getProducts , addProduct}
-
- /*  module.exports ={
-   getProducts
-
-  } */
- 
