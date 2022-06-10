@@ -10,17 +10,15 @@ export interface  IProduct  {
     price: number;
     currency: string;
     stock: number;
-    category: Category | null ;  // to be added later 
-    brand: Brand |null;    // to be added later 
+    category: mongoose.Types.ObjectId ; 
+    brand: mongoose.Types.ObjectId ;    
     vote_count : number;
-    vote_total : number;
-    
+    vote_total : number;    
    
 };
 
 
 export const Product = new mongoose.Schema<IProduct>({
-    code: { type: String, required: [true, "Please add a code"] },
     name: { type: String, required: [true, "Please add a name"] },
     model: String ,
     images: [String] ,
@@ -30,17 +28,19 @@ export const Product = new mongoose.Schema<IProduct>({
     currency: String ,
     stock: { type: Number, required: [true, "Please add the stock"] },
     category: {
-        type : mongoose.Types.ObjectId ,
+        type : mongoose.Schema.Types.ObjectId ,
         required: [true, "Please add the category"] ,
         ref :"Category"
     },
     brand: {
-        type : mongoose.Types.ObjectId ,
+        type : mongoose.Schema.Types.ObjectId ,
         required: [true, "Please add the brand"] ,
         ref :"Brand"
     },   
     vote_count : Number,
     vote_total : Number,
    
-    
+  } ,
+  {
+      timestamps : true
   });
