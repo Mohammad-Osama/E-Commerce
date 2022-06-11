@@ -1,5 +1,5 @@
 export interface  IProduct  {
-    id?:string ;
+    _id?:string ;
     name: string;
     model: string;
     main_image: string;
@@ -16,14 +16,14 @@ export interface  IProduct  {
 
 
 export interface ICategory {
-    id?:string;
+    _id?:string;
     name: string;
     description: string;
     logo:string
 }
 
 export interface IBrand {
-    id?: string;
+    _id?: string;
     name: string;
     description: string;
     logo:string
