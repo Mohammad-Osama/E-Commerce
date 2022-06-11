@@ -3,7 +3,7 @@ import {getProducts ,
         addProduct , 
         updateProduct ,
         deleteProduct   }
-      from "../controllers/productsController"
+      from "../controllers/productController"
 
 
 const router = express.Router()
