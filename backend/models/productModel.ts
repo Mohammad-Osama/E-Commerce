@@ -30,12 +30,12 @@ export interface  IProduct  {
     stock: { type: Number, required: [true, "Please add the stock"] },
     category: {
         type : mongoose.Schema.Types.ObjectId ,
-        required: [false, "Please add the category"] ,
+        required: [true, "Please add the category"] ,
         ref :"Category"
     },
     brand: {
         type : mongoose.Schema.Types.ObjectId ,
-        required: [false, "Please add the brand"] ,
+        required: [true, "Please add the brand"] ,
         ref :"Brand"
     },   
     vote_count : {

@@ -13,12 +13,13 @@ export async function getProducts(req :Request , res : Response)  {
 
  // new product 
 export async function addProduct(req :Request , res : Response)  {
+   
     const newProduct : IProduct = await Product.create({
       name: req.body.name ,
       model: req.body.model,
       main_image: req.body.main_image,
       images: req.body.images,   
-      description: req.body.descripstion,
+      description: req.body.description,
       price: req.body.price,
       currency: req.body.currency,
       stock: req.body.stock,
