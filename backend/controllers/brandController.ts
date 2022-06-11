@@ -10,7 +10,7 @@ export async function getBrands(req :Request , res : Response)  {
   }
 
 
-// new product 
+// new brand 
 export async function addBrand(req :Request , res : Response)  {
     const newBrand : IBrand = await Brand.create({
       name: req.body.name ,   

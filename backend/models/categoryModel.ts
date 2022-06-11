@@ -7,7 +7,7 @@ export interface ICategory {
     logo:string
 }
 
-export const Brand = new mongoose.Schema<ICategory>({
+export const CategorySchema = new mongoose.Schema<ICategory>({
     name: { type: String, required: [true, "Please add a name"] },
     description: { type: String, required: [true, "Please add a description"] },
     logo:{ type: String, required: [true, "Please add a logo"] },
@@ -15,3 +15,5 @@ export const Brand = new mongoose.Schema<ICategory>({
 {
     timestamps : true
 })
+
+export const Category = mongoose.model<ICategory>('Category', CategorySchema);
