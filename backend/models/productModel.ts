@@ -11,8 +11,8 @@ export interface  IProduct  {
     stock: number;
     sale:number;
     featured : boolean ;
-    category: mongoose.Types.ObjectId ; 
-    brand: mongoose.Types.ObjectId ;    
+    category?: mongoose.Types.ObjectId ; 
+    brand?: mongoose.Types.ObjectId ;    
     vote_count : number;
     vote_total : number;    
 };
@@ -30,9 +30,7 @@ export interface  IProduct  {
         default: "Egp"
     } ,
     stock: { type: Number, required: [true, "Please add the stock"] },
-    sale : { type : Number , default:0,
-             min:0 , max : 70
-    } ,
+    sale : { type : Number , min: 0, max: 70, default: 0 } ,
     featured : {type : Boolean , default : false } , 
     category: {
         type : mongoose.Schema.Types.ObjectId ,
