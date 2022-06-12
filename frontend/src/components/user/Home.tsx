@@ -47,6 +47,58 @@ export default function Home () : JSX.Element {
 
     return (
         <Container my="md">
+
+                        <Text
+                            component="span"
+                            align="center"
+                            variant="gradient"
+                            gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+                            size="xl"
+                            weight={700}
+                            style={{ fontFamily: 'Greycliff CF, sans-serif' }}
+                        >
+                            On Sale
+                        </Text>
+
+                        <SimpleGrid cols={3} spacing="lg"
+                            breakpoints={[
+                                { maxWidth: 980, cols: 3, spacing: 'md' },
+                                { maxWidth: 755, cols: 2, spacing: 'sm' },
+                                { maxWidth: 600, cols: 1, spacing: 'sm' },
+                            ]} >
+
+
+                            {products.map((product)=>{
+                                    if (product.sale>0)
+                                    return  <div>{product.name} {product.sale}</div>
+                            })}
+                        </SimpleGrid>
+
+                        <Text
+                            component="span"
+                            align="center"
+                            variant="gradient"
+                            gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+                            size="xl"
+                            weight={700}
+                            style={{ fontFamily: 'Greycliff CF, sans-serif' }}
+                        >
+                            Featured
+                        </Text>
+
+                        <SimpleGrid cols={3} spacing="lg"
+                            breakpoints={[
+                                { maxWidth: 980, cols: 3, spacing: 'md' },
+                                { maxWidth: 755, cols: 2, spacing: 'sm' },
+                                { maxWidth: 600, cols: 1, spacing: 'sm' },
+                            ]} >
+
+
+                            {products.map((product)=>{
+                                    if (product.featured===true)
+                                    return  <div>{product.name} {product.featured}</div>
+                            })}
+                        </SimpleGrid>
                 {categories?.map((x) => (
                     <div key={x._id}>
                         <Text
