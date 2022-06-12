@@ -8,6 +8,8 @@ export interface  IProduct  {
     price: number;
     currency: string;
     stock: number;
+    sale:number;
+    featured : boolean ;
     category?: string ; 
     brand?: string ;    
     vote_count : number;
