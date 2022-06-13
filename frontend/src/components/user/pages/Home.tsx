@@ -1,8 +1,8 @@
 import { Loader, Container, SimpleGrid, Text } from '@mantine/core';
 import { useState, useEffect } from "react";
-import * as api from "../../helpers/api"
-import { ICategory, IProduct } from '../../helpers/types';
-import Product from '../Product';
+import * as api from "../../../helpers/api"
+import { ICategory, IProduct } from '../../../helpers/types';
+import Product from '../features/Product';
 import React, { ReactElement } from "react";
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "./components/user/Home";
+import Home from "./components/user/pages/Home";
 
 
 

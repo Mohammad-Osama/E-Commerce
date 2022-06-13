@@ -1,10 +1,12 @@
 import React, { ReactElement } from "react";
-import { IProduct } from "../helpers/types";
+import { IProduct } from "../../../helpers/types";
 import {
     Card, Image, Text, Badge, Group, useMantineTheme,
     ActionIcon, Grid, SimpleGrid, FloatingTooltip
   } from '@mantine/core';
 
+
+import CartButtons from "./CartButtons"
 
 interface X {
     product :IProduct;
@@ -37,7 +39,9 @@ const Product = ({ product } : X) => {
                   {price} {currency}
                 </Badge>
               </Group>  
+              <CartButtons/>
         </Card>
+        
       </div>
     )
 }
