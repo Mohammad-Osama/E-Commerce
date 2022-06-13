@@ -1,24 +1,10 @@
 import React, { ReactElement } from "react";
 import { IProduct } from "../helpers/types";
+import {
+    Card, Image, Text, Badge, Group, useMantineTheme,
+    ActionIcon, Grid, SimpleGrid, FloatingTooltip
+  } from '@mantine/core';
 
- type  P = {
-    _id :string ;
-    name: string;
-    model: string;
-    main_image: string;
-    images: string;    
-    description: string;
-    price: number;
-    currency: string;
-    stock: number;
-    sale:number;
-    featured : boolean ;
-    category?: string ; 
-    brand?: string ;    
-    vote_count : number;
-    vote_total : number;   
-   
-};
 
 interface X {
     product :IProduct;
@@ -28,10 +14,31 @@ interface X {
 
 const Product = ({ product } : X) => {
   const  { _id, name, main_image, price, currency, stock, vote_count, vote_total, description, model } = product
+  const theme = useMantineTheme();
+
+
+
+
     return (
-        <div>
-          name  {name} 
-        </div>
+        <div style={{ width: "90%", margin: 'auto'}} >
+        <Card shadow="sm" p="lg">
+           <Card.Section>
+              <Image src={main_image}
+                alt="Product"
+                radius={10}
+                height={180}
+                fit="contain"
+                style={{ cursor: 'pointer' }}
+              />
+            </Card.Section>
+              <Group position="center" spacing="xs"  style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
+              <Text weight={500}>{name}</Text>
+              <Badge color="pink" variant="light" size="xl" >
+                  {price} {currency}
+                </Badge>
+              </Group>  
+        </Card>
+      </div>
     )
 }
 
