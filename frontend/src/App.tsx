@@ -1,11 +1,12 @@
+import React from "react";
 import Home from "./components/user/Home";
 
 
 
-function App() {
+const App :React.FC = () => {
   return (
     <Home/>
   );
 }
 
-export default App;
+export default App

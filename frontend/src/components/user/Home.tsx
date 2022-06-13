@@ -2,11 +2,30 @@ import { Loader, Container, SimpleGrid, Text } from '@mantine/core';
 import { useState, useEffect } from "react";
 import * as api from "../../helpers/api"
 import { ICategory, IProduct } from '../../helpers/types';
+import Product from '../Product';
+import React ,{ ReactElement } from "react";
 
 
+type  P = {
+    _id?:string ;
+    name: string;
+    model: string;
+    main_image: string;
+    images: string;    
+    description: string;
+    price: number;
+    currency: string;
+    stock: number;
+    sale:number;
+    featured : boolean ;
+    category?: string ; 
+    brand?: string ;    
+    vote_count : number;
+    vote_total : number;    
+};
 
 
-export default function Home () : JSX.Element { 
+ const  Home = () => { 
     const emptyCategories:ICategory[] = [];
     const emptyProducts:IProduct[] = [];
 
@@ -42,8 +61,8 @@ export default function Home () : JSX.Element {
     }, [loading]);
 
 
-    if (loading===true) return <Loader/>;
-    else
+   // if (loading===true) return <Loader/>;
+  //  else
 
     return (
         <Container my="md">
@@ -70,7 +89,9 @@ export default function Home () : JSX.Element {
 
                             {products.map((product)=>{
                                     if (product.sale>0)
-                                    return  <div>{product.name} {product.sale}</div>
+                                    return  <Product  product ={product}
+                                                      key={product._id}
+                                                        />
                             })}
                         </SimpleGrid>
 
@@ -131,3 +152,6 @@ export default function Home () : JSX.Element {
             </Container>
     )
 }
+
+
+export default Home
