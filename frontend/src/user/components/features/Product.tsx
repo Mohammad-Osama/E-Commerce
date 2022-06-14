@@ -15,7 +15,7 @@ interface X {
 
 
 const Product = ({ product } : X) => {
-  const  { _id, name, main_image, price, currency, stock, vote_count, vote_total, description, model } = product
+  const  { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model } = product
   const theme = useMantineTheme();
 
 

@@ -3,10 +3,13 @@ import { ActionIcon ,Group , useMantineTheme} from '@mantine/core';
 import { Plus, Minus } from 'tabler-icons-react';
 import { useDispatch } from 'react-redux';
 import cartSlice from '../../redux/slices/cartSlice';
-import { addToCart } from '../../redux/slices/cartSlice';
+import { addToCart , removeFromCart } from '../../redux/slices/cartSlice';
 import {IProduct} from '../../../helpers/types'
 
+interface Id {
+    _id: string;
 
+}
 interface X {
     product :IProduct;
    
@@ -21,12 +24,12 @@ interface TodoProps {
 let quantity :number = 12
 
 const CartButtons = ({ product } : X) => {
-    const  { _id, name, main_image, price, currency, stock, vote_count, vote_total, description, model ,featured,sale } = product
+    const  { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model ,featured,sale } = product
 
     const theme = useMantineTheme();
     const dispatch = useDispatch()
 
-
+   // const id: string = _id
 
 
     return (
@@ -35,7 +38,7 @@ const CartButtons = ({ product } : X) => {
                 size={28}
                 variant="transparent"
                 onClick={() => {
-                    dispatch(addToCart({ _id, name, main_image, price, currency, stock, vote_count, vote_total, model ,sale ,quantity }))
+                    dispatch(addToCart({ id, name, main_image, price, currency, stock, vote_count, vote_total, model ,sale ,quantity }))
                 }}
                
             >
@@ -45,7 +48,9 @@ const CartButtons = ({ product } : X) => {
             <ActionIcon
                 size={28}
                 variant="transparent"
-               
+                onClick={() => {
+                    dispatch(removeFromCart(id)) // removed the _ to fix the error 
+                }}
             >
                 <Minus size={16} />
             </ActionIcon>

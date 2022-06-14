@@ -4,7 +4,7 @@ import { RootState } from "../store"
 
 
 export interface IProductcart {
-    _id?: string;
+    id: string;
     name: string;
     model: string;
     main_image: string;
@@ -21,6 +21,11 @@ interface Items {
     product: IProduct;
     quantity: number;
     currentQuantity: number;
+
+}
+
+interface Id {
+    _id: string;
 
 }
 interface State {
@@ -40,7 +45,7 @@ const cartSlice = createSlice({
     reducers: {
         addToCart: (state, action: PayloadAction<IProductcart>) => {
             const existingCartItemIndex = state.items.findIndex(
-                (item) => item._id === action.payload._id
+                (item) => item.id === action.payload.id
             );
             const existingCartItem = state.items[existingCartItemIndex];
             let updatedItems;
@@ -62,20 +67,20 @@ const cartSlice = createSlice({
             }
             else {
 
-                state.items.push(
-                    action.payload
-
-                )
+                state.items.push(action.payload)
             }
 
         },
+        removeFromCart: (state, action : PayloadAction<string>) => {
 
+            state.items = state.items.filter((item) => item.id !== action.payload);
+        }
 
     }
 })
 
 
-export const { addToCart } = cartSlice.actions
+export const { addToCart ,removeFromCart } = cartSlice.actions
 
 export default cartSlice.reducer
 

@@ -71,7 +71,7 @@ const Home = () => {
                 {products.map((product) => {
                     if (product.sale > 0)
                         return <Product product={product}
-                            key={product._id}
+                            key={product.id}
                         />
                 })}
             </SimpleGrid>
@@ -124,7 +124,7 @@ const Home = () => {
                             .slice(0, 6).map((product) => {
 
                                 return <Product product={product}
-                                                 key={product._id}
+                                                 key={product.id}
                                 />
                             })}
                     </SimpleGrid>

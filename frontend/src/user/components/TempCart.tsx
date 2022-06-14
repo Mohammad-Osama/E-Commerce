@@ -11,7 +11,7 @@ const TempCart = () => {
     return (
         <div>
             <h2>Cart</h2>
-            <p>items in Cart : {cartItems.map((item) => item.name + item._id
+            <p>items in Cart : {cartItems.map((item) => item.name + item.id
              + " , quantity : " + item.quantity +
               " price " + item.price)} </p>
         </div>
