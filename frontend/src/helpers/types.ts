@@ -16,6 +16,20 @@ export interface  IProduct  {
     vote_total : number;    
 };
 
+export interface IProductCart  {
+    id:string ;
+    name: string;
+    model: string;
+    main_image: string;    
+    price: number;
+    currency: string;
+    stock: number;
+    sale:number;
+    vote_count : number;
+    vote_total : number;  
+    quantity: number;  
+};
+
 
 export interface ICategory {
     _id?:string;
