@@ -39,7 +39,7 @@ const Product = ({ product } : X) => {
                   {price} {currency}
                 </Badge>
               </Group>  
-              <CartButtons/>
+              <CartButtons product = {product}/>
         </Card>
         
       </div>
