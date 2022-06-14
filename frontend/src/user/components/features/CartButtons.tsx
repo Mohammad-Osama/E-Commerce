@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ActionIcon, Group, useMantineTheme } from '@mantine/core';
 import { Plus, Minus } from 'tabler-icons-react';
 import { useDispatch } from 'react-redux';
-import cartSlice from '../../redux/slices/cartSlice';
+import { ShoppingCartPlus, ShoppingCartX } from 'tabler-icons-react';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
 import { IProduct, IProductCart } from '../../../helpers/types'
 
@@ -31,13 +31,27 @@ const CartButtons = ({ product }: X) => {
         setQuantity(number)
     }
 
-    const cartAddFunction = ({ id, name, main_image, price, currency, stock, vote_count, vote_total, model, sale, quantity }: IProductCart) :void => {
+    let productToCart : IProductCart ={
+        id:id ,
+        name: name,
+        model: model,
+        main_image: main_image, 
+        price: price,
+        currency: currency,
+        stock: stock,
+        sale:sale,
+        vote_count : vote_count,
+        vote_total : vote_total,
+        quantity: quantity,
 
-        dispatch(addToCart({ id, name, main_image, price, currency, stock, vote_count, vote_total, model, sale, quantity }))
+    }
+    const cartAddFunction = (productToCart:IProductCart): void => {
+
+        dispatch(  addToCart  (productToCart)    )
     }
 
 
-    const cartRemoveFunction = (id:string) :void => {
+    const cartRemoveFunction = (id: string): void => {
         dispatch(removeFromCart(id))
     }
 
@@ -51,8 +65,23 @@ const CartButtons = ({ product }: X) => {
     return (
         <Group position="center" style={{ marginRight: '0px', gap: '10px', width: '90%', marginBottom: 5, marginTop: theme.spacing.sm }}>
             <ActionIcon
+                onClick={() => {
+                    cartAddFunction(productToCart)
+                }}
+            >
+                {quantity > 0
+                    ?
+                    <ShoppingCartPlus size={30} color={'#40bf59'} />
+
+                    :
+                    <ShoppingCartX size={30} color={'#d279c6'} />
+
+                }
+            </ActionIcon>
+            <ActionIcon
                 size={28}
                 variant="transparent"
+                onMouseDown={(e: any) => e.preventDefault()}
                 onClick={increaseQuantity}
 
             >
@@ -62,6 +91,7 @@ const CartButtons = ({ product }: X) => {
             <ActionIcon
                 size={28}
                 variant="transparent"
+                onMouseDown={(e: any) => e.preventDefault()}
                 onClick={decreaseQuantity}
             >
                 <Minus size={16} />
