@@ -44,9 +44,15 @@ const CartButtons = ({ product }: X) => {
         const number = quantity + 1
         setQuantity(number)
     }
-    
+
 
     const decreaseQuantity = (): void => {
+        if (currentQuantity > 0) {
+            if (quantity <= -currentQuantity)
+              return;
+          }
+          else
+            if (quantity <= 1) return
         const number = quantity - 1
         setQuantity(number)
     }
