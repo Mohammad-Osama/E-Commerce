@@ -19,6 +19,7 @@ const CartButtons = ({ product }: X) => {
     const { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model, featured, sale } = product
     const [quantity, setQuantity] = useState<number>(1)
     const [currentQuantity, setCurrentQuantity] = useState<number>(0)
+    const [full, setFull] = useState<boolean>(false)
 
 
     const theme = useMantineTheme();
@@ -37,7 +38,7 @@ const CartButtons = ({ product }: X) => {
         if (currentQuantity > 0) {
             if (quantity == stock - currentQuantity)
                 return
-         }
+        }
         if (quantity == stock)
             return;
 
@@ -49,12 +50,15 @@ const CartButtons = ({ product }: X) => {
     const decreaseQuantity = (): void => {
         if (currentQuantity > 0) {
             if (quantity <= -currentQuantity)
-              return;
-          }
-          else
+                return;
+        }
+        else
             if (quantity <= 1) return
+        if (currentQuantity == stock)
+            setFull(true)
         const number = quantity - 1
         setQuantity(number)
+        setFull(false)
     }
 
     let productToCart: IProductCart = {
@@ -69,12 +73,25 @@ const CartButtons = ({ product }: X) => {
         vote_count: vote_count,
         vote_total: vote_total,
         quantity: quantity,
-
     }
+
+
+
     const cartAddFunction = (productToCart: IProductCart): void => {
+        if (currentQuantity == stock && quantity > 0) {
+            setFull(true)
+            return
+        }
+
+        else setFull(false)
+        if (quantity === 0) {
+            return
+        }
 
         dispatch(addToCart(productToCart))
+        setQuantity(1)
     }
+
 
 
     const cartRemoveFunction = (id: string): void => {
@@ -97,6 +114,9 @@ const CartButtons = ({ product }: X) => {
     return (
         <Group position="center" style={{ marginRight: '0px', gap: '10px', width: '90%', marginBottom: 5, marginTop: theme.spacing.sm }}>
             <ActionIcon
+                disabled={quantity === 0 || full === true      // <----------
+                    ? true
+                    : false}
                 onClick={() => {
                     cartAddFunction(productToCart)
                 }}
