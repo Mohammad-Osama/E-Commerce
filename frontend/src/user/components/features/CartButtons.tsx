@@ -27,42 +27,47 @@ const CartButtons = ({ product }: X) => {
     const cartItems = useSelector(cartState)
     const thisProductInCart = cartItems.filter((item) => {
         return id === item.id
-      })
-      console.log("thisProductInCart",thisProductInCart)
-
-      const thisProduct = thisProductInCart[0];
-      console.log("thisProduct",thisProduct)
+    })
+    const thisProduct = thisProductInCart[0];
 
 
 
 
     const increaseQuantity = (): void => {
+        if (currentQuantity > 0) {
+            if (quantity == stock - currentQuantity)
+                return
+         }
+        if (quantity == stock)
+            return;
+
         const number = quantity + 1
         setQuantity(number)
     }
+    
 
     const decreaseQuantity = (): void => {
         const number = quantity - 1
         setQuantity(number)
     }
 
-    let productToCart : IProductCart ={
-        id:id ,
+    let productToCart: IProductCart = {
+        id: id,
         name: name,
         model: model,
-        main_image: main_image, 
+        main_image: main_image,
         price: price,
         currency: currency,
         stock: stock,
-        sale:sale,
-        vote_count : vote_count,
-        vote_total : vote_total,
+        sale: sale,
+        vote_count: vote_count,
+        vote_total: vote_total,
         quantity: quantity,
 
     }
-    const cartAddFunction = (productToCart:IProductCart): void => {
+    const cartAddFunction = (productToCart: IProductCart): void => {
 
-        dispatch(  addToCart  (productToCart)    )
+        dispatch(addToCart(productToCart))
     }
 
 
@@ -73,11 +78,11 @@ const CartButtons = ({ product }: X) => {
 
     useEffect(() => {
         if (thisProduct)
-          setCurrentQuantity(thisProduct.quantity)
+            setCurrentQuantity(thisProduct.quantity)
         return () => {
-          setCurrentQuantity(0)
+            setCurrentQuantity(0)
         }
-      }, [cartItems, thisProduct])
+    }, [cartItems, thisProduct])
 
 
 
