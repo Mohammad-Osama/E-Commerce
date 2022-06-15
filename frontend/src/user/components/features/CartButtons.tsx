@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { cartState } from '../../redux/slices/cartSlice';
 import { ActionIcon, Group, useMantineTheme } from '@mantine/core';
 import { Plus, Minus } from 'tabler-icons-react';
 import { useDispatch } from 'react-redux';
@@ -16,10 +18,23 @@ let quantity: number = 12
 const CartButtons = ({ product }: X) => {
     const { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model, featured, sale } = product
     const [quantity, setQuantity] = useState<number>(1)
+    const [currentQuantity, setCurrentQuantity] = useState<number>(0)
 
 
     const theme = useMantineTheme();
     const dispatch = useDispatch()
+
+    const cartItems = useSelector(cartState)
+    const thisProductInCart = cartItems.filter((item) => {
+        return id === item.id
+      })
+      console.log("thisProductInCart",thisProductInCart)
+
+      const thisProduct = thisProductInCart[0];
+      console.log("thisProduct",thisProduct)
+
+
+
 
     const increaseQuantity = (): void => {
         const number = quantity + 1
@@ -56,7 +71,13 @@ const CartButtons = ({ product }: X) => {
     }
 
 
-
+    useEffect(() => {
+        if (thisProduct)
+          setCurrentQuantity(thisProduct.quantity)
+        return () => {
+          setCurrentQuantity(0)
+        }
+      }, [cartItems, thisProduct])
 
 
 
@@ -81,7 +102,7 @@ const CartButtons = ({ product }: X) => {
             <ActionIcon
                 size={28}
                 variant="transparent"
-                onMouseDown={(e: any) => e.preventDefault()}
+                onMouseDown={(e: any) => e.preventDefault()}  // missing type 
                 onClick={increaseQuantity}
 
             >
@@ -91,7 +112,7 @@ const CartButtons = ({ product }: X) => {
             <ActionIcon
                 size={28}
                 variant="transparent"
-                onMouseDown={(e: any) => e.preventDefault()}
+                onMouseDown={(e: any) => e.preventDefault()}  // missing type
                 onClick={decreaseQuantity}
             >
                 <Minus size={16} />
