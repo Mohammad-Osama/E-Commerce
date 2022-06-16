@@ -2,20 +2,19 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { cartState } from '../../redux/slices/cartSlice';
-import { ActionIcon, Group, useMantineTheme } from '@mantine/core';
+import { ActionIcon, Group, useMantineTheme,FloatingTooltip, Tooltip } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { Plus, Minus } from 'tabler-icons-react';
 import { useDispatch } from 'react-redux';
-import { ShoppingCartPlus, ShoppingCartX , LetterX } from 'tabler-icons-react';
+import { ShoppingCartPlus, ShoppingCartX , LetterX ,ShoppingCartOff} from 'tabler-icons-react';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
 import { IProduct, IProductCart } from '../../../helpers/types'
-import NotificationProps from "@mantine/notifications"
+
 
 interface X {
     product: IProduct;
 }
 
-let quantity: number = 12
 
 const CartButtons = ({ product }: X) => {
     const { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model, featured, sale } = product
@@ -104,7 +103,7 @@ const CartButtons = ({ product }: X) => {
 
 
 
-    const cartRemoveFunction = (id: string): void => {
+    const removeFromCartFunction = (id: string): void => {
         dispatch(removeFromCart(id))
         setQuantity(1)
         showNotification({
@@ -116,14 +115,9 @@ const CartButtons = ({ product }: X) => {
     setFull(false)
     }
 
-    type M ={
-        title: string;
-        message: string;
-        icon?: undefined;
-        color?: undefined;
-    }
 
-    const message :any = () => {
+
+    const message :any = () => {  // cant figure it out ! 
         if (quantity === 0)
           return { title: "invalid amount", message: "0 is not a valid quantity" }
         if (currentQuantity === 0)
@@ -153,7 +147,7 @@ const CartButtons = ({ product }: X) => {
 
 
     return (
-        <Group position="center" style={{ marginRight: '0px', gap: '10px', width: '90%', marginBottom: 5, marginTop: theme.spacing.sm }}>
+        <Group position="center" style={{ marginRight: '0px', gap: '10px', width: '100%', marginBottom: 45, marginTop: theme.spacing.sm }}>
             <ActionIcon
                 disabled={quantity === 0 || full === true      // <----------
                     ? true
@@ -163,12 +157,12 @@ const CartButtons = ({ product }: X) => {
                 }}
             >
                 {quantity > 0
-                    ?
-                    <ShoppingCartPlus size={30} color={'#40bf59'} />
-
-                    :
-                    <ShoppingCartX size={30} color={'#d279c6'} />
-
+                    ? <Tooltip placement="center" label="Add to cart" position="bottom" radius="xl" color="green" >
+                       <ShoppingCartPlus size={30} color={'#40bf59'} />
+                     </Tooltip>
+                    : <Tooltip placement="center" label="Decrease from cart" position="bottom" radius="xl" color="grape">
+                         <ShoppingCartX size={30} color={'#d279c6'} />
+                      </Tooltip>
                 }
             </ActionIcon>
             <ActionIcon
@@ -189,6 +183,13 @@ const CartButtons = ({ product }: X) => {
             >
                 <Minus size={16} />
             </ActionIcon>
+            {currentQuantity > 0 &&
+                <ActionIcon onClick={() => { removeFromCartFunction(id) }}>
+                    <Tooltip placement="center" label="Remove from cart" position="bottom" radius="xl" color="red" >
+                       <ShoppingCartOff size={30} color={'red'}/>
+                    </Tooltip>
+                </ActionIcon>
+                }
         </Group>
     )
 }
