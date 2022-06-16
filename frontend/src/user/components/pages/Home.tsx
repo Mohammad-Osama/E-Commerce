@@ -42,98 +42,103 @@ const Home = () => {
     }, [loading]);
 
 
-    // if (loading===true) return <Loader/>;
-    //  else
+    if (loading === true)
 
-    return (
-        <Container my="md">
+        return <Loader width="100%"
+                       size="xl"
+                 />
 
-            <Text
-                component="span"
-                align="center"
-                variant="gradient"
-                gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-                size="xl"
-                weight={700}
-                style={{ fontFamily: 'Greycliff CF, sans-serif' }}
-            >
-                On Sale
-            </Text>
+    else
 
-            <SimpleGrid cols={3} spacing="lg"
-                breakpoints={[
-                    { maxWidth: 980, cols: 3, spacing: 'md' },
-                    { maxWidth: 755, cols: 2, spacing: 'sm' },
-                    { maxWidth: 600, cols: 1, spacing: 'sm' },
-                ]} >
+        return (
+            <Container my="md">
+
+                <Text
+                    component="span"
+                    align="center"
+                    variant="gradient"
+                    gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+                    size="xl"
+                    weight={700}
+                    style={{ fontFamily: 'Greycliff CF, sans-serif' }}
+                >
+                    On Sale
+                </Text>
+
+                <SimpleGrid cols={3} spacing="lg"
+                    breakpoints={[
+                        { maxWidth: 980, cols: 3, spacing: 'md' },
+                        { maxWidth: 755, cols: 2, spacing: 'sm' },
+                        { maxWidth: 600, cols: 1, spacing: 'sm' },
+                    ]} >
 
 
-                {products.map((product) => {
-                    if (product.sale > 0)
-                        return <Product product={product}
+                    {products.map((product) => {
+                        if (product.sale > 0)
+                            return <Product product={product}
+                                key={product.id}
+                            />
+                    })}
+                </SimpleGrid>
+
+                <Text
+                    component="span"
+                    align="center"
+                    variant="gradient"
+                    gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+                    size="xl"
+                    weight={700}
+                    style={{ fontFamily: 'Greycliff CF, sans-serif' }}
+                >
+                    Featured
+                </Text>
+
+                <SimpleGrid cols={3} spacing="lg"
+                    breakpoints={[
+                        { maxWidth: 980, cols: 3, spacing: 'md' },
+                        { maxWidth: 755, cols: 2, spacing: 'sm' },
+                        { maxWidth: 600, cols: 1, spacing: 'sm' },
+                    ]} >
+
+
+                    {products.map((product) => {
+                        if (product.featured === true)
+                            return <Product product={product}
+                                key={product.id}
+                            />
+                    })}
+                </SimpleGrid>
+                {categories?.map((x) => (
+                    <div key={x._id}>
+                        <Text
+                            component="span"
+                            align="center"
+                            variant="gradient"
+                            gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+                            size="xl"
+                            weight={700}
+                            style={{ fontFamily: 'Greycliff CF, sans-serif' }}
+                        >
+                            {x.name}
+                        </Text>
+                        <SimpleGrid cols={3} spacing="lg"
+                            breakpoints={[
+                                { maxWidth: 980, cols: 3, spacing: 'md' },
+                                { maxWidth: 755, cols: 2, spacing: 'sm' },
+                                { maxWidth: 600, cols: 1, spacing: 'sm' },
+                            ]} >
+                            {products?.filter((item) => item.category === x._id)
+                                .slice(0, 6).map((product) => {
+
+                                    return <Product product={product}
                                         key={product.id}
-                                 />
-                })}
-            </SimpleGrid>
-
-            <Text
-                component="span"
-                align="center"
-                variant="gradient"
-                gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-                size="xl"
-                weight={700}
-                style={{ fontFamily: 'Greycliff CF, sans-serif' }}
-            >
-                Featured
-            </Text>
-
-            <SimpleGrid cols={3} spacing="lg"
-                breakpoints={[
-                    { maxWidth: 980, cols: 3, spacing: 'md' },
-                    { maxWidth: 755, cols: 2, spacing: 'sm' },
-                    { maxWidth: 600, cols: 1, spacing: 'sm' },
-                ]} >
-
-
-                {products.map((product) => {
-                    if (product.featured === true)
-                        return  <Product product={product}
-                                         key={product.id}
-                                />
-                })}
-            </SimpleGrid>
-            {categories?.map((x) => (
-                <div key={x._id}>
-                    <Text
-                        component="span"
-                        align="center"
-                        variant="gradient"
-                        gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-                        size="xl"
-                        weight={700}
-                        style={{ fontFamily: 'Greycliff CF, sans-serif' }}
-                    >
-                        {x.name}
-                    </Text>
-                    <SimpleGrid cols={3} spacing="lg"
-                        breakpoints={[
-                            { maxWidth: 980, cols: 3, spacing: 'md' },
-                            { maxWidth: 755, cols: 2, spacing: 'sm' },
-                            { maxWidth: 600, cols: 1, spacing: 'sm' },
-                        ]} >
-                        {products?.filter((item) => item.category === x._id)
-                            .slice(0, 6).map((product) => {
-
-                                return <Product product={product}
-                                                key={product.id}
-                                            />
-                            })}
-                    </SimpleGrid>
-                </div>
-            ))}
-        </Container>
-    )
+                                    />
+                                })}
+                        </SimpleGrid>
+                    </div>
+                ))}
+            </Container>
+        )
 }
 
 

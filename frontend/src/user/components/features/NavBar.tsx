@@ -1,5 +1,5 @@
 import React  from 'react'
-import { createStyles, Header, ActionIcon, Group, Burger, Container,Text } from '@mantine/core';
+import { createStyles, Header, ActionIcon, Group, Burger, Container,Text,Autocomplete } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
 import { ShoppingCart } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
@@ -63,7 +63,18 @@ export function Navbar() {
                     <Link style={{ textDecoration: 'none', color: 'black' }} to="./">
                         <h2>Home</h2>
                     </Link>
-                   
+                    <Autocomplete 
+                            transition="pop-top-left"
+                            transitionDuration={80}
+                            transitionTimingFunction="ease"
+                            radius="lg"
+                            limit={10}
+                            className={classes.search}
+                            placeholder="Search"
+                         
+                            data={['p', 'pp', 'ppp', 'pppp']}
+                          
+                />
                     <Group spacing={5} className={classes.links} >
                     <ActionIcon<typeof Link> component={Link} to="/cart" >
                         <ShoppingCart />
