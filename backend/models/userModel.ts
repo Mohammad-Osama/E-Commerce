@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 export interface IUser {
+    id : mongoose.Types.ObjectId
     name: string;
     first_name: string;
     last_name: string;
@@ -48,7 +49,7 @@ const UserSchema = new mongoose.Schema<IUser>({
         timestamps: true
     });
 
-    
+
 UserSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString()
@@ -56,4 +57,4 @@ UserSchema.set('toJSON', {
     }
 })
 
-export const Product = mongoose.model<IUser>('User', UserSchema);
+export const User = mongoose.model<IUser>('User', UserSchema);

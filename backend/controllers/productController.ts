@@ -2,8 +2,6 @@ import {Request,Response} from "express"
 import { Product , IProduct } from "../models/productModel"
 
 
-// const productModel =  IProduct
-
 // all products  
 export async function getProducts(req :Request , res : Response)  {
    const products  = await Product.find()
@@ -37,9 +35,7 @@ export async function addProduct(req :Request , res : Response)  {
 export async function updateProduct(req :Request , res : Response) {
    const id : string = req.params.id
    const existingProduct:IProduct | null = await Product.findById(id)
-   console.log("req.params.id ", req.params.id)
-   console.log("req.body" , req.body)
-   console.log("existingProduct" , existingProduct)
+   
    if (!existingProduct){
       res.status(400)
       throw new Error ("Product not found")
@@ -49,10 +45,10 @@ export async function updateProduct(req :Request , res : Response) {
          const updatedProduct :IProduct | null = await Product.findByIdAndUpdate(
             id ,req.body, {returnDocument:"after"}
             )
-         console.log("updatedProduct" , updatedProduct)
+      
           res.status(200).json(updatedProduct)
       } catch (error) {
-         console.log("eeeeeeeeee", error)
+         
          res.status(400).json(`Error==>${error}`);
       }
       
