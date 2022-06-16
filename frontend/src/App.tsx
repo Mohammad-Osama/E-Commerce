@@ -8,16 +8,13 @@ import { Navbar } from "./user/components/features/NavBar";
 
 const App: React.FC = () => {
   return (
-    <>
-    <Navbar/>
     <Container size="xl" px="xs" >
-     
+      <Navbar />
       <TempCart />
       <Routes>
-        <Route  path='/' element={<Home/>} />
+        <Route path='/' element={<Home />} />
       </Routes>
     </Container>
-    </>
   );
 }
 
