@@ -24,6 +24,6 @@ app.listen(port, () :void => {
  app.use("/api/products",require("./routes/productRoutes"))
  app.use("/api/brands",require("./routes/brandRoutes"))
  app.use("/api/categories",require("./routes/categoryRoutes"))
-
+ app.use("/api/users",require("./routes/userRoutes"))
 
 
