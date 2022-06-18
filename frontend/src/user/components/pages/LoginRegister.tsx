@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{ useEffect }  from 'react'
 import { useForm, useToggle, upperFirst } from '@mantine/hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,9 @@ import {
     Checkbox,
     Anchor,PaperProps,Container
   } from '@mantine/core';
-import { authState, login, register } from '../../redux/slices/authSlice';
+import { showNotification } from '@mantine/notifications'
+import { AlertCircle } from 'tabler-icons-react'
+import { authState, login, register, reset } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
 
 
@@ -36,7 +38,18 @@ const LoginRegister = (props: PaperProps<'div'>) => {
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
 
- 
+  const userState = useSelector(authState)
+
+  const { isError, isSuccess, status } = userState
+
+  const handleError = () => {
+    showNotification({
+      title: "Error ",
+      message: "Wrong email or password ",
+      color: 'red',
+      icon: <AlertCircle />,
+    })
+  }
 
 
   const handelSubmit = () => {
@@ -65,7 +78,18 @@ const LoginRegister = (props: PaperProps<'div'>) => {
     }
   }
 
- 
+
+
+  useEffect(() => {
+    if (isError) {
+      handleError()
+    }
+    if (isSuccess ) {
+      navigate("/")
+    }
+    dispatch(reset())
+
+  }, [isError, isSuccess])
 
   return (
     <Container size="sm" px="xs">
