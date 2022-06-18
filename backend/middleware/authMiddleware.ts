@@ -10,14 +10,14 @@ import { IUser, User } from "../models/userModel";
     user: IUser|null
    }
 export async function authJwt(req :Request , res : Response , next :NextFunction){
-
-    if (req.body.authorization && req.body.authorization.startsWith('Bearer'))
+    
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer'))
         {
             try {
-                const token=req.body.authorization.split(' ')[1]
-
+                const token=req.headers.authorization.split(' ')[1]
+                
                 const decoded = jwt.verify(token,process.env.JWT_SECRET as Secret) as TokenInterface // any ?!
-                (req as CustomRequest).user  = await User.findById(decoded.id).select('-password') 
+               (req as CustomRequest).user  = await User.findById(decoded.id).select(['-password','-role','-status'])
                 next()
             } catch (error) {
                 console.log(error)

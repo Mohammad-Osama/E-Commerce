@@ -2,6 +2,7 @@ import {Request,Response} from "express"
 import { User , IUser } from "../models/userModel" 
 import bcrypt from "bcryptjs"
 import { generateToken } from "../helpers/generateToken"
+import { CustomRequest } from "../middleware/authMiddleware"
 
 export async function registerUser(req :Request , res : Response)  {
    const {email,password} = req.body
@@ -69,18 +70,25 @@ export async function loginUser(req :Request , res : Response)  {
               res.status(400).json("wrong password")
 
             }
-        }
-        
+        }      
         else {
           res.status(400).json("user does not exist")
-
         }
-
-
-
 
     } catch (error) {
       res.status(400).json(`Error ==> ${error}`)
     }
+
+}
+
+export async function currentUser(req :Request , res : Response)  {   
+  try {
+    // from authjwt middelware 
+    const currentUser = ( (req as CustomRequest).user  )
+    res.status(200).json(currentUser)
+
+  } catch (error) {
+    res.status(400).json(`Error ==> ${error}`)
+  }
 
 }
