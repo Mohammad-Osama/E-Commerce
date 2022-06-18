@@ -50,7 +50,12 @@ const LoginRegister = (props: PaperProps<'div'>) => {
       icon: <AlertCircle />,
     })
   }
-
+  const clearInput = () => {  // not needed ?!
+    form.setFieldValue('email', "")
+    form.setFieldValue('first_name', "")
+    form.setFieldValue('last_name', "")
+    form.setFieldValue('password', "")
+  }
 
   const handelSubmit = () => {
 
@@ -74,6 +79,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
         password: password
       }
      dispatch(register(userInfo))
+     clearInput()
       console.log("userInfo register ", userInfo)
     }
   }
