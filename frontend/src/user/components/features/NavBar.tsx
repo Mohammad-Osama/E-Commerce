@@ -5,6 +5,7 @@ import { ShoppingCart } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useState , useEffect , useRef} from 'react';
+import UserDisplay from './UserDisplay';
 
 
 const useStyles = createStyles((theme) => ({
@@ -81,7 +82,8 @@ export function Navbar() {
                     </ActionIcon>
                     <Text > Cart </Text>
                     </Group>
-                    <ShoppingCart />
+                
+                    <UserDisplay/>
                     <Burger
                         opened={opened}
                         onClick={() => toggleOpened()}
