@@ -35,7 +35,7 @@ const initialState :IState = {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async (userInput : any , thunkAPI) => {  // type to userinput to be added later 
+  async (userInput :any , thunkAPI) => {  // type to userinput to be added later 
     try {
       const response = await axios.post("http://localhost:5000/api/users/login", userInput)
       console.log('response login', response);
@@ -43,7 +43,7 @@ export const login = createAsyncThunk(
         localStorage.setItem('token', JSON.stringify(response.data.token))
       }
       return response.data
-    } catch (error) {
+    } catch (error : any) {
       const message = 
        (error.response && 
         error.response.data &&
@@ -76,7 +76,7 @@ export const register = createAsyncThunk(
         localStorage.setItem('token', JSON.stringify(response.data.token))
       }
       return response.data
-    } catch (error) {
+    } catch (error : any) {
       const message = 
        (error.response && 
         error.response.data &&

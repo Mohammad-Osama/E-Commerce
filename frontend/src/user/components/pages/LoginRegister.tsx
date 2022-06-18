@@ -1,5 +1,7 @@
 import React from 'react'
 import { useForm, useToggle, upperFirst } from '@mantine/hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import {
     TextInput,
     PasswordInput,
@@ -11,6 +13,10 @@ import {
     Checkbox,
     Anchor,PaperProps,Container
   } from '@mantine/core';
+import { authState, login, register } from '../../redux/slices/authSlice';
+import { AppDispatch } from '../../redux/store';
+
+
 const LoginRegister = (props: PaperProps<'div'>) => {
     const [type, toggle] = useToggle('login', ['login', 'register']);
   const form = useForm({
@@ -27,6 +33,10 @@ const LoginRegister = (props: PaperProps<'div'>) => {
     },
   });
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch<AppDispatch>()
+
+ 
 
 
   const handelSubmit = () => {
@@ -39,8 +49,9 @@ const LoginRegister = (props: PaperProps<'div'>) => {
         password: password
       }
       console.log("userInfo login", userInfo)
-     
+      dispatch(login(userInfo))
     }
+
     else if (type === "register") {
       const { email, password, first_name, last_name } = form.values
       const userInfo = {
@@ -49,7 +60,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
         email: email,
         password: password
       }
-     
+     dispatch(register(userInfo))
       console.log("userInfo register ", userInfo)
     }
   }
