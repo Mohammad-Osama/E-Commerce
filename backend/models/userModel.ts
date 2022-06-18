@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 export interface IUser {
     id : mongoose.Types.ObjectId
-    name: string;
     first_name: string;
     last_name: string;
     email: string;
@@ -18,12 +17,11 @@ export interface IUser {
 
 
 const UserSchema = new mongoose.Schema<IUser>({
-    name: { type: String,
-            required: [true, "Please add a name"] },
+    
     first_name: { type: String,
-                  required: [true, "Please add a model"] },
+                  required: [true, "Please add a first name"] },
     last_name: { type: String, 
-                 required: [true, "Please add the main image"] },
+                 required: [true, "Please add a last name"] },
     email: { type: String, 
              required: [true, "Please add an email"], 
              unique: true },

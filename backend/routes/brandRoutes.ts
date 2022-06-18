@@ -10,4 +10,4 @@ router.route("/").get(getBrands).post(addBrand)
 
 
 
-module.exports = router
+export = router

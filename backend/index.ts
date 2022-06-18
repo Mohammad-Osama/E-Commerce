@@ -1,9 +1,11 @@
 import express from "express" 
 import dotenv from "dotenv"
-import colors from "colors"
 import cors from "cors"
 import {connDb} from "./config/db"
-
+import producRoutes from "./routes/productRoutes"
+import brandRoutes from "./routes/brandRoutes"
+import categoryRoutes from "./routes/categoryRoutes"
+import userRoutes from "./routes/userRoutes"
 
 dotenv.config();
 
@@ -21,9 +23,9 @@ app.listen(port, () :void => {
     console.log(`Server listening on ${port}`);
  });
 
- app.use("/api/products",require("./routes/productRoutes"))
- app.use("/api/brands",require("./routes/brandRoutes"))
- app.use("/api/categories",require("./routes/categoryRoutes"))
- app.use("/api/users",require("./routes/userRoutes"))
+ app.use("/api/products",producRoutes)
+ app.use("/api/brands",brandRoutes)
+ app.use("/api/categories",categoryRoutes)
+ app.use("/api/users",userRoutes)
 
 

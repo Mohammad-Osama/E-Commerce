@@ -10,4 +10,4 @@ router.route("/").get(getCategories).post(addCategory)
 
 
 
-module.exports = router
+export = router

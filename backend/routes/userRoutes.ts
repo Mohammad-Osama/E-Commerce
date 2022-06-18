@@ -10,4 +10,4 @@ router.route("/register").post(registerUser)
 
 
 
-module.exports = router
+ export = router

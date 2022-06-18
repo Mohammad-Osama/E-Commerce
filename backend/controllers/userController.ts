@@ -7,7 +7,7 @@ export async function registerUser(req :Request , res : Response)  {
    const {email,password} = req.body
     
       try {
-        const userExists  = await User.findOne(email)
+        const userExists  = await User.findOne({email})
         if (userExists)
          {
            res.status(400).json("user already exists")
@@ -27,17 +27,14 @@ export async function registerUser(req :Request , res : Response)  {
             address: req.body.address,
           })
           if (newUser)
-          
            {
-
             const token = generateToken(newUser.id)
-
              res.status(201).json({
                                     id :newUser.id,
                                     first_name :newUser.first_name,
                                     last_name:newUser.last_name,
                                     email:newUser.email,
-                                    status:newUser.status,
+                                    role:newUser.role,
                                     token : token})
            }
            else

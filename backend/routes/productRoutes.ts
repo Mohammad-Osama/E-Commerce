@@ -13,4 +13,4 @@ router.route("/:id").put(updateProduct).delete(deleteProduct)
 
 
 
-module.exports = router
+export = router
