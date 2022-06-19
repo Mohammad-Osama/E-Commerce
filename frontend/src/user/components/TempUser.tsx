@@ -9,12 +9,12 @@ export default function TempUser() {
     const dispatch = useDispatch<AppDispatch>()
 
 
-    const { id, first_name, last_name, status, email, message, isError } = useSelector(authState)
+    const { id, first_name, last_name, role, email, message, isError } = useSelector(authState)
     return (
         <div>
             <div>user</div>
             <div>id : {id}</div>
-            <div>status : {status}</div>
+            <div>role : {role}</div>
             <div>first name : {first_name}</div>
             <div>last name : {last_name}</div>
             <div>email : {email}</div>

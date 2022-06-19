@@ -40,7 +40,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
 
   const userState = useSelector(authState)
 
-  const { isError, isSuccess, status ,message} = userState
+  const { isError, isSuccess ,message} = userState
 
   const handleError = () => {
     showNotification({
@@ -59,14 +59,14 @@ const LoginRegister = (props: PaperProps<'div'>) => {
 
   const handelSubmit = () => {
 
-    console.log("form", form.values)
+   // console.log("form", form.values)
     if (type === "login") {
       const { email, password } = form.values
       const userInfo = {
         email: email,
         password: password
       }
-      console.log("userInfo login", userInfo)
+    //  console.log("userInfo login", userInfo)
       dispatch(login(userInfo))
     }
 
@@ -94,6 +94,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
       clearInput()
       navigate("/")
     }
+    
    dispatch(reset())
 
   }, [isError, isSuccess])

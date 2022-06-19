@@ -7,7 +7,7 @@ const token  = JSON.parse(localStorage.getItem('token') as string)
 //const userData = parseJwt(token)
 interface IState {
     id: string |null;
-    status:  string
+    role:  string
     first_name: string
     last_name: string
     email: string
@@ -21,7 +21,7 @@ interface IState {
 const initialState :IState = {
 
     id :null,
-    status : "",
+    role : "",
     first_name : "",
     last_name : "",
     email:"" , 
@@ -113,7 +113,7 @@ const authSlice = createSlice({
       state.isLoading = false
       state.isSuccess = true
       state.id = action.payload.id
-      state.status = action.payload.status
+      state.role = action.payload.role
       state.first_name = action.payload.first_name
       state.last_name = action.payload.last_name
       state.email = action.payload.email
@@ -138,7 +138,7 @@ const authSlice = createSlice({
       state.isLoading = false
       state.isSuccess = true
       state.id = action.payload.id
-      state.status = action.payload.status
+      state.role = action.payload.role
       state.first_name = action.payload.first_name
       state.last_name = action.payload.last_name
       state.email = action.payload.email
@@ -151,14 +151,14 @@ const authSlice = createSlice({
       /* state.id = null
       state.first_name = ""
       state.last_name =  ""
-      state.status = "" */
+      state.role = "" */
      })
      .addCase(logout.fulfilled , (state,action)=>{
       state.isLoading = false
       state.isError = false
       state.message = ""
       state.id = null
-      state.status = ""
+      state.role = ""
       state.first_name = ""
       state.last_name =  ""
       state.email= ""
