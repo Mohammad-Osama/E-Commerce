@@ -14,7 +14,7 @@ interface IState {
     isError: boolean
     isSuccess: boolean
     isLoading: boolean
-    message: string
+    message: any
 
 }
 
@@ -35,7 +35,7 @@ const initialState :IState = {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async (userInput :any , thunkAPI) => {  // type to userinput to be added later 
+  async (userInput :any , thunkAPI) => {  // type to userinput to be added later ??
     try {
       const response = await axios.post("http://localhost:5000/api/users/login", userInput)
       console.log('response login', response);
@@ -43,13 +43,13 @@ export const login = createAsyncThunk(
         localStorage.setItem('token', JSON.stringify(response.data.token))
       }
       return response.data
-    } catch (error : any) {
-      const message = 
-       (error.response && 
+    } catch (error :any ) {
+      const message = error.response.data
+      /*  (error.response && 
         error.response.data &&
         error.response.data.message)
         || error.message||
-        error.toString()
+        error.toString() */
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -68,7 +68,7 @@ export const logout = createAsyncThunk(
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (userInput :any, thunkAPI) => {
+  async (userInput :any, thunkAPI) => {  // type to userinput to be added later ??
     try {
       const response = await axios.post("http://localhost:5000/api/users/register", userInput)
       console.log('response register', response);
@@ -77,12 +77,12 @@ export const register = createAsyncThunk(
       }
       return response.data
     } catch (error : any) {
-      const message = 
-       (error.response && 
+      const message = error.response.data
+      /*  (error.response && 
         error.response.data &&
         error.response.data.message)
         || error.message||
-        error.toString()
+        error.toString() */
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -122,7 +122,7 @@ const authSlice = createSlice({
      .addCase(login.rejected , (state,action)=>{
       state.isLoading = false
       state.isError = true
-      state.message = action.payload as string
+      state.message = action.payload as any
       /* state.id = null
       state.status = ""
       state.first_name = ""

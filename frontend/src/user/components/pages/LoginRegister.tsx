@@ -40,12 +40,12 @@ const LoginRegister = (props: PaperProps<'div'>) => {
 
   const userState = useSelector(authState)
 
-  const { isError, isSuccess, status } = userState
+  const { isError, isSuccess, status ,message} = userState
 
   const handleError = () => {
     showNotification({
       title: "Error ",
-      message: "Wrong email or password ",
+      message: `${message}`,
       color: 'red',
       icon: <AlertCircle />,
     })
@@ -79,7 +79,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
         password: password
       }
      dispatch(register(userInfo))
-     clearInput()
+     
       console.log("userInfo register ", userInfo)
     }
   }
@@ -91,9 +91,10 @@ const LoginRegister = (props: PaperProps<'div'>) => {
       handleError()
     }
     if (isSuccess ) {
+      clearInput()
       navigate("/")
     }
-    dispatch(reset())
+   dispatch(reset())
 
   }, [isError, isSuccess])
 

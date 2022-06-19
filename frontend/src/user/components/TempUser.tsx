@@ -1,26 +1,26 @@
 
 import { useSelector } from "react-redux"
-import { authState } from "../redux/slices/authSlice"
-
+import { authState,logout } from "../redux/slices/authSlice"
+import { AppDispatch } from "../redux/store"
+import { useDispatch } from 'react-redux';
 
 
 export default function TempUser() {
-    
+    const dispatch = useDispatch<AppDispatch>()
+
 
     const { id, first_name, last_name, status, email, message, isError } = useSelector(authState)
     return (
         <div>
-            <h3>user</h3>
-            <h5>id : {id}</h5>
-            <h5>status : {status}</h5>
-            <h5>first name : {first_name}</h5>
-            <h5>last name : {last_name}</h5>
-            <h5>email : {email}</h5>
-            <h5>message : {message}</h5>
-            <h5>isError : {isError}</h5>
-
-            
-
+            <div>user</div>
+            <div>id : {id}</div>
+            <div>status : {status}</div>
+            <div>first name : {first_name}</div>
+            <div>last name : {last_name}</div>
+            <div>email : {email}</div>
+            <div>message : {message}</div>
+            <div>isError : {isError}</div>
+            <button onClick={() => dispatch(logout())}>logout</button>
         </div>
     )
 }

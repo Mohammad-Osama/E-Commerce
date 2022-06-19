@@ -3,11 +3,15 @@ import { useSelector } from 'react-redux';
 import { cartState } from '../redux/slices/cartSlice';
 import { emptyAllCart } from '../redux/slices/cartSlice';
 import { useDispatch } from 'react-redux';
+import { logout } from '../redux/slices/authSlice';
+import { AppDispatch } from '../redux/store';
+
+
 const TempCart = () => {
 
     const cartItems = useSelector(cartState)
     console.log("cartItems", cartItems)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
 
     return (
         <div>
@@ -18,6 +22,7 @@ const TempCart = () => {
             <button onClick={() => {
                 dispatch(emptyAllCart())
             }}> empty cart</button>
+            <button onClick={() => dispatch(logout())}>logout</button>
         </div>
     )
 }
