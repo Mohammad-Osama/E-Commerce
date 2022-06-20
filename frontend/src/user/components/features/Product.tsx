@@ -38,6 +38,9 @@ const Product = ({ product } : X) => {
               <Badge color="pink" variant="light" size="xl" >
                   {price} {currency}
                 </Badge>
+                <Badge color="blue" variant="light" size="md" >
+                  {stock} in stock
+                </Badge>
               </Group>  
               <CartButtons product = {product}/>
         </Card>

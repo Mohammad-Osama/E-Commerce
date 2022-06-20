@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { cartState } from '../../redux/slices/cartSlice';
-import { ActionIcon, Group, useMantineTheme,FloatingTooltip, Tooltip } from '@mantine/core';
+import { ActionIcon, Group, useMantineTheme,FloatingTooltip, Tooltip ,Badge } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { Plus, Minus } from 'tabler-icons-react';
 import { useDispatch } from 'react-redux';
@@ -190,6 +190,13 @@ const CartButtons = ({ product }: X) => {
                     </Tooltip>
                 </ActionIcon>
                 }
+                {thisProduct?.quantity >0 &&
+                    <Badge color="green" variant="outline" size="md" >
+                    {thisProduct.quantity} in cart
+                  </Badge>
+
+                }
+                
         </Group>
     )
 }
