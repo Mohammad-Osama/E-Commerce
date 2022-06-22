@@ -109,7 +109,7 @@ const Home = () => {
                     })}
                 </SimpleGrid>
                 {categories?.map((x) => (
-                    <div key={x._id}>
+                    <div key={x.id}>
                         <Text
                             component="span"
                             align="center"
@@ -127,7 +127,7 @@ const Home = () => {
                                 { maxWidth: 755, cols: 2, spacing: 'sm' },
                                 { maxWidth: 600, cols: 1, spacing: 'sm' },
                             ]} >
-                            {products?.filter((item) => item.category === x._id)
+                            {products?.filter((item) => item.category === x.id)
                                 .slice(0, 6).map((product) => {
 
                                     return <Product product={product}

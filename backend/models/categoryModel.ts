@@ -16,4 +16,11 @@ export const CategorySchema = new mongoose.Schema<ICategory>({
     timestamps : true
 })
 
+    CategorySchema.set('toJSON', {
+        transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+        }
+    })
+
 export const Category = mongoose.model<ICategory>('Category', CategorySchema);
