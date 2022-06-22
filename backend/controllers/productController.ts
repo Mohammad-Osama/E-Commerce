@@ -4,20 +4,22 @@ import { Product , IProduct } from "../models/productModel"
 
 // all products with pages and limit
 export async function getProducts(req :Request , res : Response)  {
- //  const page : number = parseInt(req.query.page as string ) || 1
-  // const limit : number = 3
- //  const products  = await Product.find().skip(page-1*limit).limit(limit)
 
- const products  = await Product.find({
-                                    "name": {"$regex": "sam" ,'$options' : 'i' },
-                                    /* "model":{
-                                       "$regex": "11"
-
-                                    } */
-                                 })   
-
+  const page : number = parseInt(req.query.page as string ) || 1
+  const limit : number = 3
+  const products  = await Product.find().skip(page-1*limit).limit(limit)
+  
     res.status(200).json(products)
  }
+
+ // search products with name 
+ export async function searchProducts(req :Request , res : Response)  {
+
+   const products  = await Product.find({"name": {"$regex": "sam" ,'$options' : 'i' },
+                                   }).limit(10)   
+  
+      res.status(200).json(products)
+   }
 
  // new product 
 export async function addProduct(req :Request , res : Response)  {
