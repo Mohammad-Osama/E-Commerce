@@ -2,9 +2,19 @@ import {Request,Response} from "express"
 import { Product , IProduct } from "../models/productModel"
 
 
-// all products  
+// all products with pages and limit
 export async function getProducts(req :Request , res : Response)  {
-   const products  = await Product.find()
+ //  const page : number = parseInt(req.query.page as string ) || 1
+  // const limit : number = 3
+ //  const products  = await Product.find().skip(page-1*limit).limit(limit)
+
+ const products  = await Product.find({
+                                    "name": {"$regex": "sam" ,'$options' : 'i' },
+                                    /* "model":{
+                                       "$regex": "11"
+
+                                    } */
+                                 })   
 
     res.status(200).json(products)
  }
@@ -27,8 +37,7 @@ export async function addProduct(req :Request , res : Response)  {
       featured :req.body.featured
     })
 
-
-   res.status(200).json(newProduct)
+   res.status(201).json(newProduct)
 }
 
 // update  product 
