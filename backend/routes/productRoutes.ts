@@ -12,12 +12,13 @@ const router = express.Router()
 router.route("/")
                   .get(getProducts)
                   .post(addProduct)
-                  .get(searchProducts)
+          
 
 router.route("/:id")
                   .put(updateProduct)
                   .delete(deleteProduct)
 
-
+router.route("/search")
+                  .get(searchProducts)
 
 export = router

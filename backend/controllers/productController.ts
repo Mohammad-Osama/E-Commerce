@@ -6,10 +6,18 @@ import { Product , IProduct } from "../models/productModel"
 export async function getProducts(req :Request , res : Response)  {
 
   const page : number = parseInt(req.query.page as string ) || 1
-  const limit : number = 3
-  const products  = await Product.find().skip(page-1*limit).limit(limit)
+  const limit : number = 12
+  const skip = (page-1)*limit
+
+  try {
+   const products  = await Product.find().skip(skip).limit(limit)
   
-    res.status(200).json(products)
+   res.status(200).json(products)
+   
+  } catch (error) {
+     res.status(400).json(`Error==>${error}`);
+  }
+  
  }
 
  // search products with name 

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useState , useEffect , useRef} from 'react';
 import UserDisplay from './UserDisplay';
+import MenuInNav from './MenuInNav';
 
 
 const useStyles = createStyles((theme) => ({
@@ -76,6 +77,11 @@ export function Navbar() {
                             data={['p', 'pp', 'ppp', 'pppp']}
                           
                 />
+
+                <Group spacing={5} className={classes.links} >
+                        <MenuInNav classes={classes} />
+                  </Group>
+
                     <Group spacing={5} className={classes.links} >
                     <ActionIcon<typeof Link> component={Link} to="/cart" >
                         <ShoppingCart />
