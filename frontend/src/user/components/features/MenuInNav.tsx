@@ -65,7 +65,7 @@ const MenuInNav = (props :any) => {
                     }
                 >
                     {categories?.map((x) => {
-                        return <Menu.Item >
+                        return <Menu.Item key ={x.id}>
                                     {x.name}
                                 </Menu.Item>
                           })}
@@ -85,7 +85,7 @@ const MenuInNav = (props :any) => {
                     }
                 >
                     {brands?.map((x) => {
-                        return <Menu.Item>
+                        return <Menu.Item key ={x.id}>
                                  {x.name}
                                </Menu.Item>
                        })}

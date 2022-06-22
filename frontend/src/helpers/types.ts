@@ -39,7 +39,7 @@ export interface ICategory {
 }
 
 export interface IBrand {
-    _id?: string;
+    id?: string;
     name: string;
     description: string;
     logo:string

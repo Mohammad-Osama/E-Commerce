@@ -16,4 +16,11 @@ const BrandSchema = new mongoose.Schema<IBrand>({
     timestamps : true
 })
 
+    BrandSchema.set('toJSON', {
+        transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+        }
+    })
+
 export const Brand = mongoose.model<IBrand>('Brand', BrandSchema);
