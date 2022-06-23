@@ -9,6 +9,7 @@ import TempUser from "./user/components/TempUser";
 import { authState } from "./user/redux/slices/authSlice";
 import { useSelector } from "react-redux";
 import HomeAdmin from "./admin/components/pages/HomeAdmin";
+import Browse from "./user/components/pages/Browse";
 
 const App: React.FC  = () => {
 
@@ -39,6 +40,7 @@ const App: React.FC  = () => {
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/loginregister' element={<LoginRegister />} />
+                <Route path='/browse/:id' element={<Browse />} />
               </Routes>
             </Container>
 
