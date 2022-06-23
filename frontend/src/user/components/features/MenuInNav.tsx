@@ -8,9 +8,7 @@ import { ChevronDown } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ICategory, IBrand } from '../../../helpers/types';
-
 import * as api from "../../../helpers/api"
-import { ExternalLink } from 'tabler-icons-react';
 
 
 
@@ -69,8 +67,8 @@ const MenuInNav = (props :any) => {
                     }
                 >
                     {categories?.map((x) => {
-                        return <Menu.Item key ={x.id} 
-                                          icon={<ExternalLink size={14} />}
+                        return <Menu.Item key ={x.id}   // can add an icon if needed 
+                                         
                                           component={Link} to={`/browse/${x.id}`}
                                           state={{ type: "category" }}
                                             >
@@ -93,8 +91,8 @@ const MenuInNav = (props :any) => {
                     }
                 >
                     {brands?.map((x) => {
-                        return <Menu.Item key ={x.id} 
-                                          icon={<ExternalLink size={14} />}
+                        return <Menu.Item key ={x.id}   // can add an icon if needed
+                                         
                                           component={Link} to={`/browse/${x.id}`}
                                           state={{ type: "brand" }}
                                             >
