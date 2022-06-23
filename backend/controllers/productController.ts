@@ -21,7 +21,7 @@ export async function getProducts(req: Request, res: Response) {
 
 }
 
-// search products with name , query still to be written
+// search products by name , query still to be written
 export async function searchProducts(req: Request, res: Response) {
    try {
       const products = await Product.find({
@@ -38,13 +38,27 @@ export async function searchProducts(req: Request, res: Response) {
 }
 
 //get products by category id 
-export async function getProductsCategory(req: Request, res: Response) {
+export async function getProductsByCategory(req: Request, res: Response) {
    try {
       const queryID = req.query.category as string
       const ObjectId = mongoose.Types.ObjectId
-      // example id  "62a5fd190044cc587c77ba29"
       const finalID = new ObjectId(queryID);
       const products = await Product.find({ category: finalID }).limit(3)
+
+      res.status(200).json(products)
+   } catch (error) {
+      res.status(400).json(`Error==>${error}`);
+   }
+
+}
+
+//get products by brand id 
+export async function getProductsByBrand(req: Request, res: Response) {
+   try {
+      const queryID = req.query.brand as string
+      const ObjectId = mongoose.Types.ObjectId
+      const finalID = new ObjectId(queryID);
+      const products = await Product.find({ brand: finalID }).limit(3)
 
       res.status(200).json(products)
    } catch (error) {

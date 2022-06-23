@@ -4,7 +4,8 @@ import {getProducts ,
         updateProduct ,
         deleteProduct,   
         searchProducts,
-        getProductsCategory}
+        getProductsByCategory,
+        getProductsByBrand}
       from "../controllers/productController"
 
 
@@ -22,6 +23,8 @@ router.route("/search")
                   .get(searchProducts)
 
 router.route("/bycategory")
-                  .get(getProductsCategory)
+                  .get(getProductsByCategory)
 
+router.route("/bybrand")
+                  .get(getProductsByBrand)
 export = router
