@@ -10,6 +10,7 @@ import { authState } from "./user/redux/slices/authSlice";
 import { useSelector } from "react-redux";
 import HomeAdmin from "./admin/components/pages/HomeAdmin";
 import Browse from "./user/components/pages/Browse";
+import ProductFull from "./user/components/features/ProductFull";
 
 const App: React.FC  = () => {
 
@@ -41,6 +42,7 @@ const App: React.FC  = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/loginregister' element={<LoginRegister />} />
                 <Route path='/browse/:id' element={<Browse />} />
+                <Route path='/product/:id' element={<ProductFull />} />
               </Routes>
             </Container>
 

@@ -7,6 +7,7 @@ import {
 
 
 import CartButtons from "./CartButtons"
+import { useNavigate } from "react-router-dom";
 
 interface X {
     product :IProduct;
@@ -18,7 +19,7 @@ const Product = ({ product } : X) => {
   const  { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model } = product
   const theme = useMantineTheme();
 
-
+const navigate =useNavigate()
 
 
     return (
@@ -31,6 +32,7 @@ const Product = ({ product } : X) => {
                 height={180}
                 fit="contain"
                 style={{ cursor: 'pointer' }}
+                onClick={()=>{navigate(`/product/${id}`)}}
               />
             </Card.Section>
               <Group position="center" spacing="xs"  style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>

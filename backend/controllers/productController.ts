@@ -73,8 +73,6 @@ export async function getProductsByBrand(req: Request, res: Response) {
 export async function getProductById(req: Request, res: Response) {
    try {
       const id= req.params.id as string
-     // const ObjectId = mongoose.Types.ObjectId
-    //  const finalID = new ObjectId(queryID);
       const product = await Product.findById(id)
 
       res.status(200).json(product)

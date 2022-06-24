@@ -11,7 +11,7 @@ const Home = () => {
     const emptyProducts: IProduct[] = [];
 
 
-    const [products, setProducts]: [IProduct[], (category: IProduct[]) => void] = useState(emptyProducts)
+    const [products, setProducts]: [IProduct[], (product: IProduct[]) => void] = useState(emptyProducts)
     const [categories, setCategories]: [ICategory[], (category: ICategory[]) => void] = useState(emptyCategories)
     const [loading, SetLoading] = useState<boolean>(true)
 
