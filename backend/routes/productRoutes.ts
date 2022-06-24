@@ -5,7 +5,8 @@ import {getProducts ,
         deleteProduct,   
         searchProducts,
         getProductsByCategory,
-        getProductsByBrand}
+        getProductsByBrand,
+        getProductById}
       from "../controllers/productController"
 
 
@@ -16,6 +17,7 @@ router.route("/")
                   .post(addProduct)
   
 router.route("/:id")
+                  .get(getProductById)
                   .put(updateProduct)
                   .delete(deleteProduct)
 
