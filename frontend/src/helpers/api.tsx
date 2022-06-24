@@ -27,3 +27,8 @@ export const getProductsByBrand = async (id :string) => {
     const data = await axios.get<IProduct[]>(`/api/products/bybrand?brand=${id}`)
     return data.data
 }
+export const searchProducts = async (q :string) => {
+    const data = await axios.get<IProduct[]>(`/api/products/search?name=${q}`)
+    console.log("ssss" , data)
+    return data.data
+}
