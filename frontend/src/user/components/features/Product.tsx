@@ -5,7 +5,7 @@ import {
     ActionIcon, Grid, SimpleGrid, FloatingTooltip
   } from '@mantine/core';
 
-
+import { Rating } from '@mui/material';
 import CartButtons from "./CartButtons"
 import { useNavigate } from "react-router-dom";
 
@@ -37,14 +37,26 @@ const navigate =useNavigate()
             </Card.Section>
               <Group position="center" spacing="xs"  style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
               <Text weight={500}>{name}</Text>
+    
               <Badge color="pink" variant="light" size="xl" >
                   {price} {currency}
                 </Badge>
+
                 <Badge color="blue" variant="light" size="md" >
                   {stock} in stock
                 </Badge>
+
+                <Rating name="read-only"
+                    size="small"
+                    value={vote_total || vote_count == 0
+                      ? 3
+                      : vote_total / vote_count
+                    }                   
+                  />
               </Group>  
+          
               <CartButtons product = {product}/>
+
         </Card>
         
       </div>
