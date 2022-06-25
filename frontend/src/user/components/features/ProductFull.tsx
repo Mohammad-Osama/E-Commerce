@@ -7,6 +7,7 @@ import * as api from "../../../helpers/api"
 import { useParams } from 'react-router'
 import { IProduct } from '../../../helpers/types';
 import CartButtons from './CartButtons';
+import Comment from './Comment';
 
 
 
@@ -67,8 +68,8 @@ const ProductFull = () => {
         return <Loader />
     else
         return (
-            <Container px="md">
-                <Grid columns={12}>
+            <Container mb ="xl" px="md">
+                <Grid  m="xl" columns={12}>
                     <Grid.Col span={6}>
                         <Image src={product.main_image}
                             alt="Product"
@@ -129,6 +130,12 @@ const ProductFull = () => {
                     </Grid.Col>
 
                 </Grid>
+                    <Container>
+                        
+                          <Comment/>
+
+                    </Container>
+              
             </Container>
         )
 }
