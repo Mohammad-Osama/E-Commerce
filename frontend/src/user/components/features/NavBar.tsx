@@ -119,7 +119,7 @@ export function Navbar() {
                     <Link style={{ textDecoration: 'none', color: 'black' }} to="./">
                         <h2>Home</h2>
                     </Link>
-                    <Autocomplete
+                    <Autocomplete style={{minWidth:"40%"}}
                         transition="pop-top-left"
                         transitionDuration={80}
                         transitionTimingFunction="ease"
