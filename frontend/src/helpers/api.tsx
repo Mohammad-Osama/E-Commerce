@@ -33,7 +33,7 @@ export const searchProducts = async (q :string) => {
 }
 
 export const getProductById = async (id :string) => {
-    const data = await axios.get<IProduct>(`/api/products/${id}`)
+    const data = await axios.get<IProduct>(`/api/products/product/${id}`)
     console.log("getProductById----->" , data)
     return data.data
 }
