@@ -8,7 +8,8 @@ import { useParams } from 'react-router'
 import { IProduct } from '../../../helpers/types';
 import CartButtons from './CartButtons';
 import Comment from './Comment';
-
+import AddComment from './AddComment';
+import { Rating } from '@mui/material';
 
 
 const ProductFull = () => {
@@ -85,12 +86,18 @@ const ProductFull = () => {
                         <Card withBorder radius="md" p="md" className={classes.card}>
 
                             <Card.Section className={classes.section} mt="md">
-                                <Group position="apart">
+                                <Group position="center">
                                     <Text size="xl" weight={500}>
                                         {product.name}
                                     </Text>
                                     <Badge size="lg">{product.model}</Badge>
-                                    <Badge size="lg">{product.stock} in stock</Badge>
+                                    <Rating name="read-only"
+                                            size="small"
+                                            value={product.vote_total || product.vote_count == 0
+                                            ? 3
+                                            : product.vote_total / product.vote_count
+                                            }                   
+                                        />
                                 </Group>
 
                             </Card.Section>
@@ -102,7 +109,7 @@ const ProductFull = () => {
                             </Card.Section>
 
                             <Card.Section className={classes.section} mt="md">
-                                <Group position="left">
+                                <Group position="center">
                                     <Text size="xl" weight={500} 
                                           style={{ textDecoration :product.sale>0 ?"line-through" :""}}         
                                                    >
@@ -120,6 +127,7 @@ const ProductFull = () => {
                                         </>
                                     }
 
+                                        <Badge size="lg">{product.stock} in stock</Badge>
                                 </Group>
                                         
                             </Card.Section>
@@ -131,9 +139,9 @@ const ProductFull = () => {
 
                 </Grid>
                     <Container>
-                        
-                          <Comment/>
 
+                          <Comment/>
+                         <AddComment/>
                     </Container>
               
             </Container>
