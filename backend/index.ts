@@ -6,6 +6,7 @@ import producRoutes from "./routes/productRoutes"
 import brandRoutes from "./routes/brandRoutes"
 import categoryRoutes from "./routes/categoryRoutes"
 import userRoutes from "./routes/userRoutes"
+import reviewRoutes from "./routes/reviewRoutes"
 
 dotenv.config();
 
@@ -27,5 +28,6 @@ app.listen(port, () :void => {
  app.use("/api/brands",brandRoutes)
  app.use("/api/categories",categoryRoutes)
  app.use("/api/users",userRoutes)
+ app.use('/api/reviews',reviewRoutes)
 
 

@@ -18,5 +18,5 @@ export async function addCategory(req :Request , res : Response)  {
       logo: req.body.logo,
     })
 
-   res.status(200).json(newCategory)
+   res.status(201).json(newCategory)
 }
