@@ -12,7 +12,7 @@ export interface IReview {
 const ReviewSchema = new mongoose.Schema<IReview>({
     title: { type: String, required: [true, "Please add a title"] },
     text: { type: String, required: [true, "Please add text"] },
-    rating: { type: Number, required: [true, "Please add the main image"],
+    rating: { type: Number, required: [true, "Please add the rating"],
                  min: 1, max: 5 ,
                  enum:[1,2,3,4,5]  
                  } ,

@@ -1,5 +1,7 @@
 import {Request,Response} from "express"
 import {IReview, Review} from '../models/reviewModel'
+import mongoose from "mongoose"
+
 
 // get all reviews
 export async function getReviews(req :Request , res : Response)  {
@@ -33,3 +35,53 @@ export async function addReview(req :Request , res : Response)  {
     }
     
 }
+
+//get reviews by product id 
+export async function getReviewByProduct(req: Request, res: Response) {
+    try {
+       const queryID = req.query.product as string
+       const ObjectId = mongoose.Types.ObjectId
+       const finalID = new ObjectId(queryID);
+       const reviews = await Review.find({ product: finalID })
+ 
+       res.status(200).json(reviews)
+    } catch (error) {
+       res.status(400).json(`Error==>${error}`);
+    }
+ 
+ }
+
+ //get reviews by user id 
+export async function getReviewByUser(req: Request, res: Response) {
+    try {
+       const queryID = req.query.user as string
+       const ObjectId = mongoose.Types.ObjectId
+       const finalID = new ObjectId(queryID);
+       const reviews = await Review.find({ user: finalID })
+ 
+       res.status(200).json(reviews)
+    } catch (error) {
+       res.status(400).json(`Error==>${error}`);
+    }
+ 
+ }
+
+  //get a review by product id and user id 
+export async function getReviewProductUser(req: Request, res: Response) {
+    try {
+       const queryIDproduct = req.query.product as string
+       const queryIDuser = req.query.user as string
+       const ObjectId = mongoose.Types.ObjectId
+       const finalIDproduct = new ObjectId(queryIDproduct);
+       const finalIDuser = new ObjectId(queryIDuser);
+
+       const review = await Review.find(
+           { product: queryIDproduct , user :finalIDuser }
+           )
+ 
+       res.status(200).json(review)
+    } catch (error) {
+       res.status(400).json(`Error==>${error}`);
+    }
+ 
+ }
