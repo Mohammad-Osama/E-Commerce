@@ -16,7 +16,7 @@ router.route("/")
                   .get(getProducts)
                   .post(addProduct)
   
-router.route("/:id")
+router.route("/product/:id")
                   .get(getProductById)
                   .put(updateProduct)
                   .delete(deleteProduct)

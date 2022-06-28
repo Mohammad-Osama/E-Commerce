@@ -23,7 +23,8 @@ export async function getProducts(req: Request, res: Response) {
 
 // search products by name , query still to be written
 export async function searchProducts(req: Request, res: Response) {
-   const queryName = req.query.name as string
+   
+   const queryName = req.query.name as any
    try {
       const products = await Product.find({
          "name": { "$regex": `${queryName}`, '$options': 'i' },
