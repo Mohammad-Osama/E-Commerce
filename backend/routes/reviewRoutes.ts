@@ -13,7 +13,7 @@ router.route('/')
 router.route('/product').get(getReviewByProduct)
 router.route('/user').get(getReviewByUser)
 router.route('/productuser').get(getReviewProductUser)
-router.route('/reviewagg').get(getReviewAggregate)
+router.route('/reviewinfo').get(getReviewAggregate)
 
 
 

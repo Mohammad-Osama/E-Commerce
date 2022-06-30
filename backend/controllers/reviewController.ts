@@ -119,7 +119,8 @@ export async function getReviewAggregate(req: Request, res: Response) {
             },
             {
                 $project:
-                {
+                {   _id : 0 ,
+                    id : "$_id"  ,
                     first_name: 1,
                     last_name: 1,
                     title: 1,
