@@ -1,11 +1,9 @@
 import React from 'react'
 
 import { createStyles, Text, Avatar, Group, TypographyStylesProvider, Paper } from '@mantine/core';
+import { IReviewInfo } from '../../../helpers/types';
+import { Rating } from '@mui/material';
 
-    
-   
-    
- 
   
   
 const useStyles = createStyles((theme) => ({
@@ -26,43 +24,45 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface CommentHtmlProps {
-  postedAt: string;
-  body: string;
-  author: {
-    name: string;
-    image: string;
-  };
+interface X {
+  reviewInfo :IReviewInfo;
 }
 
-const Comment = () => {
+const Review = (  {reviewInfo}  : X ) => {
+  const {id,first_name,last_name,title,text,rating,updatedAt} = reviewInfo
+
     const { classes } = useStyles();
 
 
-    const postedAt = "10 minutes ago"
     const author = {
         "name": "ffgg ssrrttttt",
         "image": "https://cdn.pixabay.com/photo/2014/04/02/14/11/male-306408_960_720.png"
              }
-     const body = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam"
+     
 
 
     return (
-        <Paper withBorder radius="md" className={classes.comment} mx="xl">
+        <Paper withBorder radius="md" className={classes.comment} mx="xl" m="xl">
       <Group>
-        <Avatar src={author.image} alt={author.name} radius="xl" />
+        <Avatar src={author.image} alt={first_name+" "+last_name} radius="xl" />
         <div>
-          <Text size="sm">{author.name}</Text>
+          <Text size="sm">{first_name+" "+last_name}</Text>
           <Text size="xs" color="dimmed">
-            {postedAt}
+            {updatedAt}
           </Text>
+            <Rating   readOnly={true} 
+                      size="small"
+                      value={rating}   
+                                
+                />
         </div>
       </Group>
+      <Text size="sm" className={classes.body}>{title}</Text>
       <TypographyStylesProvider className={classes.body}>
-        <div className={classes.content} dangerouslySetInnerHTML={{ __html: body }} />
+        <div className={classes.content} dangerouslySetInnerHTML={{ __html: text }} />
       </TypographyStylesProvider>
     </Paper>
     )
 }
 
-export default Comment
+export default Review

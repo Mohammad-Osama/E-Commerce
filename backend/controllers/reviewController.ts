@@ -120,12 +120,13 @@ export async function getReviewAggregate(req: Request, res: Response) {
             {
                 $project:
                 {   _id : 0 ,
-                    id : "$_id"  ,
+                    id : "$_id" ,
                     first_name: 1,
                     last_name: 1,
                     title: 1,
                     text: 1,
-                    rating: 1
+                    rating: 1,
+                    updatedAt :1
                 }
             }
         ])

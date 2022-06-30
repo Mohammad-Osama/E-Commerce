@@ -5,9 +5,9 @@ import {
 } from '@mantine/core';
 import * as api from "../../../helpers/api"
 import { useParams } from 'react-router'
-import { IProduct } from '../../../helpers/types';
+import { IProduct, IReviewInfo } from '../../../helpers/types';
 import CartButtons from './CartButtons';
-import Comment from './Comment';
+import Review from './Review';
 import AddComment from './AddComment';
 import { Rating } from '@mui/material';
 
@@ -46,9 +46,13 @@ const ProductFull = () => {
     const { id } = useParams()
 
     const emptyProduct = {} as IProduct
+    const emptyReviewInfo: IReviewInfo[] = [];
+
+
     console.log("emptyProducttttt", emptyProduct)
     //  const [product, setProduct]: [IProduct, (product: IProduct) => void] = useState(emptyProduct)
     const [product, setProduct] = useState<IProduct>(emptyProduct)
+    const [reviewInfo, setReviewInfo]: [IReviewInfo[], (category: IReviewInfo[]) => void] = useState(emptyReviewInfo)
 
 
     async function getProduct(id: string) {
@@ -57,11 +61,16 @@ const ProductFull = () => {
         console.log("resDataaaa", resData)
     }
 
+    async function getReviewInfo(id: string) {
+        const resData = await api.getReviewInfo(id)
+        setReviewInfo(resData)
+        console.log("resDataaa->ReviewInfo", resData)
+    }
 
 
     useEffect(() => {
         getProduct(id as string)
-
+        getReviewInfo(id as string)
     }, [])
 
 
@@ -140,8 +149,15 @@ const ProductFull = () => {
                 </Grid>
                     <Container>
 
-                          <Comment/>
+                          
                          <AddComment/>
+                         { reviewInfo.map((reviewInfo)=>{
+
+                             return <Review reviewInfo={reviewInfo}
+                                            key={reviewInfo.id}
+                                                />
+                         })
+                         }
                     </Container>
               
             </Container>

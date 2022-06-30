@@ -1,5 +1,5 @@
 import axios from "axios"
-import { IProduct ,ICategory,IBrand } from "./types"
+import { IProduct ,ICategory,IBrand, IReviewInfo } from "./types"
 
 
 export const getProducts = async () => {
@@ -34,6 +34,11 @@ export const searchProducts = async (q :string) => {
 
 export const getProductById = async (id :string) => {
     const data = await axios.get<IProduct>(`/api/products/product/${id}`)
-    console.log("getProductById----->" , data)
+    return data.data
+}
+
+export const getReviewInfo = async (id :string) => {
+    const data = await axios.get<IReviewInfo[]>(`/api/reviews/reviewinfo?product=${id}`)
+    console.log("getReviewInfo----->" , data)
     return data.data
 }
