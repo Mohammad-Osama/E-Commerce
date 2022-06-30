@@ -78,8 +78,8 @@ const ProductFull = () => {
         return <Loader />
     else
         return (
-            <Container mb ="xl" px="md">
-                <Grid  m="xl" columns={12}>
+            <Container mb="xl" px="md">
+                <Grid m="xl" columns={12}>
                     <Grid.Col span={6}>
                         <Image src={product.main_image}
                             alt="Product"
@@ -101,12 +101,12 @@ const ProductFull = () => {
                                     </Text>
                                     <Badge size="lg">{product.model}</Badge>
                                     <Rating name="read-only"
-                                            size="small"
-                                            value={product.vote_total || product.vote_count == 0
+                                        size="small"
+                                        value={product.vote_total || product.vote_count == 0
                                             ? 3
                                             : product.vote_total / product.vote_count
-                                            }                   
-                                        />
+                                        }
+                                    />
                                 </Group>
 
                             </Card.Section>
@@ -119,47 +119,52 @@ const ProductFull = () => {
 
                             <Card.Section className={classes.section} mt="md">
                                 <Group position="center">
-                                    <Text size="xl" weight={500} 
-                                          style={{ textDecoration :product.sale>0 ?"line-through" :""}}         
-                                                   >
+                                    <Text size="xl" weight={500}
+                                        style={{ textDecoration: product.sale > 0 ? "line-through" : "" }}
+                                    >
                                         {product.price} {product.currency}
                                     </Text>
                                     {product.sale > 0 &&
-                                    <>
-                                        <Badge size="xl" variant="outline" color="red">
-                                            {product.sale} % Sale
-                                        </Badge>
-                                            
-                                        <Text  size="xl" weight={500}>
-                                            {product.price - (product.sale *product.price/100)} {product.currency}
-                                        </Text>
+                                        <>
+                                            <Badge size="xl" variant="outline" color="red">
+                                                {product.sale} % Sale
+                                            </Badge>
+
+                                            <Text size="xl" weight={500}>
+                                                {product.price - (product.sale * product.price / 100)} {product.currency}
+                                            </Text>
                                         </>
                                     }
 
-                                        <Badge size="lg">{product.stock} in stock</Badge>
+                                    <Badge size="lg">{product.stock} in stock</Badge>
                                 </Group>
-                                        
+
                             </Card.Section>
                             <Card.Section className={classes.section} mt="md">
-                                <CartButtons product = {product}/>
-                            </Card.Section>        
+                                <CartButtons product={product} />
+                            </Card.Section>
                         </Card>
                     </Grid.Col>
 
                 </Grid>
-                    <Container>
+                <Container>
+                    <Text m="xl" size="xl" weight={500}>
+                        My Review
+                    </Text>
 
-                          
-                         <AddComment/>
-                         { reviewInfo.map((reviewInfo)=>{
+                    <AddComment />
+                    <Text m="xl" size="xl" weight={500}>
+                        Reviews
+                    </Text>
+                    {reviewInfo.map((reviewInfo) => {
 
-                             return <Review reviewInfo={reviewInfo}
-                                            key={reviewInfo.id}
-                                                />
-                         })
-                         }
-                    </Container>
-              
+                        return <Review reviewInfo={reviewInfo}
+                            key={reviewInfo.id}
+                        />
+                    })
+                    }
+                </Container>
+
             </Container>
         )
 }

@@ -31,6 +31,8 @@ interface X {
 const Review = (  {reviewInfo}  : X ) => {
   const {id,first_name,last_name,title,text,rating,updatedAt} = reviewInfo
 
+
+  
     const { classes } = useStyles();
 
 
