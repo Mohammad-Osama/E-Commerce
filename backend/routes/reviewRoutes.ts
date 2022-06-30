@@ -1,5 +1,5 @@
 import express from "express"
-import { addReview, getReviewByProduct, getReviewByUser, getReviewProductUser, getReviews } from "../controllers/reviewController"
+import { addReview, getReviewAggregate, getReviewByProduct, getReviewByUser, getReviewProductUser, getReviews } from "../controllers/reviewController"
 
 
 
@@ -13,6 +13,7 @@ router.route('/')
 router.route('/product').get(getReviewByProduct)
 router.route('/user').get(getReviewByUser)
 router.route('/productuser').get(getReviewProductUser)
+router.route('/reviewagg').get(getReviewAggregate)
 
 
 
