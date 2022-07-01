@@ -35,6 +35,7 @@ const App: React.FC  = () => {
 
   
   return (
+    
     < div className={classes.container}>
     {  type==="admin"
      ? <Container size="xl" px="xs" >

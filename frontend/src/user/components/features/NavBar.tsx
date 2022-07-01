@@ -9,6 +9,7 @@ import UserDisplay from './UserDisplay';
 import MenuInNav from './MenuInNav';
 import { IProduct } from '../../../helpers/types';
 import * as api from "../../../helpers/api"
+import ThemeButton from './ThemeButton';
 
 const useStyles = createStyles((theme) => ({
     search: {
@@ -191,6 +192,7 @@ export function Navbar() {
                     </Group>
 
                     <UserDisplay />
+                    <ThemeButton/>
                     <Burger
                         opened={opened}
                         onClick={() => toggleOpened()}
