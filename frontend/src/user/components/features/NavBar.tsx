@@ -128,8 +128,8 @@ export function Navbar() {
 
 
     return (
-        <Header height={56} mb={12}>
-            <Container>
+        <Header height={60} mb={12}>
+            <Container size ="xl">
                 <div className={classes.inner}>
                     <Link style={{ textDecoration: 'none', color: 'black' }} to="./">
                         <Text 

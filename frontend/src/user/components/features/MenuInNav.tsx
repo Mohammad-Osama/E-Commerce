@@ -53,7 +53,7 @@ const MenuInNav = (props :any) => {
     else
         return (
             <>
-                <Menu
+                <Menu 
                     placement="start"
                     gutter={1}
                     position="bottom"
@@ -77,12 +77,12 @@ const MenuInNav = (props :any) => {
                           })}
                 </Menu>
 
-                <Menu
+                <Menu 
                     placement="start"
                     gutter={1}
                     position="bottom"
                     control={
-                        <a className={classes.link}>
+                        <a className={classes.link} >
                             <Center>
                                 <span className={classes.linkLabel}>Brands</span>
                                 <ChevronDown size={12} />
