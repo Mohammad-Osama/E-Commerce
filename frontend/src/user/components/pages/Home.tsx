@@ -1,4 +1,4 @@
-import { Loader, Container, SimpleGrid, Text } from '@mantine/core';
+import { Loader, Container, SimpleGrid, Text ,useMantineTheme ,createStyles } from '@mantine/core';
 import { useState, useEffect } from "react";
 import * as api from "../../../helpers/api"
 import { ICategory, IProduct } from '../../../helpers/types';
@@ -6,7 +6,17 @@ import Product from '../features/Product';
 import React, { ReactElement } from "react";
 
 
+
+const useStyles = createStyles((theme) => ({
+    container: {   
+        color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],   
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+            
+    },
+}));
 const Home = () => {
+   // const theme = useMantineTheme();
+    const { classes } = useStyles()
     const emptyCategories: ICategory[] = [];
     const emptyProducts: IProduct[] = [];
 
@@ -51,9 +61,9 @@ const Home = () => {
     else
 
         return (
-            <Container my="md">
+            <Container my="md" className={classes.container}>
 
-                <Text
+                <Text 
                     component="span"
                     align="center"
                     variant="gradient"

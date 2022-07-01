@@ -1,5 +1,5 @@
 import React ,{ useEffect ,useState }  from "react";
-import { Container } from '@mantine/core';
+import { Container , useMantineTheme ,createStyles} from '@mantine/core';
 import { Routes, Route } from 'react-router-dom';
 import Home from "./user/components/pages/Home";
 import TempCart from "./user/components/TempCart";
@@ -12,8 +12,19 @@ import HomeAdmin from "./admin/components/pages/HomeAdmin";
 import Browse from "./user/components/pages/Browse";
 import ProductFull from "./user/components/features/ProductFull";
 
-const App: React.FC  = () => {
 
+const useStyles = createStyles((theme) => ({
+  container: {   
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],   
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+          
+  },
+}));
+
+
+const App: React.FC  = () => {
+ // const theme = useMantineTheme();
+  const { classes } = useStyles()
    const { role } = useSelector(authState)
    // const authStddddate = useSelector(authState)
    const [type, SetType] = useState<string>('')
@@ -24,7 +35,7 @@ const App: React.FC  = () => {
 
   
   return (
-    <>
+    < div className={classes.container}>
     {  type==="admin"
      ? <Container size="xl" px="xs" >
             <TempUser/>
@@ -34,7 +45,7 @@ const App: React.FC  = () => {
             </Routes>
           </Container>
 
-          :  <Container size="xl" px="xs" >
+          :  <Container size="xl" px="xs" className={classes.container} >
               <Navbar />
               <TempCart />
               <TempUser/>
@@ -48,7 +59,7 @@ const App: React.FC  = () => {
 
 
     }
-       </>   
+       </div>   
   )
 }
 

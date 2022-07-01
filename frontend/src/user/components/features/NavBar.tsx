@@ -51,6 +51,20 @@ const useStyles = createStyles((theme) => ({
     linkLabel: {
         marginRight: 5,
     },
+    text: {
+        display: 'block',
+        
+        padding: '8px 12px',
+        borderRadius: theme.radius.sm,
+        textDecoration: 'none',
+        color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+     //   fontSize: theme.fontSizes.sm,
+        fontWeight: 700,
+
+        '&:hover': {
+            backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+        },
+    },
 }));
 
 
@@ -117,7 +131,12 @@ export function Navbar() {
             <Container>
                 <div className={classes.inner}>
                     <Link style={{ textDecoration: 'none', color: 'black' }} to="./">
-                        <h2>Home</h2>
+                        <Text 
+                               size="xl"
+                               color="dimmed"
+                               className={classes.text}>
+                            Home
+                        </Text>
                     </Link>
                     <Autocomplete style={{minWidth:"40%"}}
                         transition="pop-top-left"

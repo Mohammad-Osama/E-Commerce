@@ -9,7 +9,7 @@ import { Provider } from "react-redux"
 import store from './user/redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist';
-
+import { MantineProvider } from '@mantine/core';
 
 
 let persistor = persistStore(store);
@@ -21,9 +21,11 @@ root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
+      <MantineProvider theme={{ colorScheme: 'dark' }} >
         <NotificationsProvider position="top-right" >
           <App />
         </NotificationsProvider>
+        </MantineProvider>
       </BrowserRouter>
     </PersistGate>
   </Provider>
