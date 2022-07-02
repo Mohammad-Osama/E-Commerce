@@ -17,7 +17,7 @@ interface X {
 
 
 const CartButtons = ({ product }: X) => {
-    const { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model, featured, sale } = product
+    const { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model,images, featured, sale ,category,brand } = product
     const [quantity, setQuantity] = useState<number>(1)
     const [currentQuantity, setCurrentQuantity] = useState<number>(0)
     const [full, setFull] = useState<boolean>(false)
@@ -74,6 +74,11 @@ const CartButtons = ({ product }: X) => {
         vote_count: vote_count,
         vote_total: vote_total,
         quantity: quantity,
+        images: images,
+        description: description,
+        featured: featured,
+        category: category,
+        brand: brand,
     }
 
 

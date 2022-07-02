@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import HomeAdmin from "./admin/components/pages/HomeAdmin";
 import Browse from "./user/components/pages/Browse";
 import ProductFull from "./user/components/features/ProductFull";
+import Cart from "./user/components/pages/Cart";
 
 
 const useStyles = createStyles((theme) => ({
@@ -55,6 +56,7 @@ const App: React.FC  = () => {
                 <Route path='/loginregister' element={<LoginRegister />} />
                 <Route path='/browse/:id' element={<Browse />} />
                 <Route path='/product/:id' element={<ProductFull />} />
+                <Route path='/cart' element={<Cart />} />
               </Routes>
             </Container>
 

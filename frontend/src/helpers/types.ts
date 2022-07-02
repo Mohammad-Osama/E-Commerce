@@ -27,7 +27,12 @@ export interface IProductCart {
     sale: number;
     vote_count: number;
     vote_total: number;
-    quantity: number;
+    quantity: number;    // only differece,maybe there is a better solution than a new whole type
+    images: string;
+    description: string;
+    featured: boolean;
+    category?: string;
+    brand?: string;
 };
 
 
