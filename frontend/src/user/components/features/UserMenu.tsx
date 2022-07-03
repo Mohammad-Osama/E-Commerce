@@ -9,12 +9,16 @@ import {
 
 import {
   Logout,UserCircle ,
-  Heart,
   Star,
   Message,
   Settings,
   ChevronDown,
 } from 'tabler-icons-react';
+
+import { useSelector , useDispatch } from 'react-redux';
+import { authState, logout } from '../../redux/slices/authSlice';
+import { AppDispatch } from '../../redux/store';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -44,6 +48,9 @@ const UserMenu = () => {
     const { classes, theme, cx } = useStyles();
     const [userMenuOpened, setUserMenuOpened] = useState(false);
 
+    const { id , first_name ,last_name} = useSelector(authState)
+    const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
 
     return (
         <Menu
@@ -60,7 +67,7 @@ const UserMenu = () => {
                 <Group spacing={7}>
                   <UserCircle  size={24} />
                   <Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
-                     Welcome 
+                     {first_name} {last_name}
                   </Text>
                   <ChevronDown size={12} />
                 </Group>
@@ -77,8 +84,14 @@ const UserMenu = () => {
              Orders
             </Menu.Item>
             <Menu.Label>Settings</Menu.Label>
-            <Menu.Item icon={<Settings size={14} />}>Edit Profile</Menu.Item>
-            <Menu.Item icon={<Logout size={14} />}>Logout</Menu.Item>
+            <Menu.Item icon={<Settings size={18} />}>Edit Profile</Menu.Item>
+            <Menu.Item icon={<Logout size={18} />}
+                        onClick={()=>  {  dispatch(logout())
+                                           navigate("./")        
+                                                    }}
+                 >
+                Logout
+            </Menu.Item>
           </Menu>
     )
 }

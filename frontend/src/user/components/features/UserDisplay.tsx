@@ -8,8 +8,8 @@ import UserMenu from './UserMenu';
 
 const UserDisplay = () => {
 
-    const userState = useSelector(authState)
-    const { id } = userState
+    const { id } = useSelector(authState)
+
     if (id)
         return (
             <UserMenu />
