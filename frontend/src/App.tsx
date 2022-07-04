@@ -12,6 +12,7 @@ import HomeAdmin from "./admin/components/pages/HomeAdmin";
 import Browse from "./user/components/pages/Browse";
 import ProductFull from "./user/components/features/ProductFull";
 import Cart from "./user/components/pages/Cart";
+import Profile from "./user/components/pages/Profile";
 
 
 const useStyles = createStyles((theme) => ({
@@ -57,6 +58,7 @@ const App: React.FC  = () => {
                 <Route path='/browse/:id' element={<Browse />} />
                 <Route path='/product/:id' element={<ProductFull />} />
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/profile' element={<Profile />} />
               </Routes>
             </Container>
 
