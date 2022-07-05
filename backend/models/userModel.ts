@@ -6,7 +6,7 @@ export interface IUser {
     last_name: string;
     email: string;
     password: string;
-    birthday: Date;
+    birthday: string;
     phone: string;
     status: string;
     role: string;
@@ -27,19 +27,20 @@ const UserSchema = new mongoose.Schema<IUser>({
              unique: true },
     password: { type: String,
                 required: [true, "Please add a password"] },
-    birthday: { type: Date },
-    phone: { type: String },
+    birthday: { type: String , default: " " },
+    phone: { type: String  , default: " "},
     status: { type: String,
               enum:["active","deactivated","suspended"],
               default: "active" },
     role: { type: String,
             enum:["user","admin"],
             default: "user" },
-    country: { type: String },
-    address: { type: String },
+    country: { type: String , default: " " },
+    address: { type: String , default: " "},
     coupon: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Coupon"
+        
     },
     
 },
