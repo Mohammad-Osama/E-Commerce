@@ -1,5 +1,5 @@
 import axios from "axios"
-import { IProduct ,ICategory,IBrand, IReviewInfo } from "./types"
+import { IProduct ,ICategory,IBrand, IReviewInfo, IUser } from "./types"
 
 
 export const getProducts = async () => {
@@ -40,5 +40,13 @@ export const getProductById = async (id :string) => {
 export const getReviewInfo = async (id :string) => {
     const data = await axios.get<IReviewInfo[]>(`/api/reviews/reviewinfo?product=${id}`)
     console.log("getReviewInfo----->" , data)
+    return data.data
+}
+
+export const getUserData = async () => {
+    const token  = JSON.parse(localStorage.getItem('token') as string) 
+    console.log("tokennnnnnn" , token )
+    const data = await axios.get<IUser>("/api/users/profile" ,
+                         { headers:{"Authorization":`Bearer ${token}`}})
     return data.data
 }

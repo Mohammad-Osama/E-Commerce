@@ -146,7 +146,7 @@ const Dashboard = () => {
 
             // margin and padding for the container to be done later 
   return (
-    <Container size="lg" mb="xl" >  
+    <Container size="lg" mb="xl"  >  
       <Grid m="xl" columns={12}>
         <Grid.Col span={4}>
           <Group mb="md">

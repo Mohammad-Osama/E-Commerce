@@ -1,11 +1,26 @@
-import React from 'react'
+import React ,{useState ,useEffect} from 'react'
 import { Divider, SimpleGrid, Text, Grid } from '@mantine/core';
 import { authState } from '../../redux/slices/authSlice';
 import { useSelector } from 'react-redux';
-
+import * as api from "../../../helpers/api"
+import { IUser } from '../../../helpers/types';
 const Profile = () => {
 
     const {id , first_name , last_name , email} = useSelector(authState)
+
+    const emptyUser = {} as IUser
+
+    const [user, setUser] = useState<IUser>(emptyUser)
+
+    async function getUserData() {
+        const resData = await api.getUserData()
+          setUser(resData)
+        console.log("resDataaaa", resData)
+    }
+
+    useEffect(() => {
+        getUserData()
+    }, [])
 
     return (
         <>
@@ -17,20 +32,25 @@ const Profile = () => {
             <Divider />
             <Divider />
             <Grid columns={3} >
-                <Grid.Col span={1}>
+                 { Object.entries(user).map(([key,value])=>{
+                    return (
+                        <>
+                        <Grid.Col span={1}>
 
-                    loop with object enteries like in the recent tabs 
-                    <Text align="center" >
-                        hhgd
-                    </Text>
+                                <div>{key}</div>
+                        </Grid.Col>
+                        <Grid.Col span={2}>
 
-                </Grid.Col>
-                <Grid.Col span={2}>
-
-                    <Text >
-                        dfgdddss
-                    </Text>
-                </Grid.Col>
+                        <Text >
+                        <div>{value.toString()}</div>
+                        </Text>
+                    </Grid.Col>
+                    </>
+                        
+                    )
+                    }
+                 )
+                }
 
             </Grid>
         </>

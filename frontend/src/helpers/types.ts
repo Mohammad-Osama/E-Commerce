@@ -59,3 +59,15 @@ export interface IReviewInfo {
     rating: number;
     updatedAt :string
 }
+
+export interface IUser {
+    id : string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    birthday: Date;
+    phone: string;
+    country: string;
+    address: string;
+    coupon: string;
+};
