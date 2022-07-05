@@ -10,7 +10,7 @@ import React, { ReactElement } from "react";
 const useStyles = createStyles((theme) => ({
     container: {   
         color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],   
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.cyan[2],
             
     },
 }));
@@ -61,7 +61,7 @@ const Home = () => {
     else
 
         return (
-            <Container my="md" className={classes.container}>
+            <Container size="xl" my="md" className={classes.container}>
 
                 <Text 
                     component="span"

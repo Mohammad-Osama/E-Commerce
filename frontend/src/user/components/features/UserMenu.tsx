@@ -74,17 +74,17 @@ const UserMenu = () => {
               </UnstyledButton>
             }
           >
-            <Menu.Item icon={<UserCircle size={18}  />}>
-             Profile
+            <Menu.Item icon={<Settings size={18}  />}>
+             Dashboard
             </Menu.Item>
-            <Menu.Item icon={<Message size={18}  />}>
+   {/*          <Menu.Item icon={<Message size={18}  />}>
             Reviews
             </Menu.Item>
             <Menu.Item icon={<Star size={18}  />}>
              Orders
             </Menu.Item>
             <Menu.Label>Settings</Menu.Label>
-            <Menu.Item icon={<Settings size={18} />}>Edit Profile</Menu.Item>
+            <Menu.Item icon={<Settings size={18} />}>Edit Profile</Menu.Item> */}
             <Menu.Item icon={<Logout size={18} />}
                         onClick={()=>  {  dispatch(logout())
                                            navigate("./")        

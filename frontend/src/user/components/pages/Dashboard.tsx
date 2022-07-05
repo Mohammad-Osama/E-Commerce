@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createStyles, Box, Text, Group, Container, Grid, Paper } from '@mantine/core';
 import { ListSearch } from 'tabler-icons-react';
+import Profile from '../features/Profile';
 
 
 const LINK_HEIGHT = 38;
@@ -53,34 +54,44 @@ const useStyles = createStyles((theme) => ({
 }));
 
 
-interface TableOfContentsFloatingProps {
+/* interface TableOfContentsFloatingProps {
   links: { label: string; link: string; order: number }[];
 }
+ */
 
-
-const Profile = () => {
+const Dashboard = () => {
   const links = [
     {
       "label": "Profile",
-      "link": "#usage",
+      "link": "#Profile",
       "order": 1
     },
     {
       "label": "Reviews",
-      "link": "#position",
+      "link": "#Reviews",
       "order": 1
     },
     {
       "label": "Orders",
-      "link": "#overlays",
+      "link": "#Orders",
       "order": 1
     },
     {
-      "label": "Manage focus",
-      "link": "#focus",
+      "label": "Edit Profile",
+      "link": "#Edit Profile",
       "order": 1
     },
     {
+      "label": "Reset Password",
+      "link": "#Reset",
+      "order": 1
+    },
+    {
+      "label": "Logout",
+      "link": "#Logout",
+      "order": 1
+    },
+    /* {
       "label": "Examples",
       "link": "#1",
       "order": 1
@@ -99,12 +110,12 @@ const Profile = () => {
       "label": "With form",
       "link": "#4",
       "order": 2
-    }
+    } */
   ]
 
   const { classes, cx } = useStyles();
   const [active, setActive] = useState(0);
-  const [type, setType] = useState("profile");
+  const [type, setType] = useState("Profile");
 
   const items = links.map((item, index) => (
     <Box<'a'>
@@ -113,24 +124,19 @@ const Profile = () => {
       onClick={(event) => {
         event.preventDefault();
         setActive(index)
-     //   console.log("indexxxx", index)
-        //  console.log("indexxxx", active)
         setType(item.label)
-     //   console.log("labelllllll", item.label)
       }}
       key={item.label}
       className={cx(classes.link, { [classes.linkActive]: active === index })}
       sx={(theme) => ({ paddingLeft: item.order * theme.spacing.lg })}
       style={{ borderColor: "lightskyblue" }}
     >
-      <Text weight= { active === index
-                      ? 800
-                      : 400
-
-                     } >
+      <Text weight={active === index
+        ? 800
+        : 400
+            } >
         {item.label}
       </Text>
-
     </Box>
   ));
 
@@ -138,12 +144,11 @@ const Profile = () => {
 
   }, [type])
 
-
+            // margin and padding for the container to be done later 
   return (
-    <Container size="md" mb="xl" px="md" >
+    <Container size="lg" mb="xl" >  
       <Grid m="xl" columns={12}>
         <Grid.Col span={4}>
-
           <Group mb="md">
             <ListSearch size={18} />
             <Text>Profile and options </Text>
@@ -155,21 +160,28 @@ const Profile = () => {
             />
             {items}
           </div>
-
-
         </Grid.Col>
         <Grid.Col span={8}>
-
           <Paper shadow="sm" p="xl" withBorder style={{ minHeight: "100%" }}>
-
-
+            {type === "Profile"
+              ? <Profile/>
+              : type === "Reviews"
+                ? "Reviews"
+                : type === "Orders"
+                  ? "Orders"
+                  : type === "Edit Profile"
+                    ? "Edit Profile"
+                    : type === "Reset Password"
+                      ? "Reset Password"
+                      : type === "Logout"
+                        ? "Logout"
+                        : "Error!"
+            }
           </Paper>
-
         </Grid.Col>
       </Grid>
-
     </Container>
   )
 }
 
-export default Profile
+export default Dashboard

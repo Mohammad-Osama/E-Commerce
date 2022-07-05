@@ -12,13 +12,13 @@ import HomeAdmin from "./admin/components/pages/HomeAdmin";
 import Browse from "./user/components/pages/Browse";
 import ProductFull from "./user/components/features/ProductFull";
 import Cart from "./user/components/pages/Cart";
-import Profile from "./user/components/pages/Profile";
+import Dashboard from "./user/components/pages/Dashboard";
 
 
 const useStyles = createStyles((theme) => ({
   container: {   
       color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],   
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
           
   },
 }));
@@ -58,7 +58,7 @@ const App: React.FC  = () => {
                 <Route path='/browse/:id' element={<Browse />} />
                 <Route path='/product/:id' element={<ProductFull />} />
                 <Route path='/cart' element={<Cart />} />
-                <Route path='/profile' element={<Profile />} />
+                <Route path='/dashboard' element={<Dashboard />} />
               </Routes>
             </Container>
 
