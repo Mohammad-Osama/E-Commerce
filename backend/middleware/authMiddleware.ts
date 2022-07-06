@@ -17,10 +17,14 @@ export async function authJwt(req :Request , res : Response , next :NextFunction
                 const token=req.headers.authorization.split(' ')[1]
                 
                 const decoded = jwt.verify(token,process.env.JWT_SECRET as Secret) as TokenInterface // any ?!
-               (req as CustomRequest).user  = await User.findById(decoded.id).select(['-password','-role','-status'])
+               (req as CustomRequest).user  = await User.findById(decoded.id)
+                                                            .select(['-password','-role',
+                                                                     '-status',
+                                                                     '-createdAt','-updatedAt', '-__v' ])
+                              console.log("ttttttttttt" , (req as CustomRequest).user)                                       
                 next()
             } catch (error) {
-                console.log(error)
+                console.log("eeeeeeeeeee" , error)
                 res.status(401).json("Not authorized")
             }
             
