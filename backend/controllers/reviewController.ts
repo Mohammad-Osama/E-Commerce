@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { IReview, Review } from '../models/reviewModel'
 import mongoose from "mongoose"
+import { IProduct , Product } from "../models/productModel"
 
 
 // get all reviews
@@ -27,6 +28,22 @@ export async function addReview(req: Request, res: Response) {
             user: req.body.user,
             product: req.body.product,
         })
+       await Product.findByIdAndUpdate(
+        req.body.product , { 
+            $inc: { "vote_count" : 1 , 
+                    "vote_total" : req.body.rating } 
+         } , /* { $set:
+            {
+              "vote_total" : parseInt("$vote_total") + req.body.rating,
+            }
+         } */
+         /* { $set:
+            {
+              vote_count: +1 ,
+              vote_total : vote_total+req.body.rating,
+            }
+         } */
+         )
 
         res.status(201).json(newReview)
 
