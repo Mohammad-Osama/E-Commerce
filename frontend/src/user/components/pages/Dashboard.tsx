@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { createStyles, Box, Text, Group, Container, Grid, Paper } from '@mantine/core';
 import { ListSearch } from 'tabler-icons-react';
 import Profile from '../features/Profile';
-
+import { useSelector } from 'react-redux';
+import { authState } from '../../redux/slices/authSlice';
+import { useNavigate } from 'react-router';
 
 const LINK_HEIGHT = 38;
 const INDICATOR_SIZE = 10;
@@ -140,9 +142,22 @@ const Dashboard = () => {
     </Box>
   ));
 
-  useEffect(() => {
+  const {id} = useSelector(authState)
+  const navigate = useNavigate()
 
-  }, [type])
+  useEffect(() => {
+   /*  if (!id)
+    {
+      navigate('/loginregister')
+    } */
+
+  }, [type , id])
+
+  if (!id)
+   return (
+      <div> please log in    </div>  
+   )
+   else 
 
             // margin and padding for the container to be done later 
   return (

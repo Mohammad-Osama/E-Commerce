@@ -25,7 +25,7 @@ const navigate =useNavigate()
     return (
         <div style={{ width: "90%", margin: 'auto'}} >
         <Card shadow="sm" p="lg">
-           <Card.Section>
+           <Card.Section  mt="xs">
               <Image src={main_image}
                 alt="Product"
                 radius={10}

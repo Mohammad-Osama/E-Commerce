@@ -19,6 +19,7 @@ import { useSelector , useDispatch } from 'react-redux';
 import { authState, logout } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 
@@ -74,7 +75,9 @@ const UserMenu = () => {
               </UnstyledButton>
             }
           >
-            <Menu.Item icon={<Settings size={18}  />}>
+            <Menu.Item  icon={<Settings size={18}/>}
+                        component={Link} to={'/dashboard'} 
+                                    >
              Dashboard
             </Menu.Item>
    {/*          <Menu.Item icon={<Message size={18}  />}>
