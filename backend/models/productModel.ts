@@ -13,8 +13,8 @@ export interface  IProduct  {
     featured : boolean ;
     category?: mongoose.Types.ObjectId ; 
     brand?: mongoose.Types.ObjectId ;    
-    vote_count : number;
-    vote_total : number;    
+    rating_count : number;
+    rating_total : number;    
 };
 
 
@@ -42,11 +42,11 @@ export interface  IProduct  {
         required: [true, "Please add the brand"] ,
         ref :"Brand"
     },   
-    vote_count : {
+    rating_count : {
         type: Number, 
         default: 0
     } ,
-    vote_total : {
+    rating_total : {
         type: Number, 
         default: 0
     },

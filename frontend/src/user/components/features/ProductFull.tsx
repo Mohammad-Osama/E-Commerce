@@ -102,10 +102,10 @@ const ProductFull = () => {
                                     <Badge size="lg">{product.model}</Badge>
                                     <Rating name="read-only"
                                         size="small"
-                                        value={product.vote_total || product.vote_count == 0
+                                        value={product.rating_total || product.rating_count == 0
                                             ? 3
-                                            : product.vote_total / product.vote_count
-                                        }
+                                            : product.rating_total / product.rating_count
+                                        }    /* Math.round( (product.rating_total / product.rating_count) /5) *5 */
                                     />
                                 </Group>
 

@@ -17,17 +17,17 @@ import { RootState } from "../store"
     quantity: number;
 }; */
 
-interface Items {
+/* interface Items {
     product: IProduct;
     quantity: number;
     currentQuantity: number;
 
-}
-
+} */
+/* 
 interface Id {
     _id: string;
 
-}
+} */
 interface State {
     items: IProductCart[]
 

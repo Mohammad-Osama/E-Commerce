@@ -25,10 +25,8 @@ const useStyles = createStyles((theme) => ({
 
 
 const App: React.FC  = () => {
- // const theme = useMantineTheme();
   const { classes } = useStyles()
    const { role } = useSelector(authState)
-   // const authStddddate = useSelector(authState)
    const [type, SetType] = useState<string>('')
 
    useEffect(() => {
@@ -61,8 +59,6 @@ const App: React.FC  = () => {
                 <Route path='/dashboard' element={<Dashboard />} />
               </Routes>
             </Container>
-
-
     }
        </div>   
   )

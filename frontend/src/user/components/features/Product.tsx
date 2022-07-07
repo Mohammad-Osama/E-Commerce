@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { IProduct } from "../../../helpers/types";
 import {
     Card, Image, Text, Badge, Group, useMantineTheme,
-    ActionIcon, Grid, SimpleGrid, FloatingTooltip
+   
   } from '@mantine/core';
 
 import { Rating } from '@mui/material';
@@ -16,7 +16,7 @@ interface X {
 
 
 const Product = ({ product } : X) => {
-  const  { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model } = product
+  const  { id, name, main_image, price, currency, stock, rating_count, rating_total, description, model } = product
   const theme = useMantineTheme();
 
 const navigate =useNavigate()
@@ -48,9 +48,9 @@ const navigate =useNavigate()
 
                 <Rating name="read-only"
                     size="small"
-                    value={vote_total || vote_count == 0
+                    value={rating_total || rating_count == 0
                       ? 3
-                      : vote_total / vote_count
+                      : rating_total / rating_count
                     }                   
                   />
               </Group>  

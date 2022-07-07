@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { cartState } from '../../redux/slices/cartSlice';
-import { ActionIcon, Group, useMantineTheme,FloatingTooltip, Tooltip ,Badge } from '@mantine/core';
+import { ActionIcon, Group, useMantineTheme, Tooltip ,Badge } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { Plus, Minus } from 'tabler-icons-react';
 import { useDispatch } from 'react-redux';
@@ -17,7 +17,7 @@ interface X {
 
 
 const CartButtons = ({ product }: X) => {
-    const { id, name, main_image, price, currency, stock, vote_count, vote_total, description, model,images, featured, sale ,category,brand } = product
+    const { id, name, main_image, price, currency, stock, rating_count, rating_total, description, model,images, featured, sale ,category,brand } = product
     const [quantity, setQuantity] = useState<number>(1)
     const [currentQuantity, setCurrentQuantity] = useState<number>(0)
     const [full, setFull] = useState<boolean>(false)
@@ -71,8 +71,8 @@ const CartButtons = ({ product }: X) => {
         currency: currency,
         stock: stock,
         sale: sale,
-        vote_count: vote_count,
-        vote_total: vote_total,
+        rating_count:rating_count,
+        rating_total: rating_total,
         quantity: quantity,
         images: images,
         description: description,
@@ -199,9 +199,7 @@ const CartButtons = ({ product }: X) => {
                     <Badge color="green" variant="outline" size="md" >
                     {thisProduct.quantity} in cart
                   </Badge>
-
-                }
-                
+                }     
         </Group>
     )
 }

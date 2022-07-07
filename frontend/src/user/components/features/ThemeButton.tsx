@@ -1,4 +1,3 @@
-import React from 'react'
 import { useMantineColorScheme, SegmentedControl, Group, Center, Box, ColorScheme } from '@mantine/core';
 import { Sun, Moon } from 'tabler-icons-react';
 

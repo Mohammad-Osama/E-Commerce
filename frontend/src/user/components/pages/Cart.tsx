@@ -41,8 +41,8 @@ const Cart = () => {
             featured: x.featured,
             category: x.category,
             brand: x.brand,
-            vote_count: x.vote_count,
-            vote_total: x.vote_total, 
+            rating_count: x.rating_count,
+            rating_total: x.rating_total, 
         } 
       ))
 

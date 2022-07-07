@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { createStyles, Text, Avatar, Group, TypographyStylesProvider, Paper } from '@mantine/core';
 import { IReviewInfo } from '../../../helpers/types';
 import { Rating } from '@mui/material';

@@ -12,8 +12,8 @@ export interface IProduct {
     featured: boolean;
     category?: string;
     brand?: string;
-    vote_count: number;
-    vote_total: number;
+    rating_count: number;
+    rating_total: number;
 };
 
 export interface IProductCart {
@@ -25,8 +25,8 @@ export interface IProductCart {
     currency: string;
     stock: number;
     sale: number;
-    vote_count: number;
-    vote_total: number;
+    rating_count: number;
+    rating_total: number;
     quantity: number;    // only differece,maybe there is a better solution than a new whole type
     images: string;
     description: string;
