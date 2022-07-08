@@ -1,5 +1,5 @@
 import axios from "axios"
-import { IProduct ,ICategory,IBrand, IReviewInfo, IUser, IReviewaddForm } from "./types"
+import { IProduct ,ICategory,IBrand, IReviewInfo, IUser, IReviewaddForm, IReview } from "./types"
 
 
 export const getProducts = async () => {
@@ -55,5 +55,10 @@ export const addReview = async (body : IReviewaddForm) => {
     console.log("front body ", body)
     const data = await axios.post("/api/reviews",body )
                         
+    return data.data
+}
+
+export const getReviewProductUser = async (product:string,user:string) => {
+    const data = await axios.get<IReview>(`/api/reviews/productuser?product=${product}&user=${user}` )                   
     return data.data
 }

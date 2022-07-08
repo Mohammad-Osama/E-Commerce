@@ -60,6 +60,15 @@ export interface IReviewInfo {
     updatedAt: string
 }
 
+export interface IReview {
+    id: string ;
+    title: string;
+    text: string;
+    rating: number;
+    user: string;
+    product: string;
+};
+
 export interface IUser {
     id: string;
     first_name: string;

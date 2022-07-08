@@ -87,8 +87,8 @@ export async function getReviewProductUser(req: Request, res: Response) {
         const review = await Review.find(
             { product: queryIDproduct, user: finalIDuser }
         )
-
-        res.status(200).json(review)
+        const returndData = await review[0]
+        res.status(200).json(returndData)
     } catch (error) {
         res.status(400).json(`Error==>${error}`);
     }

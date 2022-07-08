@@ -5,12 +5,13 @@ import {
 } from '@mantine/core';
 import * as api from "../../../helpers/api"
 import { useParams } from 'react-router'
-import { IProduct, IReviewInfo } from '../../../helpers/types';
+import { IProduct, IReview, IReviewInfo } from '../../../helpers/types';
 import CartButtons from './CartButtons';
 import Review from './Review';
 import AddReview from './AddReview';
 import { Rating } from '@mui/material';
-
+import { authState } from '../../redux/slices/authSlice';
+import { useSelector } from 'react-redux';
 
 const ProductFull = () => {
 
@@ -45,35 +46,52 @@ const ProductFull = () => {
 
     const { id } = useParams()
 
+    const userState = useSelector(authState)
+
     const emptyProduct = {} as IProduct
     const emptyReviewInfo: IReviewInfo[] = [];
 
 
-    console.log("emptyProducttttt", emptyProduct)
+    // console.log("emptyProducttttt", emptyProduct)
     //  const [product, setProduct]: [IProduct, (product: IProduct) => void] = useState(emptyProduct)
     const [product, setProduct] = useState<IProduct>(emptyProduct)
     const [reviewInfo, setReviewInfo]: [IReviewInfo[], (category: IReviewInfo[]) => void] = useState(emptyReviewInfo)
+
+    const emptyReviewProductUser = {} as IReview
+    const [reviewProductUser, setReviewProductUser] = useState<IReview>(emptyReviewProductUser)
+
+
 
 
     async function getProduct(id: string) {
         const resData = await api.getProductById(id)
         setProduct(resData)
-        console.log("resDataaaa", resData)
+        // console.log("resDataaaa", resData)
     }
 
     async function getReviewInfo(id: string) {
         const resData = await api.getReviewInfo(id)
         setReviewInfo(resData)
-        console.log("resDataaa->ReviewInfo", resData)
+        //  console.log("resDataaa->ReviewInfo", resData)
+    }
+
+    async function getReviewProductUser(product: string, user: string) {
+        const resData = await api.getReviewProductUser(product, user)
+        setReviewProductUser(resData)
+        console.log("resDataaa-----> ReviewProductUser", resData)
     }
 
 
     useEffect(() => {
+        if (userState.id !== null) {
+            getReviewProductUser(id as string, userState.id as string)
+        }
         getProduct(id as string)
         getReviewInfo(id as string)
-        console.log(product.rating_total)
-        console.log(product.rating_total)
-        console.log(Math.round( (product.rating_total / product.rating_count) /5) *5)
+        //  console.log(product.rating_total)
+        //  console.log(product.rating_total)
+        // console.log(Math.round( (product.rating_total / product.rating_count) /5) *5)
+        console.log(" ReviewProductUser", reviewProductUser)
     }, [])
 
 
@@ -107,7 +125,7 @@ const ProductFull = () => {
                                         size="small"
                                         value={product.rating_total || product.rating_count == 0
                                             ? 3
-                                            : Math.round( (product.rating_total / product.rating_count) /5) *5
+                                            : Math.round((product.rating_total / product.rating_count) / 5) * 5
                                         }    /* product.rating_total / product.rating_count */
                                     />
                                 </Group>
@@ -151,13 +169,25 @@ const ProductFull = () => {
 
                 </Grid>
                 <Container>
-                    <Text m="xl" size="xl" weight={500}>
-                        My Review
-                    </Text>
 
-                    <AddReview   productID = {id}
-                                 
-                                                        />
+                    {reviewProductUser.user && userState.id !== null
+
+                        ? <>
+                            <Text m="xl" size="xl" weight={500}>
+                                My Review
+                            </Text>
+                            {reviewInfo.map((reviewInfo) => {
+                                if (reviewInfo.id === reviewProductUser.id)
+                                    return <Review reviewInfo={reviewInfo}
+                                        key={reviewInfo.id}
+                                    />
+                            })}
+                        </>
+                        : <AddReview productID={id}
+                                       />
+                    }
+
+
 
                     <Text m="xl" size="xl" weight={500}>
                         Reviews
