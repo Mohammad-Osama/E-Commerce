@@ -1,5 +1,5 @@
 import axios from "axios"
-import { IProduct ,ICategory,IBrand, IReviewInfo, IUser } from "./types"
+import { IProduct ,ICategory,IBrand, IReviewInfo, IUser, IReviewaddForm } from "./types"
 
 
 export const getProducts = async () => {
@@ -45,8 +45,15 @@ export const getReviewInfo = async (id :string) => {
 
 export const getUserData = async () => {
     const token  = JSON.parse(localStorage.getItem('token') as string) 
-    console.log("tokennnnnnn" , token )
     const data = await axios.get<IUser>("/api/users/profile" ,
                          { headers:{"Authorization":`Bearer ${token}`}})
+    return data.data
+}
+
+
+export const addReview = async (body : IReviewaddForm) => {
+    console.log("front body ", body)
+    const data = await axios.post("/api/reviews",body )
+                        
     return data.data
 }

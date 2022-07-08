@@ -8,7 +8,7 @@ import { useParams } from 'react-router'
 import { IProduct, IReviewInfo } from '../../../helpers/types';
 import CartButtons from './CartButtons';
 import Review from './Review';
-import AddComment from './AddComment';
+import AddReview from './AddReview';
 import { Rating } from '@mui/material';
 
 
@@ -71,6 +71,9 @@ const ProductFull = () => {
     useEffect(() => {
         getProduct(id as string)
         getReviewInfo(id as string)
+        console.log(product.rating_total)
+        console.log(product.rating_total)
+        console.log(Math.round( (product.rating_total / product.rating_count) /5) *5)
     }, [])
 
 
@@ -104,8 +107,8 @@ const ProductFull = () => {
                                         size="small"
                                         value={product.rating_total || product.rating_count == 0
                                             ? 3
-                                            : product.rating_total / product.rating_count
-                                        }    /* Math.round( (product.rating_total / product.rating_count) /5) *5 */
+                                            : Math.round( (product.rating_total / product.rating_count) /5) *5
+                                        }    /* product.rating_total / product.rating_count */
                                     />
                                 </Group>
 
@@ -152,7 +155,10 @@ const ProductFull = () => {
                         My Review
                     </Text>
 
-                    <AddComment />
+                    <AddReview   productID = {id}
+                                 
+                                                        />
+
                     <Text m="xl" size="xl" weight={500}>
                         Reviews
                     </Text>

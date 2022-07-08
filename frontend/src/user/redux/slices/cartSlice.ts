@@ -3,37 +3,9 @@ import { IProduct ,IProductCart} from '../../../helpers/types';
 import { RootState } from "../store"
 
 
-/* export interface IProductcart {
-    id: string;
-    name: string;
-    model: string;
-    main_image: string;
-    price: number;
-    currency: string;
-    stock: number;
-    sale: number;
-    vote_count: number;
-    vote_total: number;
-    quantity: number;
-}; */
-
-/* interface Items {
-    product: IProduct;
-    quantity: number;
-    currentQuantity: number;
-
-} */
-/* 
-interface Id {
-    _id: string;
-
-} */
 interface State {
     items: IProductCart[]
-
 }
-
-
 
 const initialState: State = {
     items: [],

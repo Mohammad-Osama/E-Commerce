@@ -6,7 +6,8 @@ import {getProducts ,
         searchProducts,
         getProductsByCategory,
         getProductsByBrand,
-        getProductById}
+        getProductById,
+        }
       from "../controllers/productController"
 
 
@@ -29,4 +30,9 @@ router.route("/bycategory")
 
 router.route("/bybrand")
                   .get(getProductsByBrand)
+
+router.route("/bybrand")
+                  .get(getProductsByBrand)
+
+                  
 export = router

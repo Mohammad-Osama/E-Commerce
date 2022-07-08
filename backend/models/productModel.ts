@@ -19,7 +19,7 @@ export interface  IProduct  {
 
 
  const ProductSchema = new mongoose.Schema<IProduct>({
-    name: { type: String, required: [true, "Please add a name"] },
+    name: { type: String, required: [true, "Please add a name"] ,unique:true },
     model: { type: String, required: [true, "Please add a model"] },
     main_image: { type: String, required: [true, "Please add the main image"] },
     images: [String] ,    

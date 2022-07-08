@@ -59,7 +59,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
 
   const handelSubmit = () => {
 
-   // console.log("form", form.values)
+    console.log("form", form.values)
     if (type === "login") {
       const { email, password } = form.values
       const userInfo = {

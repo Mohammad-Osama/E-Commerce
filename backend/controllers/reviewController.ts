@@ -29,11 +29,12 @@ export async function addReview(req: Request, res: Response) {
             product: req.body.product,
         })
        await Product.findByIdAndUpdate(
-        req.body.product , { 
+        req.body.product ,
+          { 
             $inc: { "rating_count" : 1 , 
                     "rating_total" : req.body.rating 
                   } 
-              } 
+          } 
          )
 
         res.status(201).json(newReview)

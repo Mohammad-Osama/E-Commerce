@@ -57,11 +57,11 @@ export interface IReviewInfo {
     title: string;
     text: string;
     rating: number;
-    updatedAt :string
+    updatedAt: string
 }
 
 export interface IUser {
-    id : string;
+    id: string;
     first_name: string;
     last_name: string;
     email: string;
@@ -71,3 +71,12 @@ export interface IUser {
     address: string;
     coupon: string;
 };
+
+
+export interface IReviewaddForm {
+    title: string
+    text: string
+    rating: number |null
+    user: string |null
+    product:string| undefined
+}
