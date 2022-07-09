@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Textarea, Text, Paper, Button, Group, TextInput } from '@mantine/core';
 import { AlertCircle } from 'tabler-icons-react';
 import { Rating } from '@mui/material';
@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 import * as api from '../../../helpers/api'
 import { IReviewaddForm } from '../../../helpers/types';
 import { showNotification } from '@mantine/notifications'
+import { useModals } from '@mantine/modals';
+import { useNavigate } from "react-router-dom";
 
 
 interface AddReviewProps {
@@ -17,6 +19,17 @@ interface AddReviewProps {
 const AddReview = (props: AddReviewProps) => {
 
     const { id } = useSelector(authState)
+    
+    interface IModalType {
+        name: string;
+        text: string;
+        labelConfirm: string;
+        labelCancel: string;
+        ConfirmFunc: () => void;
+      }
+      
+    const [modalType, setModalType] = useState<IModalType>()
+
     const form = useForm({
         initialValues: {
             title: '',
@@ -25,23 +38,11 @@ const AddReview = (props: AddReviewProps) => {
             user: id,
             product: props.productID,
         },
-
     });
 
+  const navigate=useNavigate()
 
-     const handelSubmit = async () =>  {
-        console.log("form review ", form.values)
-
-        if (form.values.rating===0)
-         {
-            showNotification({
-                title: "Error ",
-                message: "Please add a rating ",
-                color: 'red',
-                icon: <AlertCircle />,
-              })
-              return
-         }
+     const onConfirmAddReview = async () =>  {
         const { title, text, rating, user, product } = form.values
             const reviewAddInfo :IReviewaddForm = {
                 title :title,
@@ -52,21 +53,69 @@ const AddReview = (props: AddReviewProps) => {
         }
 
       await  api.addReview(reviewAddInfo)
+      window.location.reload()
+    }
+
+    const onConfirmLogin=  () =>  {
+        navigate('/loginregister')
     }
 
 
-    useEffect(() => {
 
-        console.log("form review ", form.values)
-    }, [])
+    const modals = useModals();
+    const confirmReviewModal = () =>{
+    if (form.values.rating===0 || form.values.rating===null  )
+         {
+            showNotification({
+                title: "Error ",
+                message: "Please add a rating ",
+                color: 'red',
+                icon: <AlertCircle />,
+              })
+             
+         }
+   else 
+    modals.openConfirmModal({
+      title: 'Add a review',
+      centered: true,
+      children: (
+        <Text size="sm">
+         {modalType?.text}
+        </Text>
+      ),
+      labels: { confirm: modalType?.labelConfirm, cancel: "Go back" },
+      confirmProps: { color: 'blue' },
+     // onCancel: () => console.log('Cancel'),
+      onConfirm: modalType?.ConfirmFunc,
+    });
+}
+
+
+    useEffect(() => {
+        if (id!== null){
+            setModalType({
+                name:"user",
+                text: "Are you sure you want to add this review ?",
+                labelConfirm: "Add Review",
+                labelCancel: "string",
+                ConfirmFunc: onConfirmAddReview,           
+            })
+        }
+        else 
+        setModalType({
+            name:"no user",
+            text: "Please log in before adding a review",
+            labelConfirm: "log in",
+            labelCancel: "string",
+            ConfirmFunc: onConfirmLogin,           
+        })
+
+    }, [form.values.rating])
 
 
     return (
         <Paper withBorder radius="md" mx="xl">
-            {/* <Text  mx="xl">
-            Add a comment
-        </Text> */}
-            <form onSubmit={form.onSubmit(handelSubmit)}>
+            <form onSubmit={form.onSubmit(confirmReviewModal)}>
                 <Group direction="column"
                     grow
                     spacing="xs"
@@ -109,7 +158,7 @@ const AddReview = (props: AddReviewProps) => {
                     <Button type="submit">Add Review</Button>
                 </Group>
             </form>
-
+            
         </Paper>
     )
 }

@@ -7,6 +7,7 @@ import store from './user/redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist';
 import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
 
 const AppWrapper = () => {
 
@@ -22,9 +23,11 @@ const AppWrapper = () => {
             <PersistGate loading={null} persistor={persistor}>
                 <BrowserRouter>
                     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-                        <MantineProvider theme={{ colorScheme }}  withGlobalStyles withNormalizeCSS>
+                        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
                             <NotificationsProvider position="top-right" >
-                                <App />
+                                <ModalsProvider>
+                                    <App />
+                                </ModalsProvider>
                             </NotificationsProvider>
                         </MantineProvider>
                     </ColorSchemeProvider>
