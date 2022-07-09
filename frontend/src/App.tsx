@@ -48,8 +48,8 @@ const App: React.FC  = () => {
 
           :  <Container size="xl" px="xs" className={classes.container} >
               <Navbar />
-              <TempCart />
-              <TempUser/>
+              {/* <TempCart />
+              <TempUser/> */}
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/loginregister' element={<LoginRegister />} />

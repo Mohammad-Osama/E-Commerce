@@ -15,7 +15,7 @@ const Profile = () => {
     async function getUserData() {
         const resData = await api.getUserData()
         setUser(resData)
-        console.log("resDataaaa", resData)
+       //  console.log("resDataaaa", resData)
     }
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const Profile = () => {
             <Grid columns={3} >  {/* coupon to be shown speratly from its document,to show the value not the id  */}
                 {Object.entries(user).filter(([key, _]) => key !== "id" && key!=="coupon").map(([key, value]) => {
                     return (
-                        <>
+                        <React.Fragment key={key}>
                             <Grid.Col span={1}>
                                 <div>{key} :</div>
                             </Grid.Col>
@@ -44,7 +44,7 @@ const Profile = () => {
                                     <div>{value.toString()}</div>
                                 </Text>
                             </Grid.Col>
-                        </>
+                        </React.Fragment>
                     )
                 }
                 )
