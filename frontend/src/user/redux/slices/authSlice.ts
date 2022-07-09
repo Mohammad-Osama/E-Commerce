@@ -38,7 +38,7 @@ export const login = createAsyncThunk(
   async (userInput :any , thunkAPI) => {  // type to userinput to be added later ??
     try {
       const response = await axios.post("/api/users/login", userInput)
-      console.log('response login', response);
+     // console.log('response login', response);
       if (response.data) {
         localStorage.setItem('token', JSON.stringify(response.data.token))
       }

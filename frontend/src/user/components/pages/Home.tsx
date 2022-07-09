@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import * as api from "../../../helpers/api"
 import { ICategory, IProduct } from '../../../helpers/types';
 import Product from '../features/Product';
-import React, { ReactElement } from "react";
 
 
 
@@ -14,8 +13,9 @@ const useStyles = createStyles((theme) => ({
             
     },
 }));
+
 const Home = () => {
-   // const theme = useMantineTheme();
+  
     const { classes } = useStyles()
     const emptyCategories: ICategory[] = [];
     const emptyProducts: IProduct[] = [];
@@ -29,13 +29,13 @@ const Home = () => {
     const update = async () => {
         await api.getCategories()
             .then((res) => {
-                console.log("Categoriesssssss ", res);
+              //  console.log("Categoriesssssss ", res);
                 setCategories(res as ICategory[]);
             });
 
         await api.getProducts()
             .then((res) => {
-                console.log("Productssssssss ", res);
+              //  console.log("Productssssssss ", res);
                 setProducts(res as IProduct[]);
             });
         SetLoading(false);

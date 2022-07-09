@@ -78,7 +78,7 @@ const ProductFull = () => {
     async function getReviewProductUser(product: string, user: string) {
         const resData = await api.getReviewProductUser(product, user)
         setReviewProductUser(resData)
-        console.log("resDataaa-----> ReviewProductUser", resData)
+     //   console.log("resDataaa-----> ReviewProductUser", resData)
     }
 
 
@@ -91,7 +91,7 @@ const ProductFull = () => {
         //  console.log(product.rating_total)
         //  console.log(product.rating_total)
         // console.log(Math.round( (product.rating_total / product.rating_count) /5) *5)
-        console.log(" ReviewProductUser", reviewProductUser)
+       // console.log(" ReviewProductUser", reviewProductUser)
     }, [])
 
 
