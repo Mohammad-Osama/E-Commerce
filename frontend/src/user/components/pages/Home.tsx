@@ -37,6 +37,7 @@ const Home = () => {
             .then((res) => {
               //  console.log("Productssssssss ", res);
                 setProducts(res as IProduct[]);
+              //  console.log("Productssssssss ", products);
             });
         SetLoading(false);
     }
@@ -52,7 +53,7 @@ const Home = () => {
     }, [loading]);
 
 
-    if (loading === true)
+    if (loading === true || products===[] || categories===[] )
 
         return <Loader width="100%"
                        size="xl"

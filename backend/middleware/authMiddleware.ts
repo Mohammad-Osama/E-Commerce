@@ -21,10 +21,10 @@ export async function authJwt(req :Request , res : Response , next :NextFunction
                                                             .select(['-password','-role',
                                                                      '-status',
                                                                      '-createdAt','-updatedAt', '-__v' ])
-                              console.log("ttttttttttt" , (req as CustomRequest).user)                                       
+                            //  console.log("ttttttttttt" , (req as CustomRequest).user)                                       
                 next()
             } catch (error) {
-                console.log("eeeeeeeeeee" , error)
+               // console.log("eeeeeeeeeee" , error)
                 res.status(401).json("Not authorized")
             }
             

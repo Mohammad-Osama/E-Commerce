@@ -46,7 +46,7 @@ const MenuInNav = (props :any) => {
         }
     },[]);
 
-    if (categories === undefined && brands === undefined)
+    if (categories === undefined || brands === undefined)
         return (
             <Loader />
         )
