@@ -17,6 +17,7 @@ import { showNotification } from '@mantine/notifications'
 import { AlertCircle } from 'tabler-icons-react'
 import { authState, login, register, reset } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
+import ErrorPage from './ErrorPage';
 
 
 const LoginRegister = (props: PaperProps<'div'>) => {
@@ -40,7 +41,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
 
   const userState = useSelector(authState)
 
-  const { isError, isSuccess ,message} = userState
+  const { isError, isSuccess ,message , id} = userState
 
   const handleError = () => {
     showNotification({
@@ -99,6 +100,11 @@ const LoginRegister = (props: PaperProps<'div'>) => {
 
   }, [isError, isSuccess])
 
+  if (id!==null)
+   return (
+      <ErrorPage/>
+   )
+   else 
   return (
     <Container size="sm" px="xs">
     <Paper radius="md" p="xl" withBorder {...props}>

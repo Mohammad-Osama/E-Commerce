@@ -5,6 +5,7 @@ import Profile from '../features/Profile';
 import { useSelector } from 'react-redux';
 import { authState } from '../../redux/slices/authSlice';
 import { useNavigate } from 'react-router';
+import ErrorPage from './ErrorPage';
 
 const LINK_HEIGHT = 38;
 const INDICATOR_SIZE = 10;
@@ -146,16 +147,12 @@ const Dashboard = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-   /*  if (!id)
-    {
-      navigate('/loginregister')
-    } */
-
+   
   }, [type , id])
 
-  if (!id)
+  if (id===null)
    return (   
-      <div> please log in    </div>  
+     <ErrorPage/>  
    )
    else 
 
