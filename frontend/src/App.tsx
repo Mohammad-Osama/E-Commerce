@@ -13,6 +13,7 @@ import Browse from "./user/components/pages/Browse";
 import ProductFull from "./user/components/features/ProductFull";
 import Cart from "./user/components/pages/Cart";
 import Dashboard from "./user/components/pages/Dashboard";
+import ErrorPage from "./user/components/pages/ErrorPage";
 
 
 const useStyles = createStyles((theme) => ({
@@ -57,6 +58,7 @@ const App: React.FC  = () => {
                 <Route path='/product/:id' element={<ProductFull />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/error' element={<ErrorPage />} />
               </Routes>
             </Container>
     }
