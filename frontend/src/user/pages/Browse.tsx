@@ -1,10 +1,9 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useLocation } from 'react-router-dom'
-import * as api from "../../../helpers/api"
+import * as api from "../../helpers/api"
 import { Loader, Container, SimpleGrid } from '@mantine/core';
-import { IProduct } from '../../../helpers/types'
+import { IProduct } from '../../helpers/types'
 import Product from '../features/Product'
 
 

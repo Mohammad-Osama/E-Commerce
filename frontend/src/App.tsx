@@ -1,18 +1,18 @@
 import React ,{ useEffect ,useState }  from "react";
 import { Container , useMantineTheme ,createStyles} from '@mantine/core';
 import { Routes, Route } from 'react-router-dom';
-import Home from "./user/components/pages/Home";
+import Home from "./user/pages/Home";
 import TempCart from "./user/components/TempCart";
-import { Navbar } from "./user/components/features/NavBar";
-import LoginRegister from "./user/components/pages/LoginRegister";
+import { Navbar } from "./user/features/NavBar";
+import LoginRegister from "./user/pages/LoginRegister";
 import TempUser from "./user/components/TempUser";
 import { authState } from "./user/redux/slices/authSlice";
 import { useSelector } from "react-redux";
 import HomeAdmin from "./admin/components/pages/HomeAdmin";
-import Browse from "./user/components/pages/Browse";
-import ProductFull from "./user/components/features/ProductFull";
-import Cart from "./user/components/pages/Cart";
-import Dashboard from "./user/components/pages/Dashboard";
+import Browse from "./user/pages/Browse";
+import ProductFull from "./user/features/ProductFull";
+import Cart from "./user/pages/Cart";
+import Dashboard from "./user/pages/Dashboard";
 
 
 

@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
 import UserDisplay from './UserDisplay';
 import MenuInNav from './MenuInNav';
-import { IProduct } from '../../../helpers/types';
-import * as api from "../../../helpers/api"
-import ThemeButton from './ThemeButton';
+import { IProduct } from '../../helpers/types';
+import * as api from "../../helpers/api"
+import ThemeButton from '../components/ThemeButton';
 
 const useStyles = createStyles((theme) => ({
     search: {

@@ -3,10 +3,10 @@ import { Textarea, Text, Paper, Button, Group, TextInput } from '@mantine/core';
 import { AlertCircle } from 'tabler-icons-react';
 import { Rating } from '@mui/material';
 import { useForm } from '@mantine/hooks';
-import { authState } from '../../redux/slices/authSlice';
+import { authState } from '../redux/slices/authSlice';
 import { useSelector } from 'react-redux';
-import * as api from '../../../helpers/api'
-import { IReviewaddForm } from '../../../helpers/types';
+import * as api from '../../helpers/api'
+import { IReviewaddForm } from '../../helpers/types';
 import { showNotification } from '@mantine/notifications'
 import { useModals } from '@mantine/modals';
 import { useNavigate } from "react-router-dom";

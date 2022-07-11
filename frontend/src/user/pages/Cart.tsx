@@ -1,12 +1,11 @@
-import React from 'react'
 import { Loader, Container, SimpleGrid, Text ,useMantineTheme ,createStyles } from '@mantine/core';
 import { useState, useEffect } from "react";
-import { cartState } from '../../redux/slices/cartSlice';
+import { cartState } from '../redux/slices/cartSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { AppDispatch } from '../../redux/store';
+import { AppDispatch } from '../redux/store';
 import Product from '../features/Product';
-import { IProduct } from '../../../helpers/types';
+import { IProduct } from '../../helpers/types';
 
 
 const useStyles = createStyles((theme) => ({

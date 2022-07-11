@@ -3,15 +3,16 @@ import {
     Grid, Container, Image, Loader, Card, Text, Badge, createStyles,
     useMantineTheme, Group
 } from '@mantine/core';
-import * as api from "../../../helpers/api"
+import * as api from "../../helpers/api"
 import { useParams } from 'react-router'
-import { IProduct, IReview, IReviewInfo } from '../../../helpers/types';
+import { IProduct, IReview, IReviewInfo } from '../../helpers/types';
 import CartButtons from './CartButtons';
 import Review from './Review';
 import AddReview from './AddReview';
 import { Rating } from '@mui/material';
-import { authState } from '../../redux/slices/authSlice';
+import { authState } from '../redux/slices/authSlice';
 import { useSelector } from 'react-redux';
+
 
 const ProductFull = () => {
 

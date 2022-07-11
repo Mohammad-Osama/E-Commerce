@@ -3,7 +3,7 @@ import { createStyles, Box, Text, Group, Container, Grid, Paper } from '@mantine
 import { ListSearch } from 'tabler-icons-react';
 import Profile from '../features/Profile';
 import { useSelector } from 'react-redux';
-import { authState } from '../../redux/slices/authSlice';
+import { authState } from '../redux/slices/authSlice';
 import { useNavigate } from 'react-router';
 import ErrorPage from './ErrorPage';
 

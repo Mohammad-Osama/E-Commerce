@@ -1,4 +1,3 @@
-import React from 'react'
 import {
     Menu,
     Center,
@@ -7,8 +6,8 @@ import {
 import { ChevronDown } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ICategory, IBrand } from '../../../helpers/types';
-import * as api from "../../../helpers/api"
+import { ICategory, IBrand } from '../../helpers/types';
+import * as api from "../../helpers/api"
 
 
 

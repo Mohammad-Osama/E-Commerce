@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
 import { Text } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { authState } from '../../redux/slices/authSlice';
+import { authState } from '../redux/slices/authSlice';
 import { useSelector } from 'react-redux';
 import UserMenu from './UserMenu';
 

@@ -1,14 +1,13 @@
-import React from 'react'
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { cartState } from '../../redux/slices/cartSlice';
+import { cartState } from '../redux/slices/cartSlice';
 import { ActionIcon, Group, useMantineTheme, Tooltip ,Badge } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { Plus, Minus } from 'tabler-icons-react';
 import { useDispatch } from 'react-redux';
 import { ShoppingCartPlus, ShoppingCartX , LetterX ,ShoppingCartOff} from 'tabler-icons-react';
-import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
-import { IProduct, IProductCart } from '../../../helpers/types'
+import { addToCart, removeFromCart } from '../redux/slices/cartSlice';
+import { IProduct, IProductCart } from '../../helpers/types'
 
 
 interface X {

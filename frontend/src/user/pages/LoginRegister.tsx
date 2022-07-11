@@ -15,8 +15,8 @@ import {
   } from '@mantine/core';
 import { showNotification } from '@mantine/notifications'
 import { AlertCircle } from 'tabler-icons-react'
-import { authState, login, register, reset } from '../../redux/slices/authSlice';
-import { AppDispatch } from '../../redux/store';
+import { authState, login, register, reset } from '../redux/slices/authSlice';
+import { AppDispatch } from '../redux/store';
 import ErrorPage from './ErrorPage';
 
 
@@ -100,7 +100,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
 
   }, [isError, isSuccess])
 
-  if (id!==null)
+  if (id!==null )  // apprears for a second on login , might need adjustment
    return (
       <ErrorPage/>
    )

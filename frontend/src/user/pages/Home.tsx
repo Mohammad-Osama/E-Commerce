@@ -1,8 +1,10 @@
-import { Loader, Container, SimpleGrid, Text ,useMantineTheme ,createStyles } from '@mantine/core';
+import { Loader, Container, SimpleGrid, Text ,useMantineTheme ,createStyles , Button } from '@mantine/core';
 import { useState, useEffect } from "react";
-import * as api from "../../../helpers/api"
-import { ICategory, IProduct } from '../../../helpers/types';
+import * as api from "../../helpers/api"
+import { ICategory, IProduct } from '../../helpers/types';
 import Product from '../features/Product';
+import { Link } from 'react-router-dom';
+import TitleText from '../components/TitleText';
 
 
 
@@ -12,6 +14,16 @@ const useStyles = createStyles((theme) => ({
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.cyan[2],
             
     },
+    control: {
+        paddingLeft: 50,
+        paddingRight: 50,
+        fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+        fontSize: 22,
+    
+        [theme.fn.smallerThan('md')]: {
+          width: '100%',
+        },
+      },
 }));
 
 const Home = () => {
@@ -63,26 +75,18 @@ const Home = () => {
 
         return (
             <Container size="xl" my="md" className={classes.container}>
-
-                <Text 
-                    component="span"
-                    align="center"
-                    variant="gradient"
-                    gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-                    size="xl"
-                    weight={700}
-                    style={{ fontFamily: 'Greycliff CF, sans-serif' }}
-                >
-                    On Sale
-                </Text>
-
+               
+                <TitleText   title="On sale"
+                             type="On sale"
+                             typeId=" "
+                  />
+            
                 <SimpleGrid cols={3} spacing="lg"
                     breakpoints={[
                         { maxWidth: 980, cols: 3, spacing: 'md' },
                         { maxWidth: 755, cols: 2, spacing: 'sm' },
                         { maxWidth: 600, cols: 1, spacing: 'sm' },
                     ]} >
-
 
                     {products.map((product) => {
                         if (product.sale > 0)
@@ -92,17 +96,10 @@ const Home = () => {
                     })}
                 </SimpleGrid>
 
-                <Text
-                    component="span"
-                    align="center"
-                    variant="gradient"
-                    gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-                    size="xl"
-                    weight={700}
-                    style={{ fontFamily: 'Greycliff CF, sans-serif' }}
-                >
-                    Featured
-                </Text>
+                <TitleText   title="Featured"
+                             type="Featured"
+                             typeId=" "
+                  />
 
                 <SimpleGrid cols={3} spacing="lg"
                     breakpoints={[
@@ -121,17 +118,11 @@ const Home = () => {
                 </SimpleGrid>
                 {categories?.map((x) => (
                     <div key={x.id}>
-                        <Text
-                            component="span"
-                            align="center"
-                            variant="gradient"
-                            gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-                            size="xl"
-                            weight={700}
-                            style={{ fontFamily: 'Greycliff CF, sans-serif' }}
-                        >
-                            {x.name}
-                        </Text>
+                        <TitleText  
+                                     title={x.name}
+                                     type="category"
+                                     typeId={x.id}
+                                          />
                         <SimpleGrid cols={3} spacing="lg"
                             breakpoints={[
                                 { maxWidth: 980, cols: 3, spacing: 'md' },

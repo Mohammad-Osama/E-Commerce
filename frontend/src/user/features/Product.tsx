@@ -1,5 +1,4 @@
-import React from "react";
-import { IProduct } from "../../../helpers/types";
+import { IProduct } from "../../helpers/types";
 import {
     Card, Image, Text, Badge, Group, useMantineTheme,
    

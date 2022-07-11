@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Divider, SimpleGrid, Text, Grid } from '@mantine/core';
-import { authState } from '../../redux/slices/authSlice';
+import { authState } from '../redux/slices/authSlice';
 import { useSelector } from 'react-redux';
-import * as api from "../../../helpers/api"
-import { IUser } from '../../../helpers/types';
+import * as api from "../../helpers/api"
+import { IUser } from '../../helpers/types';
 const Profile = () => {
 
     const { id, first_name, last_name, email } = useSelector(authState)

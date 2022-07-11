@@ -9,15 +9,13 @@ import {
 
 import {
   Logout,UserCircle ,
-  Star,
-  Message,
   Settings,
   ChevronDown,
 } from 'tabler-icons-react';
 
 import { useSelector , useDispatch } from 'react-redux';
-import { authState, logout } from '../../redux/slices/authSlice';
-import { AppDispatch } from '../../redux/store';
+import { authState, logout } from '../redux/slices/authSlice';
+import { AppDispatch } from '../redux/store';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
