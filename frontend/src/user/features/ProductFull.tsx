@@ -106,8 +106,8 @@ const ProductFull = () => {
                         <Image src={product.main_image}
                             alt="Product"
                             radius={10}
-                            height={380}
-                            fit="contain"
+                            height={480}
+                            fit="cover"
                             style={{ cursor: 'pointer' }}
 
                         />
