@@ -11,7 +11,7 @@ import TitleText from '../components/TitleText';
 const useStyles = createStyles((theme) => ({
     container: {   
         color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],   
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.cyan[2],
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.cyan[1],
             
     },
     control: {

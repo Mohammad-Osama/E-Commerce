@@ -39,6 +39,11 @@ const ProductFull = () => {
             fontSize: theme.fontSizes.xs,
             fontWeight: 700,
         },
+        container: {   
+            color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],   
+            backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.cyan[1],
+                
+        }
     }));
 
     const { classes } = useStyles();
@@ -100,7 +105,7 @@ const ProductFull = () => {
         return <Loader />
     else
         return (
-            <Container mb="xl" px="md">
+            <Container mb="xl" px="md" className={classes.container}>
                 <Grid m="xl" columns={12}>
                     <Grid.Col span={6}>
                         <Image src={product.main_image}

@@ -19,7 +19,7 @@ import Dashboard from "./user/pages/Dashboard";
 const useStyles = createStyles((theme) => ({
   container: {   
       color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],   
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.cyan[2],
           
   },
 }));
