@@ -106,7 +106,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
    )
    else 
   return (
-    <Container size="sm" px="xs">
+    <Container size="sm" px="xs" py={60}>
     <Paper radius="md" p="xl" withBorder {...props}>
       <Text size="lg" weight={500}>
         Welcome to E-Commerce, {type} with
