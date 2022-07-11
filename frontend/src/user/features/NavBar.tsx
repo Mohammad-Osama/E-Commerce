@@ -10,6 +10,7 @@ import MenuInNav from './MenuInNav';
 import { IProduct } from '../../helpers/types';
 import * as api from "../../helpers/api"
 import ThemeButton from '../components/ThemeButton';
+import CartIcon from './CartIcon';
 
 const useStyles = createStyles((theme) => ({
     search: {
@@ -184,11 +185,11 @@ export function Navbar() {
                         <MenuInNav classes={classes} />
                     </Group>
 
-                    <Group spacing={5} className={classes.links} >
+                    <Group spacing={5} className={classes.links} >  {/*  maybe remove this group ?! */}
                         <ActionIcon<typeof Link> component={Link} to="/cart" >
-                            <ShoppingCart />
+                           <CartIcon/>
                         </ActionIcon>
-                        <Text > Cart </Text>
+                        
                     </Group>
 
                     <UserDisplay />

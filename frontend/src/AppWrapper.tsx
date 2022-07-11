@@ -24,7 +24,7 @@ const AppWrapper = () => {
                 <BrowserRouter>
                     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
                         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-                            <NotificationsProvider position="top-right" >
+                            <NotificationsProvider position="bottom-right" >
                                 <ModalsProvider>
                                     <App />
                                 </ModalsProvider>
