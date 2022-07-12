@@ -13,6 +13,7 @@ import Browse from "./user/pages/Browse";
 import ProductFull from "./user/features/ProductFull";
 import Cart from "./user/pages/Cart";
 import Dashboard from "./user/pages/Dashboard";
+import AffixApp from "./user/features/AffixApp";
 
 
 
@@ -59,6 +60,8 @@ const App: React.FC  = () => {
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/dashboard' element={<Dashboard />} />
               </Routes>
+
+              <AffixApp/>
             </Container>
     }
        </div>   

@@ -20,7 +20,7 @@ const Cart = () => {
     const { classes } = useStyles()
 
     const cartItems = useSelector(cartState)
-    console.log("cartItems", cartItems)
+   // console.log("cartItems", cartItems)
 
     const dispatch = useDispatch<AppDispatch>()
 
