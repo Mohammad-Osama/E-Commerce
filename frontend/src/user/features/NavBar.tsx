@@ -177,7 +177,7 @@ export function Navbar() {
             
             
                            onItemSubmit={(item) => 
-                              navigate(`/cart`)  
+                              navigate(`/product/${item.id}`)  
                             }
                     />
 

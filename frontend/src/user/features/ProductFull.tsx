@@ -98,7 +98,7 @@ const ProductFull = () => {
         //  console.log(product.rating_total)
         // console.log(Math.round( (product.rating_total / product.rating_count) /5) *5)
        // console.log(" ReviewProductUser", reviewProductUser)
-    }, [])
+    }, [id])
 
 
     if (product === undefined)
