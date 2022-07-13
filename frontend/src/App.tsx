@@ -14,6 +14,7 @@ import ProductFull from "./user/features/ProductFull";
 import Cart from "./user/pages/Cart";
 import Dashboard from "./user/pages/Dashboard";
 import AffixApp from "./user/features/AffixApp";
+import Footer from "./user/features/Footer";
 
 
 
@@ -62,6 +63,7 @@ const App: React.FC  = () => {
               </Routes>
 
               <AffixApp/>
+              <Footer/>
             </Container>
     }
        </div>   

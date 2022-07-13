@@ -74,7 +74,7 @@ const Home = () => {
     else
 
         return (
-            <Container size="xl" my="md" className={classes.container}>
+            <Container size="xl" my="md" pb="xl" className={classes.container}>
                
                 <TitleText   title="On sale"
                              type="On sale"
