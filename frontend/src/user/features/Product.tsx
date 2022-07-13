@@ -1,7 +1,7 @@
 import { IProduct } from "../../helpers/types";
 import {
     Card, Image, Text, Badge, Group, useMantineTheme,
-   
+    Indicator
   } from '@mantine/core';
 
 import { Rating } from '@mui/material';
@@ -44,13 +44,13 @@ const navigate =useNavigate()
                 <Badge color="blue" variant="light" size="md" >
                   {stock} in stock
                 </Badge>
-
+               
                 <Rating name="read-only"
                     size="small"
-                    value={rating_total || rating_count == 0
-                      ? 3
-                      : rating_total / rating_count
-                    }                   
+                    value={rating_total===0 || rating_count === 0
+                      ? 0
+                      : Math.round((product.rating_total / product.rating_count) )
+                    }      
                   />
               </Group>  
           
