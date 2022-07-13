@@ -76,8 +76,8 @@ const Home = () => {
         return (
             <Container size="xl" my="md" pb="xl" className={classes.container}>
                
-                <TitleText   title="On sale"
-                             type="On sale"
+                <TitleText   title="On Sale"
+                             type="On Sale"
                              typeId=" "
                   />
             

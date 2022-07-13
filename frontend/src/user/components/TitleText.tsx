@@ -11,7 +11,7 @@ interface ITitleTextProps { // title would be needed if brands would be added la
 
 const TitleText = ({ title , type, typeId  }: ITitleTextProps) => {
 
-    if (type === "On sale" || type === "Featured")
+    if (type === "On Sale" || type === "Featured")
         return (
             <Text
                 p="xl"

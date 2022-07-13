@@ -72,13 +72,13 @@ const ProductFull = () => {
     async function getProduct(id: string) {
         const resData = await api.getProductById(id)
         setProduct(resData)
-       console.log("resDataaaa", resData)
+      // console.log("resDataaaa", resData)
     }
 
     async function getReviewInfo(id: string) {
         const resData = await api.getReviewInfo(id)
         setReviewInfo(resData)
-         console.log("resDataaa->ReviewInfo", resData)
+        // console.log("resDataaa->ReviewInfo", resData)
     }
 
     async function getReviewProductUser(product: string, user: string) {
@@ -89,6 +89,7 @@ const ProductFull = () => {
 
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         if (userState.id !== null) {
             getReviewProductUser(id as string, userState.id as string)
         }
@@ -101,7 +102,7 @@ const ProductFull = () => {
         return <Loader />
     else
         return (
-            <Container mb="xl" px="md" className={classes.container}>  
+            <Container mb="xl" px="md" pb="xl" className={classes.container}>  
                 <Grid m="xl" columns={12}>
                     <Grid.Col span={6}>
                         <Image src={product.main_image}
@@ -122,12 +123,12 @@ const ProductFull = () => {
                                         {product.name}
                                     </Text>
                                     <Badge size="lg">{product.model}</Badge>
-                                    <Indicator label={`${product.rating_count} reviews`}
-                                               offset={-16}
+                                    {/* <Indicator label={`${product.rating_count} reviews`}
+                                               offset={-33}
                                                size={30}
                                               // color="teal"
-                                               position="top-center" 
-                                            >
+                                               position="middle-end" 
+                                            > </Indicator> */}
                                         <Rating 
                                             size="small"
                                             value={product.rating_total === 0|| product.rating_count === 0
@@ -135,7 +136,7 @@ const ProductFull = () => {
                                                 : Math.round((product.rating_total / product.rating_count) ) 
                                             }   
                                         />
-                                     </Indicator>
+                                    
                                 </Group>
 
                             </Card.Section>
