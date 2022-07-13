@@ -87,7 +87,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
 
 
 
-  useEffect(() => {
+  useEffect(() => {  // maybe use layouteffect instead 
     if (isError) {
       handleError()
     }
