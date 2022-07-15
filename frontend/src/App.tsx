@@ -8,13 +8,14 @@ import LoginRegister from "./user/pages/LoginRegister";
 import TempUser from "./user/components/TempUser";
 import { authState } from "./user/redux/slices/authSlice";
 import { useSelector } from "react-redux";
-import HomeAdmin from "./admin/components/pages/HomeAdmin";
 import Browse from "./user/pages/Browse";
 import ProductFull from "./user/features/ProductFull";
 import Cart from "./user/pages/Cart";
 import Dashboard from "./user/pages/Dashboard";
 import AffixApp from "./user/features/AffixApp";
 import Footer from "./user/features/Footer";
+import AdminPanel from "./admin/pages/AdminPanel";
+import NavBarAdmin from "./admin/components/NavBarAdmin";
 
 
 
@@ -36,18 +37,19 @@ const App: React.FC  = () => {
      SetType(role)
   }, [role  , type])
 
-  
+   // <Container size="xl" px="xs" ></Container>
   return (
     
     < div className={classes.container}>
     {  type==="admin"
-     ? <Container size="xl" px="xs" >
-            <TempUser/>
+     ? <>
+           {/*  <TempUser/> */}
 
             <Routes>
-              <Route path='/' element={<HomeAdmin />} />
+              <Route path='/' element={<AdminPanel />} />
+              {/* <Route path='/NavBarAdmin' element={<NavBarAdmin />} /> */}
             </Routes>
-          </Container>
+         </>
 
           :  <Container size="xl" px="xs" className={classes.container} >
               <Navbar />

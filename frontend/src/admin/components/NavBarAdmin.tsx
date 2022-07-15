@@ -1,0 +1,159 @@
+import React from 'react';
+import { Navbar, Group, Code, ScrollArea, createStyles, Image } from '@mantine/core';
+import {
+    Notes,
+    CalendarStats,
+    Gauge,
+    PresentationAnalytics,
+    FileAnalytics,
+    Adjustments,
+    Lock,
+    ShoppingCart,
+    Logout,
+} from 'tabler-icons-react';
+//import { UserButton } from '../UserButton/UserButton';
+import { LinksGroup } from './LinksGroup';
+import { Logo } from "../components/Logo";
+
+const mockdata = [
+  //  { label: 'Dashboard', icon: Gauge },
+    {
+        label: 'Products',
+        icon: ShoppingCart,
+        initiallyOpened: false,
+        links: [
+            { label: 'Overview', type: 'overview products' },
+            { label: 'Add Product', type: 'add products' },
+            { label: 'Edit Product', type: 'edit products' },
+            { label: 'Remove Product', type: 'remove products' },
+        ],
+    },
+    {
+        label: 'Brands',
+        icon: CalendarStats,
+        links: [
+            { label: 'Overview', type: 'overview brands' },
+            { label: 'Add Brand', type: 'add brands' },
+            { label: 'Edit Brand', type: 'edit brands' },
+            { label: 'Remove Brand', type: 'remove brands' },
+        ],
+    },
+    { label: 'Analytics', icon: PresentationAnalytics },
+    { label: 'Contracts', icon: FileAnalytics },
+    { label: 'Settings', icon: Adjustments },
+    {
+        label: 'Security',
+        icon: Lock,
+        links: [
+            { label: 'Enable 2FA', type: '/' },
+            { label: 'Change password', type: '/' },
+            { label: 'Recovery codes', type: '/' },
+        ],
+    },
+];
+
+const useStyles = createStyles((theme) => ({
+    navbar: {
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
+        // paddingBottom: 0,
+    },
+
+    header: {
+        padding: theme.spacing.md,
+        paddingTop: 0,
+        marginLeft: -theme.spacing.md,
+        marginRight: -theme.spacing.md,
+        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+        borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+            }`,
+    },
+
+    links: {
+        marginLeft: -theme.spacing.md,
+        marginRight: -theme.spacing.md,
+    },
+
+    linksInner: {
+        paddingTop: theme.spacing.xl,
+        paddingBottom: theme.spacing.xl,
+    },
+
+    footer: {
+        marginLeft: -theme.spacing.md,
+        marginRight: -theme.spacing.md,
+        borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+            }`,
+    },
+    linkIcon: {
+        color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
+        marginRight: theme.spacing.sm,
+    },
+    link: {
+        ...theme.fn.focusStyles(),
+        display: 'flex',
+        alignItems: 'center',
+        textDecoration: 'none',
+        fontSize: theme.fontSizes.sm,
+        color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
+        padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
+        borderRadius: theme.radius.sm,
+        fontWeight: 500,
+  
+        '&:hover': {
+          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+          color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+  
+          
+        },
+      },
+}));
+ interface NavBarAdminProps {
+     hidden : boolean
+     handleClick : (t: string) => void
+ }
+
+const NavBarAdmin = ( {hidden , handleClick} : NavBarAdminProps) => {
+
+    const { classes } = useStyles();
+    const links = mockdata.map((item) => <LinksGroup {...item} key={item.label} handleClick={handleClick}/>);
+    return (
+        <Navbar hidden={hidden} hiddenBreakpoint="sm" height={500} width={{ sm: 200, lg: 300 }} p="md" className={classes.navbar}>
+            <Navbar.Section className={classes.header}>
+                <Group position="apart">
+                    {/*  <Logo width={120} /> */}
+
+                    <Image src="/cart_17906.png"
+                        alt="cart"
+                        width={50}
+                        height={50}
+                    />
+                    <Code sx={{ fontWeight: 700 }}>v1.0.1</Code>
+                </Group>
+            </Navbar.Section>
+
+            <Navbar.Section  grow className={classes.links}  >
+                <ScrollArea style={{ height: 350 }} offsetScrollbars>
+                    <div className={classes.linksInner}>{links}</div>
+                </ScrollArea>
+            </Navbar.Section>
+
+
+            {/* <Navbar.Section className={classes.footer}>
+                 <UserButton
+            image="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80"
+            name="Ann Nullpointer"
+            email="anullpointer@yahoo.com"
+          />
+            </Navbar.Section> */}
+            <Navbar.Section mt="xs" className={classes.footer}>
+
+                <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+                    <Logout className={classes.linkIcon} />
+                    <span>Logout</span>
+                </a>
+            </Navbar.Section>
+        </Navbar>
+    )
+}
+
+export default NavBarAdmin
