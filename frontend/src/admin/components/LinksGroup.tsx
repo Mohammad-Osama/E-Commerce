@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Group, Box, Collapse, ThemeIcon, Text, UnstyledButton, createStyles } from '@mantine/core';
 import { Icon as TablerIcon, CalendarStats, ChevronLeft, ChevronRight } from 'tabler-icons-react';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -45,11 +46,11 @@ interface LinksGroupProps {
   icon: TablerIcon;
   label: string;
   initiallyOpened?: boolean;
-  links?: { label: string; type: string }[];
+  links?: { label: string; route: string }[];
   handleClick:(t: string) => void
 }
 
-type L= { label: string; type: string }
+type L= { label: string; route: string }
 
 export function LinksGroup({ icon: Icon, label, initiallyOpened, links ,handleClick }: LinksGroupProps) {
   const { classes, theme } = useStyles();
@@ -66,15 +67,15 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links ,handleCl
               className={classes.link}
               
               key={link.label}
-              onClick={()=>handleClick(link.type)}
+              onClick={()=>navigate(`./${link.route}`)}
             >
-              {link.label}
+              {link.label}aaa
               
             </Text>
           ));
           return items
       }
-      else {
+      /* else {
     
         const items = [].map((link:any) => (
             <Text<'a'>
@@ -82,13 +83,13 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links ,handleCl
               className={classes.link}
               href={link.link}
               key={link.label}
-              onClick={(event) => event.preventDefault()}
+              onClick={()=>console.log(link)}
             >
-              {link.label}
+              {link.label}aaaaaaaa
             </Text>
           ));
           return items 
-      }
+      } */
   }
   
  /*  const items = (hasLinks ? links : []).map((link) => (
@@ -102,12 +103,17 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links ,handleCl
       {link.label}
     </Text>
   )); */
-
+ const navigate = useNavigate()
   return (
     <>
       <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
         <Group position="apart" spacing={0}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}
+               onClick={ label==="Dashboard"|| label=== "Analytics"
+                       ? ()=>navigate(`/${label}`)
+                       : undefined
+                 }
+                 >
             <ThemeIcon variant="light" size={30}>
               <Icon size={18} />
             </ThemeIcon>

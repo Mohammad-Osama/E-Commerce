@@ -1,56 +1,11 @@
-import React from 'react';
-import { Navbar, Group, Code, ScrollArea, createStyles, Image } from '@mantine/core';
-import {
-    Notes,
-    CalendarStats,
-    Gauge,
-    PresentationAnalytics,
-    FileAnalytics,
-    Adjustments,
-    Lock,
-    ShoppingCart,
-    Logout,
-} from 'tabler-icons-react';
+import { Navbar, Group, Code, ScrollArea, createStyles,
+     Image ,Box ,ThemeIcon } from '@mantine/core';
+import { Logout } from 'tabler-icons-react';
 //import { UserButton } from '../UserButton/UserButton';
 import { LinksGroup } from './LinksGroup';
 import { Logo } from "../components/Logo";
+import { navbarAdminData } from '../../helpers/data';
 
-const mockdata = [
-  //  { label: 'Dashboard', icon: Gauge },
-    {
-        label: 'Products',
-        icon: ShoppingCart,
-        initiallyOpened: false,
-        links: [
-            { label: 'Overview', type: 'overview products' },
-            { label: 'Add Product', type: 'add products' },
-            { label: 'Edit Product', type: 'edit products' },
-            { label: 'Remove Product', type: 'remove products' },
-        ],
-    },
-    {
-        label: 'Brands',
-        icon: CalendarStats,
-        links: [
-            { label: 'Overview', type: 'overview brands' },
-            { label: 'Add Brand', type: 'add brands' },
-            { label: 'Edit Brand', type: 'edit brands' },
-            { label: 'Remove Brand', type: 'remove brands' },
-        ],
-    },
-    { label: 'Analytics', icon: PresentationAnalytics },
-    { label: 'Contracts', icon: FileAnalytics },
-    { label: 'Settings', icon: Adjustments },
-    {
-        label: 'Security',
-        icon: Lock,
-        links: [
-            { label: 'Enable 2FA', type: '/' },
-            { label: 'Change password', type: '/' },
-            { label: 'Recovery codes', type: '/' },
-        ],
-    },
-];
 
 const useStyles = createStyles((theme) => ({
     navbar: {
@@ -98,24 +53,24 @@ const useStyles = createStyles((theme) => ({
         padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
         borderRadius: theme.radius.sm,
         fontWeight: 500,
-  
-        '&:hover': {
-          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-          color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-  
-          
-        },
-      },
-}));
- interface NavBarAdminProps {
-     hidden : boolean
-     handleClick : (t: string) => void
- }
 
-const NavBarAdmin = ( {hidden , handleClick} : NavBarAdminProps) => {
+        '&:hover': {
+            backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
+            color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+
+
+        },
+    },
+}));
+interface NavBarAdminProps {
+    hidden: boolean
+    handleClick: (t: string) => void
+}
+
+const NavBarAdmin = ({ hidden, handleClick }: NavBarAdminProps) => {
 
     const { classes } = useStyles();
-    const links = mockdata.map((item) => <LinksGroup {...item} key={item.label} handleClick={handleClick}/>);
+    const links = navbarAdminData.map((item) => <LinksGroup {...item} key={item.label} handleClick={handleClick} />);
     return (
         <Navbar hidden={hidden} hiddenBreakpoint="sm" height={500} width={{ sm: 200, lg: 300 }} p="md" className={classes.navbar}>
             <Navbar.Section className={classes.header}>
@@ -131,22 +86,14 @@ const NavBarAdmin = ( {hidden , handleClick} : NavBarAdminProps) => {
                 </Group>
             </Navbar.Section>
 
-            <Navbar.Section  grow className={classes.links}  >
+            <Navbar.Section grow className={classes.links}  >
                 <ScrollArea style={{ height: 350 }} offsetScrollbars>
+                   
                     <div className={classes.linksInner}>{links}</div>
                 </ScrollArea>
             </Navbar.Section>
 
-
-            {/* <Navbar.Section className={classes.footer}>
-                 <UserButton
-            image="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80"
-            name="Ann Nullpointer"
-            email="anullpointer@yahoo.com"
-          />
-            </Navbar.Section> */}
             <Navbar.Section mt="xs" className={classes.footer}>
-
                 <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
                     <Logout className={classes.linkIcon} />
                     <span>Logout</span>

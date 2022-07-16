@@ -46,7 +46,7 @@ const App: React.FC  = () => {
            {/*  <TempUser/> */}
 
             <Routes>
-              <Route path='/' element={<AdminPanel />} />
+              <Route path='/*' element={<AdminPanel />} />
               {/* <Route path='/NavBarAdmin' element={<NavBarAdmin />} /> */}
             </Routes>
          </>
