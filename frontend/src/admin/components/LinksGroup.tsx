@@ -69,7 +69,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links ,handleCl
               key={link.label}
               onClick={()=>navigate(`./${link.route}`)}
             >
-              {link.label}aaa
+              {link.label}
               
             </Text>
           ));

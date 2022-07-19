@@ -1,5 +1,4 @@
 import {
-    Notes,
     CalendarStats,
     Gauge,
     PresentationAnalytics,
@@ -7,7 +6,6 @@ import {
     Adjustments,
     Lock,
     ShoppingCart,
-    Logout,
 } from 'tabler-icons-react';
 
 
@@ -22,9 +20,9 @@ export const navbarAdminData = [
         initiallyOpened: false,
         links: [
             { label: 'Overview', route: 'overviewproducts' },
-            { label: 'Add Product', route: 'addproducts' },
-            { label: 'Edit Product', route: 'editproducts' },
-            { label: 'Remove Product', route: 'removeproducts' },
+            { label: 'Add Product', route: 'addproduct' },
+            { label: 'Edit Product', route: 'editproduct' },
+            { label: 'Remove Product', route: 'removeproduct' },
         ],
     },
     {
@@ -32,9 +30,9 @@ export const navbarAdminData = [
         icon: CalendarStats,
         links: [
             { label: 'Overview', route: 'overviewbrands' },
-            { label: 'Add Brand', route: 'addbrands' },
-            { label: 'Edit Brand', route: 'editbrands' },
-            { label: 'Remove Brand', route: 'removebrands' },
+            { label: 'Add Brand', route: 'addbrand' },
+            { label: 'Edit Brand', route: 'editbrand' },
+            { label: 'Remove Brand', route: 'removebrand' },
         ],
     },
     { label: 'Analytics', icon: PresentationAnalytics },

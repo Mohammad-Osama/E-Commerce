@@ -72,7 +72,7 @@ const NavBarAdmin = ({ hidden, handleClick }: NavBarAdminProps) => {
     const { classes } = useStyles();
     const links = navbarAdminData.map((item) => <LinksGroup {...item} key={item.label} handleClick={handleClick} />);
     return (
-        <Navbar hidden={hidden} hiddenBreakpoint="sm" height={500} width={{ sm: 200, lg: 300 }} p="md" className={classes.navbar}>
+        <Navbar hidden={hidden} hiddenBreakpoint="xs" height={500} width={{ sm: 200, lg: 300 }} p="md" className={classes.navbar}>
             <Navbar.Section className={classes.header}>
                 <Group position="apart">
                     {/*  <Logo width={120} /> */}

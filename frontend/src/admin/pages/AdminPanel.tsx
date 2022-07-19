@@ -14,6 +14,7 @@ import NavBarAdmin from '../components/NavBarAdmin';
 import ProductsOverview from './ProductsOverview';
 import ProductsOverviewSort from './ProductsOverviewSort';
 import {Routes, Route } from 'react-router-dom';
+import AddProduct from './AddProduct';
 
 
 export default function AdminPanel() {
@@ -93,7 +94,7 @@ export default function AdminPanel() {
 
      <Routes>
         <Route path='/' element={<Text>dashboard route</Text>} />
-
+        <Route path='/addproduct' element={<AddProduct/>} />
      </Routes>
 
     </AppShell>
