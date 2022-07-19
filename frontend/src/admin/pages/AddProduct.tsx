@@ -3,14 +3,21 @@ import InputPrice from '../components/addProductComponents/InputPrice';
 import InputStock from '../components/addProductComponents/InputStock';
 import InputText from '../components/addProductComponents/InputText';
 import InputDesc from '../components/addProductComponents/InputDesc';
-import { Group, Button, SimpleGrid } from '@mantine/core';
-import { useState,} from 'react';
+import { Group, Button, SimpleGrid , Autocomplete} from '@mantine/core';
+import { useState,useEffect} from 'react';
 import PhotoImport from '../components/addProductComponents/PhotoImport';
+import { IBrand, ICategory } from '../../helpers/types';
+import * as api from "../../helpers/api"
+import InputBrandOrCategory from '../components/addProductComponents/InputBrandOrCategory';
 
 const AddProduct = () => {
 
 	const [imageData, setImageData] = useState('')
 	const [imagePath, setImagePath] = useState<File[]>()
+
+	const [existingCategories, setExistingCategories] = useState<ICategory[]>([])
+	const [existingBrands, setExistingBrands] = useState<IBrand[]>([])
+
 
 	const form = useForm({
 		initialValues: {
@@ -21,6 +28,7 @@ const AddProduct = () => {
 			currency: 'egp',
 			description: '',
 			image: '',
+			category:'',
 		}
 	})
 
@@ -47,13 +55,40 @@ const AddProduct = () => {
 
 		form.setFieldValue('description', input)
 	}
+
+	function categoryInput(input: string) {
+		form.setFieldValue('category', input)
+	}
 	function imageInput(inputImage: File[]) {
 		const uuu = URL.createObjectURL(inputImage[0]);
 		setImageData(uuu)
 		setImagePath(inputImage)
 	}
 
+	const getCategories = async () => {
+		const data = await api.getCategories()
+		setExistingCategories(data)
+		console.log(data)
+	}
+
+	const categoryData = () => {
+		let results :any= []
+		existingCategories?.map((c) => {
+			return results.push({ value: c.name, id: c.id })
+		})
+		return results
+	}
+
+	const getBrands = async () => {
+		const data = await api.getBrands()
+		setExistingBrands(data)
+		console.log(data)
+	}
 	
+	useEffect(() => {
+		getCategories()
+		getBrands()
+	}, [])
 
 	return (
 		<form onSubmit={form.onSubmit(() =>console.log("form.valuesssss" ,form.values))}>
@@ -72,6 +107,12 @@ const AddProduct = () => {
 							placeholder: 'Product Model',
 							value: form.values.model
 						}} />
+						<InputBrandOrCategory
+									formFunc={categoryInput}
+									placeholder="Enter Category "
+									data={categoryData()}
+									
+						/>
 					
 					<InputPrice formFuncPrice={priceInput}
 						formFuncCurrency={currencyInput}
