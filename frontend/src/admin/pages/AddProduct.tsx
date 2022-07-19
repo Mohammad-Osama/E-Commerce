@@ -29,6 +29,7 @@ const AddProduct = () => {
 			description: '',
 			image: '',
 			category:'',
+			brand:'' ,
 		}
 	})
 
@@ -59,6 +60,9 @@ const AddProduct = () => {
 	function categoryInput(input: string) {
 		form.setFieldValue('category', input)
 	}
+	function brandInput(input: string) {
+		form.setFieldValue('brand', input)
+	}
 	function imageInput(inputImage: File[]) {
 		const uuu = URL.createObjectURL(inputImage[0]);
 		setImageData(uuu)
@@ -84,6 +88,13 @@ const AddProduct = () => {
 		setExistingBrands(data)
 		console.log(data)
 	}
+	const brandData = () => {
+		let results:any = []
+		existingBrands?.map((c) => {
+			return results.push({ value: c.name, id: c.id })
+		})
+		return results
+	}
 	
 	useEffect(() => {
 		getCategories()
@@ -92,7 +103,7 @@ const AddProduct = () => {
 
 	return (
 		<form onSubmit={form.onSubmit(() =>console.log("form.valuesssss" ,form.values))}>
-			<SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 1 }]}>
+			<SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}>
 				<PhotoImport formFunc={imageInput} data={imageData} />
 				<Group direction="column" className="overflow-auto d-inline-block">
 					<InputText formFunc={nameInput}
@@ -107,12 +118,21 @@ const AddProduct = () => {
 							placeholder: 'Product Model',
 							value: form.values.model
 						}} />
+						<Group>
 						<InputBrandOrCategory
 									formFunc={categoryInput}
 									placeholder="Enter Category "
 									data={categoryData()}
 									
 						/>
+						<InputBrandOrCategory
+									formFunc={brandInput}
+									placeholder="Enter Brand "
+									data={brandData()}
+									
+						/>
+						</Group>
+						
 					
 					<InputPrice formFuncPrice={priceInput}
 						formFuncCurrency={currencyInput}
