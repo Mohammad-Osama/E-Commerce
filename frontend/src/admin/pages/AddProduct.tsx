@@ -16,7 +16,7 @@ const AddProduct = () => {
 		initialValues: {
 			name: '',
 			model: '',
-			stock: 0,
+			stock: 1,
 			price: 0,
 			currency: 'egp',
 			description: '',
@@ -33,7 +33,7 @@ const AddProduct = () => {
 	}
 	function priceInput(input: number) {
 
-		form.setFieldValue('price', input)
+		form.setFieldValue('price', Number (input))
 	}
 	function currencyInput(input: string) {
 

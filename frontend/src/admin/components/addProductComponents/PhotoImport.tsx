@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Text, Group, Button, createStyles, useMantineTheme , MantineTheme , Image } from '@mantine/core';
 import { Dropzone, IMAGE_MIME_TYPE ,DropzoneStatus} from '@mantine/dropzone';
 import { CloudUpload } from 'tabler-icons-react';
-//import Image from '../productOverviewComponents/Image';
+
 
 
 const useStyles = createStyles((theme) => ({
@@ -100,12 +100,11 @@ export default function PhotoImport({ data, formFunc } :InputImageProps) {
       <Button className={classes.control} size="md"
               radius="xl"
               onClick={() => openRef.current() 
-                      
                             }
-                                >
-        Select files
+                              >
+        Select Photo
       </Button>
-      <div className='row justify-content-evenly overflow-auto'>
+      <div >
         {imgRender(data)}
       </div>
     </div>
