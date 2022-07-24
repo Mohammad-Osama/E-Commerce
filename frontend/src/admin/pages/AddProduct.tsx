@@ -3,12 +3,13 @@ import InputPrice from '../components/addProductComponents/InputPrice';
 import InputStock from '../components/addProductComponents/InputStock';
 import InputText from '../components/addProductComponents/InputText';
 import InputDesc from '../components/addProductComponents/InputDesc';
-import { Group, Button, SimpleGrid , Autocomplete} from '@mantine/core';
-import { useState,useEffect} from 'react';
+import { Group, Button, SimpleGrid, Autocomplete } from '@mantine/core';
+import { useState, useEffect } from 'react';
 import PhotoImport from '../components/addProductComponents/PhotoImport';
 import { IBrand, ICategory } from '../../helpers/types';
 import * as api from "../../helpers/api"
 import InputBrandOrCategory from '../components/addProductComponents/InputBrandOrCategory';
+import axios from 'axios';
 
 const AddProduct = () => {
 
@@ -27,12 +28,28 @@ const AddProduct = () => {
 			price: 0,
 			currency: 'egp',
 			description: '',
-			image: '',
-			category:'',
-			brand:'' ,
+			main_image: '',
+			category: '',
+			brand: '',
 		}
 	})
 
+	interface IFormImage {
+		file: File | null;
+		signature: string;
+		timestamp: string;
+		api_key: number;
+	}
+	const formImage = useForm<IFormImage>({
+		initialValues: {
+			file: null,
+			signature: '',
+			timestamp: '',
+			api_key: 0,
+		}
+	})
+
+	// input functions 
 	function nameInput(input: string) {
 		form.setFieldValue('name', input)
 	}
@@ -42,7 +59,7 @@ const AddProduct = () => {
 	}
 	function priceInput(input: number) {
 
-		form.setFieldValue('price', Number (input))
+		form.setFieldValue('price', Number(input))
 	}
 	function currencyInput(input: string) {
 
@@ -69,6 +86,44 @@ const AddProduct = () => {
 		setImagePath(inputImage)
 	}
 
+
+	// cloudinary 
+
+	async function getImageUrl(handlefunc: () => void) {
+		if (imagePath) {
+			const url = "https://api.cloudinary.com/v1_1/djzmh3ny5/auto/upload"
+			const { signature, timestamp, api_key } = await api.getCloudinarySignature()
+			/* console.log (signature, timestamp , api_key)
+					formImage.setFieldValue('file', imagePath[0])
+					formImage.setFieldValue ('signature' , signature)
+					formImage.setFieldValue('timestamp',timestamp)
+					formImage.setFieldValue('api_key',api_key)
+			console.log (formImage.values) */
+			const formData = new FormData();
+			formData.append('file', imagePath[0]);
+			formData.append('signature', signature);
+			formData.append('timestamp', timestamp);
+			formData.append('api_key', api_key);
+			console.log (formData)
+			const response = await axios.post(url, formData);
+			const secured_url = response.data.secure_url;
+			form.values.main_image = secured_url;
+
+			handlefunc()
+
+		}
+	}
+
+	//////////////////////////
+	const handelSubmit = () => {
+		const values = form.values;
+		axios.post('/api/products', values)
+			.then((response) => {
+				console.log("ressssss", response)
+			})
+			.catch(function (error) { console.log(error) })
+	}
+
 	const getCategories = async () => {
 		const data = await api.getCategories()
 		setExistingCategories(data)
@@ -76,7 +131,7 @@ const AddProduct = () => {
 	}
 
 	const categoryData = () => {
-		let results :any= []
+		let results: any = []
 		existingCategories?.map((c) => {
 			return results.push({ value: c.name, id: c.id })
 		})
@@ -89,20 +144,20 @@ const AddProduct = () => {
 		console.log(data)
 	}
 	const brandData = () => {
-		let results:any = []
+		let results: any = []
 		existingBrands?.map((c) => {
 			return results.push({ value: c.name, id: c.id })
 		})
 		return results
 	}
-	
+
 	useEffect(() => {
 		getCategories()
 		getBrands()
 	}, [])
 
 	return (
-		<form onSubmit={form.onSubmit(() =>console.log("form.valuesssss" ,form.values))}>
+		<form onSubmit={form.onSubmit(() => getImageUrl(handelSubmit))}>
 			<SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}>
 				<PhotoImport formFunc={imageInput} data={imageData} />
 				<Group direction="column" className="overflow-auto d-inline-block">
@@ -118,22 +173,22 @@ const AddProduct = () => {
 							placeholder: 'Product Model',
 							value: form.values.model
 						}} />
-						<Group>
+					<Group>
 						<InputBrandOrCategory
-									formFunc={categoryInput}
-									placeholder="Enter Category "
-									data={categoryData()}
-									
+							formFunc={categoryInput}
+							placeholder="Enter Category "
+							data={categoryData()}
+
 						/>
 						<InputBrandOrCategory
-									formFunc={brandInput}
-									placeholder="Enter Brand "
-									data={brandData()}
-									
+							formFunc={brandInput}
+							placeholder="Enter Brand "
+							data={brandData()}
+
 						/>
-						</Group>
-						
-					
+					</Group>
+
+
 					<InputPrice formFuncPrice={priceInput}
 						formFuncCurrency={currencyInput}
 						priceData={form.values.price}

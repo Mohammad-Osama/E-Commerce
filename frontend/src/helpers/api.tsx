@@ -70,3 +70,8 @@ export const getReviewProductUser = async (product: string, user: string) => {
     const data = await axios.get<IReview>(`/api/reviews/productuser?product=${product}&user=${user}`)
     return data.data
 }
+
+export const getCloudinarySignature = async () => {
+    const data = await axios.get("/api/cloudnarysignature")
+    return data.data
+}

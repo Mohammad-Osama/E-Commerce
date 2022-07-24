@@ -9,7 +9,8 @@ export async function getCloudnarySignature(req :Request , res : Response)  {
                     {timestamp:timestamp,},
                     process.env.API_SECRET as unknown as string );
 
-        res.status(200).json({signature,timestamp});
+        const api_key=process.env.API_KEY 
+        res.status(200).json({signature,timestamp ,api_key });
     }catch(error){
         res.status(400).json(`Error==>${error}`);
     }
