@@ -2,7 +2,7 @@ import {Request,Response} from "express"
 import { Category , ICategory } from "../models/categoryModel"
 
 
-// all category  
+// all categories 
 export async function getCategories(req :Request , res : Response)  {
     const categories  = await Category.find()
  
