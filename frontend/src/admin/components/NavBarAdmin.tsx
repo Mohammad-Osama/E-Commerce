@@ -5,6 +5,9 @@ import { Logout } from 'tabler-icons-react';
 import { LinksGroup } from './LinksGroup';
 import { Logo } from "../components/Logo";
 import { navbarAdminData } from '../../helpers/data';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../user/redux/slices/authSlice';
+import { AppDispatch } from '../../user/redux/store';
 
 
 const useStyles = createStyles((theme) => ({
@@ -71,6 +74,8 @@ const NavBarAdmin = ({ hidden, handleClick }: NavBarAdminProps) => {
 
     const { classes } = useStyles();
     const links = navbarAdminData.map((item) => <LinksGroup {...item} key={item.label} handleClick={handleClick} />);
+
+    const dispatch = useDispatch<AppDispatch>()
     return (
         <Navbar hidden={hidden} hiddenBreakpoint="xs" height={500} width={{ sm: 200, lg: 300 }} p="md" className={classes.navbar}>
             <Navbar.Section className={classes.header}>
@@ -94,7 +99,8 @@ const NavBarAdmin = ({ hidden, handleClick }: NavBarAdminProps) => {
             </Navbar.Section>
 
             <Navbar.Section mt="xs" className={classes.footer}>
-                <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+                <a href="#" className={classes.link} onClick={(event) => {event.preventDefault()
+                                                                          dispatch(logout()) }                   }>
                     <Logout className={classes.linkIcon} />
                     <span>Logout</span>
                 </a>
