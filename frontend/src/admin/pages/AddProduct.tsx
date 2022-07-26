@@ -96,10 +96,20 @@ const AddProduct = () => {
 	// cloudinary 
 
 	async function getImageUrl(handlefunc: () => void) {
+		if (!imagePath)
+		{
+			showNotification({
+				title: "Error ",
+				message: "Please add the main image",
+				color: 'red',
+				icon: <AlertCircle />,
+			})
+		}
 		if (imagePath) {
 			const url = "https://api.cloudinary.com/v1_1/djzmh3ny5/auto/upload"
 			const { signature, timestamp, api_key } = await api.getCloudinarySignature()
 			/* console.log (signature, timestamp , api_key)
+			  this caused an error with cloudinary
 					formImage.setFieldValue('file', imagePath[0])
 					formImage.setFieldValue ('signature' , signature)
 					formImage.setFieldValue('timestamp',timestamp)
@@ -122,6 +132,7 @@ const AddProduct = () => {
 
 	//////////////////////////
 	const handelSubmit = () => {
+		
 		const values = form.values;
 		axios.post('/api/products', values)
 			.then((response) => {
