@@ -3,7 +3,7 @@ import InputPrice from '../components/addProductComponents/InputPrice';
 import InputStock from '../components/addProductComponents/InputStock';
 import InputText from '../components/addProductComponents/InputText';
 import InputDesc from '../components/addProductComponents/InputDesc';
-import { Group, Button, SimpleGrid, Autocomplete } from '@mantine/core';
+import { Group, Button, SimpleGrid, NativeSelect, Select } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import PhotoImport from '../components/addProductComponents/PhotoImport';
 import { IBrand, ICategory } from '../../helpers/types';
@@ -12,6 +12,7 @@ import InputBrandOrCategory from '../components/addProductComponents/InputBrandO
 import axios from 'axios';
 import { AlertCircle } from 'tabler-icons-react';
 import { showNotification } from '@mantine/notifications'
+import InputFeaturedOrSale from '../components/addProductComponents/InputFeaturedOrSale';
 
 const AddProduct = () => {
 
@@ -33,6 +34,8 @@ const AddProduct = () => {
 			main_image: '',
 			category: '',
 			brand: '',
+			featured: false,
+			sale: 0,
 			code: ''
 		}
 	})
@@ -86,18 +89,25 @@ const AddProduct = () => {
 	function codeInput(input: string) {
 		form.setFieldValue('code', input)
 	}
+	function featuredInput(input: any) {
+		form.setFieldValue('featured', input)
+	}
 	function imageInput(inputImage: File[]) {
 		const uuu = URL.createObjectURL(inputImage[0]);
 		setImageData(uuu)
 		setImagePath(inputImage)
 	}
 
-
+const featuredData=[
+	{ value: 'Is Featured', id: true },
+	{ value: 'Not Featured', id: false  },
+	
+]
 	// cloudinary 
 
 	async function getImageUrl(handlefunc: () => void) {
-		if (!imagePath)
-		{
+		console.log(form.values)
+		if (!imagePath) {
 			showNotification({
 				title: "Error ",
 				message: "Please add the main image",
@@ -105,6 +115,17 @@ const AddProduct = () => {
 				icon: <AlertCircle />,
 			})
 		}
+		if (form.values.brand==='' || form.values.category===''){
+			showNotification({
+				title: "Error ",
+				message: "Please enter the right brand and category ",
+				color: 'red',
+				icon: <AlertCircle />,
+			})
+
+
+		}
+
 		if (imagePath) {
 			const url = "https://api.cloudinary.com/v1_1/djzmh3ny5/auto/upload"
 			const { signature, timestamp, api_key } = await api.getCloudinarySignature()
@@ -132,14 +153,14 @@ const AddProduct = () => {
 
 	//////////////////////////
 	const handelSubmit = () => {
-		
+
 		const values = form.values;
 		axios.post('/api/products', values)
 			.then((response) => {
 				console.log("resssssssssssss", response)
 			})
 			.catch(function (error) {
-				
+
 				showNotification({
 					title: "Error ",
 					message: `${error.response.data}`,
@@ -179,6 +200,7 @@ const AddProduct = () => {
 	}
 
 	useEffect(() => {
+		
 		getCategories()
 		getBrands()
 	}, [])
@@ -205,12 +227,14 @@ const AddProduct = () => {
 						<InputBrandOrCategory
 							formFunc={categoryInput}
 							placeholder="Enter Category "
+							label="Enter Category"
 							data={categoryData()}
 
 						/>
 						<InputBrandOrCategory
 							formFunc={brandInput}
 							placeholder="Enter Brand "
+							label="Enter Brand"
 							data={brandData()}
 
 						/>
@@ -233,6 +257,24 @@ const AddProduct = () => {
 							placeholder: 'description',
 							value: form.values.description
 						}} />
+
+					{/* <InputFeaturedOrSale formFunc={featuredInput}
+
+						label='Featured'
+						placeholder='Choose if featured'
+					//	value={form.values.featured}
+						data={featuredData}
+
+
+					/> */}
+					<InputBrandOrCategory
+							formFunc={featuredInput}
+							placeholder="Enter featured "
+							label="Enter featured"
+							data={featuredData}
+							
+
+						/>
 					<InputText formFunc={codeInput}
 						data={{
 							label: 'Code',
