@@ -47,7 +47,7 @@ export default function InputStock({ value , formFunc } :InputStockProps) {
 
   return (
     <div style={{ width: '100%' }} className={classes.wrapper}>
-      Add Stoke
+      Add Stock
       <ActionIcon
         size={28}
         variant="transparent"

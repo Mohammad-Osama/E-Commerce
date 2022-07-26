@@ -10,6 +10,8 @@ import { IBrand, ICategory } from '../../helpers/types';
 import * as api from "../../helpers/api"
 import InputBrandOrCategory from '../components/addProductComponents/InputBrandOrCategory';
 import axios from 'axios';
+import { AlertCircle } from 'tabler-icons-react';
+import { showNotification } from '@mantine/notifications'
 
 const AddProduct = () => {
 
@@ -31,6 +33,7 @@ const AddProduct = () => {
 			main_image: '',
 			category: '',
 			brand: '',
+			code: ''
 		}
 	})
 
@@ -80,6 +83,9 @@ const AddProduct = () => {
 	function brandInput(input: string) {
 		form.setFieldValue('brand', input)
 	}
+	function codeInput(input: string) {
+		form.setFieldValue('code', input)
+	}
 	function imageInput(inputImage: File[]) {
 		const uuu = URL.createObjectURL(inputImage[0]);
 		setImageData(uuu)
@@ -104,7 +110,7 @@ const AddProduct = () => {
 			formData.append('signature', signature);
 			formData.append('timestamp', timestamp);
 			formData.append('api_key', api_key);
-			console.log (formData)
+			console.log(formData)
 			const response = await axios.post(url, formData);
 			const secured_url = response.data.secure_url;
 			form.values.main_image = secured_url;
@@ -119,9 +125,19 @@ const AddProduct = () => {
 		const values = form.values;
 		axios.post('/api/products', values)
 			.then((response) => {
-				console.log("ressssss", response)
+				console.log("resssssssssssss", response)
 			})
-			.catch(function (error) { console.log(error) })
+			.catch(function (error) {
+				
+				showNotification({
+					title: "Error ",
+					message: `${error.response.data}`,
+					color: 'red',
+					icon: <AlertCircle />,
+				})
+			})
+		//	}
+
 	}
 
 	const getCategories = async () => {
@@ -155,6 +171,7 @@ const AddProduct = () => {
 		getCategories()
 		getBrands()
 	}, [])
+
 
 	return (
 		<form onSubmit={form.onSubmit(() => getImageUrl(handelSubmit))}>
@@ -205,8 +222,15 @@ const AddProduct = () => {
 							placeholder: 'description',
 							value: form.values.description
 						}} />
+					<InputText formFunc={codeInput}
+						data={{
+							label: 'Code',
+							placeholder: 'Admin Code',
+							value: form.values.code
+						}} />
 					<Group position="right" mt="md">
 						<Button type="submit">Add Product</Button>
+
 					</Group>
 				</Group>
 			</SimpleGrid>
