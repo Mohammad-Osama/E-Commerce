@@ -38,21 +38,26 @@ const useStyles = createStyles((theme : any) => ({ //any for error at borderColo
 
 interface InputStockProps {
   value: number 
+  min : number
+  max :number |undefined
+  precision :number |undefined
+  step :number |undefined
+  label :string
   formFunc : (input :number)=>void
 }
 
-export default function InputStock({ value , formFunc } :InputStockProps) {
+export default function InputStockOrSale({ value ,min,max,precision ,step,label, formFunc } :InputStockProps) {
   const { classes } = useStyles();
   const ref = useRef<any>(); // any bc kept getting errors below 
 
   return (
     <div style={{ width: '100%' }} className={classes.wrapper}>
-      Add Stock
+         {label}
       <ActionIcon
         size={28}
         variant="transparent"
         onClick={() => ref.current.decrement()}
-        disabled={value === 1}
+        disabled={value === min}
         className={classes.control}
         onMouseDown={(e:any) => e.preventDefault()}
       >
@@ -61,7 +66,10 @@ export default function InputStock({ value , formFunc } :InputStockProps) {
       </ActionIcon>
       <NumberInput
         variant='unstyled'
-        min={1}
+        min={min}
+        max={max}
+        precision={precision}
+        step={step}
         handlersRef={ref}
         value={value}
         onChange={formFunc}

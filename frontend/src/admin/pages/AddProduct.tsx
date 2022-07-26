@@ -1,9 +1,9 @@
 import { useForm } from '@mantine/hooks';
 import InputPrice from '../components/addProductComponents/InputPrice';
-import InputStock from '../components/addProductComponents/InputStock';
+import InputStockOrSale from '../components/addProductComponents/InputStockOrSale';
 import InputText from '../components/addProductComponents/InputText';
 import InputDesc from '../components/addProductComponents/InputDesc';
-import { Group, Button, SimpleGrid, NativeSelect, Select } from '@mantine/core';
+import { Group, Button, SimpleGrid } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import PhotoImport from '../components/addProductComponents/PhotoImport';
 import { IBrand, ICategory } from '../../helpers/types';
@@ -12,7 +12,6 @@ import InputBrandOrCategory from '../components/addProductComponents/InputBrandO
 import axios from 'axios';
 import { AlertCircle } from 'tabler-icons-react';
 import { showNotification } from '@mantine/notifications'
-import InputFeaturedOrSale from '../components/addProductComponents/InputFeaturedOrSale';
 
 const AddProduct = () => {
 
@@ -92,6 +91,9 @@ const AddProduct = () => {
 	function featuredInput(input: any) {
 		form.setFieldValue('featured', input)
 	}
+	function saleInput(input: any) {
+		form.setFieldValue('sale', input)
+	}
 	function imageInput(inputImage: File[]) {
 		const uuu = URL.createObjectURL(inputImage[0]);
 		setImageData(uuu)
@@ -103,6 +105,7 @@ const featuredData=[
 	{ value: 'Not Featured', id: false  },
 	
 ]
+
 	// cloudinary 
 
 	async function getImageUrl(handlefunc: () => void) {
@@ -175,7 +178,7 @@ const featuredData=[
 	const getCategories = async () => {
 		const data = await api.getCategories()
 		setExistingCategories(data)
-		console.log(data)
+		//console.log(data)
 	}
 
 	const categoryData = () => {
@@ -189,7 +192,7 @@ const featuredData=[
 	const getBrands = async () => {
 		const data = await api.getBrands()
 		setExistingBrands(data)
-		console.log(data)
+	//	console.log(data)
 	}
 	const brandData = () => {
 		let results: any = []
@@ -247,9 +250,13 @@ const featuredData=[
 						currencyData={form.values.currency} />
 
 
-					<InputStock formFunc={stockInput}
+					<InputStockOrSale formFunc={stockInput}
+						label="Add Stock"
 						value={form.values.stock}
-					//	max=''
+						min={1}
+						max ={undefined}
+						precision ={undefined}
+						step={undefined}
 					/>
 					<InputDesc formFunc={descInput}
 						data={{
@@ -258,23 +265,21 @@ const featuredData=[
 							value: form.values.description
 						}} />
 
-					{/* <InputFeaturedOrSale formFunc={featuredInput}
-
-						label='Featured'
-						placeholder='Choose if featured'
-					//	value={form.values.featured}
-						data={featuredData}
-
-
-					/> */}
 					<InputBrandOrCategory
 							formFunc={featuredInput}
 							placeholder="Enter featured "
 							label="Enter featured"
 							data={featuredData}
 							
-
 						/>
+						<InputStockOrSale formFunc={saleInput}
+								label="Add Sale %"
+								value={form.values.sale}
+								min={0}
+								max ={70 }
+								precision ={2}
+								step={0.25}
+					/>
 					<InputText formFunc={codeInput}
 						data={{
 							label: 'Code',
