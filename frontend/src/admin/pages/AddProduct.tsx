@@ -3,7 +3,7 @@ import InputPrice from '../components/addProductComponents/InputPrice';
 import InputStockOrSale from '../components/addProductComponents/InputStockOrSale';
 import InputText from '../components/addProductComponents/InputText';
 import InputDesc from '../components/addProductComponents/InputDesc';
-import { Group, Button, SimpleGrid , Text } from '@mantine/core';
+import { Group, Button, SimpleGrid, Text } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import PhotoImport from '../components/addProductComponents/PhotoImport';
 import { IBrand, ICategory } from '../../helpers/types';
@@ -12,7 +12,10 @@ import InputBrandOrCategory from '../components/addProductComponents/InputBrandO
 import axios from 'axios';
 import { AlertCircle } from 'tabler-icons-react';
 import { showNotification } from '@mantine/notifications'
-import { useModals } from '@mantine/modals';
+import  { useModals }  from '@mantine/modals';
+
+
+
 
 
 
@@ -23,7 +26,6 @@ const AddProduct = () => {
 
 	const [existingCategories, setExistingCategories] = useState<ICategory[]>([])
 	const [existingBrands, setExistingBrands] = useState<IBrand[]>([])
-
 
 	const form = useForm({
 		initialValues: {
@@ -103,18 +105,18 @@ const AddProduct = () => {
 		setImagePath(inputImage)
 	}
 
-const featuredData=[
-	{ value: 'Is Featured', id: true },
-	{ value: 'Not Featured', id: false  },
-	
-]
+	const featuredData = [
+		{ value: 'Is Featured', id: true },
+		{ value: 'Not Featured', id: false },
+
+	]
 
 	// cloudinary 
 
 	async function getImageUrl(handlefunc: () => void) {
 		console.log(form.values)
-		
-		
+
+
 
 		if (imagePath) {
 			const url = "https://api.cloudinary.com/v1_1/djzmh3ny5/auto/upload"
@@ -148,7 +150,23 @@ const featuredData=[
 		axios.post('/api/products', values)
 			.then((response) => {
 				console.log("resssssssssssss", response)
-			})
+					
+				modals.openConfirmModal({
+					title: 'Product added ',
+					centered: true,
+					cancelProps:undefined,
+					children: (
+						<Text size="sm">
+							Product succesfully added  !
+						</Text>
+					),
+					labels: { confirm: " add another", cancel: "Go back" },
+					confirmProps: { color: 'blue' },
+					// onCancel: () => console.log('Cancel'),
+					onConfirm: () => clearInput()
+				});
+			}
+			)
 			.catch(function (error) {
 
 				showNotification({
@@ -163,7 +181,7 @@ const featuredData=[
 	}
 
 	const modals = useModals();
-    const confirmAddModal = () =>{
+	const confirmAddModal = () => {
 		if (!imagePath) {
 			showNotification({
 				title: "Error ",
@@ -172,7 +190,7 @@ const featuredData=[
 				icon: <AlertCircle />,
 			})
 		}
-	 else if (form.values.brand==='' || form.values.category===''){
+		else if (form.values.brand === '' || form.values.category === '') {
 			showNotification({
 				title: "Error ",
 				message: "Please enter the right brand and category ",
@@ -184,21 +202,36 @@ const featuredData=[
 			modals.openConfirmModal({
 				title: 'Add a product',
 				centered: true,
+				
 				children: (
-				  <Text size="sm">
-				   Are u sure you want to add this product ?
-				  </Text>
+					<Text size="sm">
+						Are u sure you want to add this product ?
+					</Text>
 				),
 				labels: { confirm: "Yes , add this product", cancel: "Go back" },
 				confirmProps: { color: 'blue' },
-			   // onCancel: () => console.log('Cancel'),
-			 //  onConfirm: ()=>console.log("asasdasdasd") 
-				onConfirm: ()=>getImageUrl(handelSubmit)  // error with types
-			  });
-
+				// onCancel: () => console.log('Cancel'),
+				onConfirm: () => getImageUrl(handelSubmit)
+			});
 		}
-    
-}
+	}
+
+	const clearInput = () => {
+		form.setFieldValue('name', '')
+		form.setFieldValue('model', '')
+		form.setFieldValue('price', 0)
+		form.setFieldValue('currency', 'egp')
+		form.setFieldValue('stock', 1)
+		form.setFieldValue('description', '')
+		form.setFieldValue('category', '')
+		form.setFieldValue('brand', '')
+		form.setFieldValue('code', '')
+		form.setFieldValue('featured', false)
+		form.setFieldValue('sale', 0)
+		form.setFieldValue('main_image', '')
+		setImageData('')
+		setImagePath(undefined)
+	}
 
 	const getCategories = async () => {
 		const data = await api.getCategories()
@@ -217,7 +250,7 @@ const featuredData=[
 	const getBrands = async () => {
 		const data = await api.getBrands()
 		setExistingBrands(data)
-	//	console.log(data)
+		//	console.log(data)
 	}
 	const brandData = () => {
 		let results: any = []
@@ -228,7 +261,7 @@ const featuredData=[
 	}
 
 	useEffect(() => {
-		
+
 		getCategories()
 		getBrands()
 	}, [])
@@ -279,8 +312,8 @@ const featuredData=[
 						label="Add Stock"
 						value={form.values.stock}
 						min={1}
-						max ={undefined}
-						precision ={undefined}
+						max={undefined}
+						precision={undefined}
 						step={undefined}
 					/>
 					<InputDesc formFunc={descInput}
@@ -291,19 +324,19 @@ const featuredData=[
 						}} />
 
 					<InputBrandOrCategory
-							formFunc={featuredInput}
-							placeholder="Enter featured "
-							label="Enter featured"
-							data={featuredData}
-							
-						/>
-						<InputStockOrSale formFunc={saleInput}
-								label="Add Sale %"
-								value={form.values.sale}
-								min={0}
-								max ={70 }
-								precision ={2}
-								step={0.25}
+						formFunc={featuredInput}
+						placeholder="Enter featured "
+						label="Enter featured"
+						data={featuredData}
+
+					/>
+					<InputStockOrSale formFunc={saleInput}
+						label="Add Sale %"
+						value={form.values.sale}
+						min={0}
+						max={70}
+						precision={2}
+						step={0.25}
 					/>
 					<InputText formFunc={codeInput}
 						data={{
