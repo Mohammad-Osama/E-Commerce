@@ -8,6 +8,7 @@ import { navbarAdminData } from '../../helpers/data';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../user/redux/slices/authSlice';
 import { AppDispatch } from '../../user/redux/store';
+import {  useNavigate } from 'react-router-dom';
 
 
 const useStyles = createStyles((theme) => ({
@@ -76,6 +77,9 @@ const NavBarAdmin = ({ hidden, handleClick }: NavBarAdminProps) => {
     const links = navbarAdminData.map((item) => <LinksGroup {...item} key={item.label} handleClick={handleClick} />);
 
     const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
+
+    
     return (
         <Navbar hidden={hidden} hiddenBreakpoint="xs" height={500} width={{ sm: 200, lg: 300 }} p="md" className={classes.navbar}>
             <Navbar.Section className={classes.header}>
@@ -100,7 +104,8 @@ const NavBarAdmin = ({ hidden, handleClick }: NavBarAdminProps) => {
 
             <Navbar.Section mt="xs" className={classes.footer}>
                 <a href="#" className={classes.link} onClick={(event) => {event.preventDefault()
-                                                                          dispatch(logout()) }                   }>
+                                                                          dispatch(logout())
+                                                                          navigate("/") }                   }>
                     <Logout className={classes.linkIcon} />
                     <span>Logout</span>
                 </a>

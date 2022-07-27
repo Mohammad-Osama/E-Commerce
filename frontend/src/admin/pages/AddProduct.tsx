@@ -3,7 +3,7 @@ import InputPrice from '../components/addProductComponents/InputPrice';
 import InputStockOrSale from '../components/addProductComponents/InputStockOrSale';
 import InputText from '../components/addProductComponents/InputText';
 import InputDesc from '../components/addProductComponents/InputDesc';
-import { Group, Button, SimpleGrid } from '@mantine/core';
+import { Group, Button, SimpleGrid , Text } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import PhotoImport from '../components/addProductComponents/PhotoImport';
 import { IBrand, ICategory } from '../../helpers/types';
@@ -12,6 +12,9 @@ import InputBrandOrCategory from '../components/addProductComponents/InputBrandO
 import axios from 'axios';
 import { AlertCircle } from 'tabler-icons-react';
 import { showNotification } from '@mantine/notifications'
+import { useModals } from '@mantine/modals';
+
+
 
 const AddProduct = () => {
 
@@ -110,24 +113,8 @@ const featuredData=[
 
 	async function getImageUrl(handlefunc: () => void) {
 		console.log(form.values)
-		if (!imagePath) {
-			showNotification({
-				title: "Error ",
-				message: "Please add the main image",
-				color: 'red',
-				icon: <AlertCircle />,
-			})
-		}
-		if (form.values.brand==='' || form.values.category===''){
-			showNotification({
-				title: "Error ",
-				message: "Please enter the right brand and category ",
-				color: 'red',
-				icon: <AlertCircle />,
-			})
-
-
-		}
+		
+		
 
 		if (imagePath) {
 			const url = "https://api.cloudinary.com/v1_1/djzmh3ny5/auto/upload"
@@ -175,6 +162,44 @@ const featuredData=[
 
 	}
 
+	const modals = useModals();
+    const confirmAddModal = () =>{
+		if (!imagePath) {
+			showNotification({
+				title: "Error ",
+				message: "Please add the main image",
+				color: 'red',
+				icon: <AlertCircle />,
+			})
+		}
+	 else if (form.values.brand==='' || form.values.category===''){
+			showNotification({
+				title: "Error ",
+				message: "Please enter the right brand and category ",
+				color: 'red',
+				icon: <AlertCircle />,
+			})
+		}
+		else {
+			modals.openConfirmModal({
+				title: 'Add a product',
+				centered: true,
+				children: (
+				  <Text size="sm">
+				   Are u sure you want to add this product ?
+				  </Text>
+				),
+				labels: { confirm: "Yes , add this product", cancel: "Go back" },
+				confirmProps: { color: 'blue' },
+			   // onCancel: () => console.log('Cancel'),
+			 //  onConfirm: ()=>console.log("asasdasdasd") 
+				onConfirm: ()=>getImageUrl(handelSubmit)  // error with types
+			  });
+
+		}
+    
+}
+
 	const getCategories = async () => {
 		const data = await api.getCategories()
 		setExistingCategories(data)
@@ -210,7 +235,7 @@ const featuredData=[
 
 
 	return (
-		<form onSubmit={form.onSubmit(() => getImageUrl(handelSubmit))}>
+		<form onSubmit={form.onSubmit(confirmAddModal)}>
 			<SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}>
 				<PhotoImport formFunc={imageInput} data={imageData} />
 				<Group direction="column" className="overflow-auto d-inline-block">
