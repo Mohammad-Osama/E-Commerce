@@ -9,13 +9,13 @@ import {getProducts ,
         getProductById,
         }
       from "../controllers/productController"
-
+import { authCode } from "../middleware/codeMiddleware"
 
 const router = express.Router()
 
 router.route("/")
                   .get(getProducts)
-                  .post(addProduct)
+                  .post(authCode,addProduct)
   
 router.route("/product/:id")
                   .get(getProductById)

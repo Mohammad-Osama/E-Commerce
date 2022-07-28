@@ -85,9 +85,7 @@ export async function getProductById(req: Request, res: Response) {
 // new product 
 export async function addProduct(req: Request, res: Response) {
    try {
-      const code= req.body.code
-      if (code===process.env.SECRET_CODE)
-     { const newProduct: IProduct = await Product.create({
+         const newProduct: IProduct = await Product.create({
          name: req.body.name,
          model: req.body.model,
          main_image: req.body.main_image,
@@ -104,11 +102,8 @@ export async function addProduct(req: Request, res: Response) {
       
 
       res.status(201).json(newProduct)}
-      else {
-         res.status(400).json("code doesnt match");
-
-      }
-   } catch (error) {
+      
+   catch (error) {
       res.status(400).json(`Error==>${error}`);
    }
 
