@@ -18,5 +18,5 @@ export async function addBrand(req :Request , res : Response)  {
       logo: req.body.logo,
     })
 
-   res.status(200).json(newBrand)
+   res.status(201).json(newBrand)
 }

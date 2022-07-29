@@ -15,6 +15,7 @@ import ProductsOverview from './ProductsOverview';
 import ProductsOverviewSort from './ProductsOverviewSort';
 import {Routes, Route } from 'react-router-dom';
 import AddProduct from './AddProduct';
+import AddBrand from './AddBrand';
 
 
 export default function AdminPanel() {
@@ -95,6 +96,7 @@ export default function AdminPanel() {
      <Routes>
         <Route path='/' element={<Text>dashboard route</Text>} />
         <Route path='/addproduct' element={<AddProduct/>} />
+        <Route path='/addbrand' element={<AddBrand/>} />
      </Routes>
 
     </AppShell>

@@ -8,7 +8,7 @@ export interface IBrand {
 }
 
 const BrandSchema = new mongoose.Schema<IBrand>({
-    name: { type: String, required: [true, "Please add a name"] },
+    name: { type: String, required: [true, "Please add a name"] ,unique:true},
     description: { type: String, required: [true, "Please add a description"] },
     logo:{ type: String, required: [true, "Please add a logo"] },
 },

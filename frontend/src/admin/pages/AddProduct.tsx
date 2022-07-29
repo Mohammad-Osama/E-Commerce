@@ -17,9 +17,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
-
-
 const AddProduct = () => {
 
 	const [imageData, setImageData] = useState('')
@@ -115,9 +112,7 @@ const AddProduct = () => {
 	// cloudinary 
 
 	async function getImageUrl(handlefunc: () => void) {
-		console.log(form.values)
-
-
+	//	console.log(form.values)
 
 		if (imagePath) {
 			const url = "https://api.cloudinary.com/v1_1/djzmh3ny5/auto/upload"
@@ -134,7 +129,7 @@ const AddProduct = () => {
 			formData.append('signature', signature);
 			formData.append('timestamp', timestamp);
 			formData.append('api_key', api_key);
-			console.log(formData)
+		//	console.log(formData)
 			const response = await axios.post(url, formData);
 			const secured_url = response.data.secure_url;
 			form.values.main_image = secured_url;
@@ -149,8 +144,7 @@ const AddProduct = () => {
 		const values = form.values;
 		axios.post('/api/products', values)
 			.then((response) => {
-				console.log("resssssssssssss", response)
-					
+			//	console.log("resssssssssssss", response)		
 				modals.openConfirmModal({
 					title: 'Product added ',
 					centered: true,
@@ -168,7 +162,6 @@ const AddProduct = () => {
 			}
 			)
 			.catch(function (error) {
-
 				showNotification({
 					title: "Error ",
 					message: `${error.response.data}`,
@@ -176,8 +169,6 @@ const AddProduct = () => {
 					icon: <AlertCircle />,
 				})
 			})
-		//	}
-
 	}
 	const navigate=useNavigate()
 
