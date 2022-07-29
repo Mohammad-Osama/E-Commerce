@@ -13,6 +13,7 @@ import axios from 'axios';
 import { AlertCircle } from 'tabler-icons-react';
 import { showNotification } from '@mantine/notifications'
 import  { useModals }  from '@mantine/modals';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -159,9 +160,9 @@ const AddProduct = () => {
 							Product succesfully added  !
 						</Text>
 					),
-					labels: { confirm: " add another", cancel: "Go back" },
+					labels: { confirm: "add another", cancel: "dashboard" },
 					confirmProps: { color: 'blue' },
-					// onCancel: () => console.log('Cancel'),
+					onCancel: () =>navigate('/'),
 					onConfirm: () => clearInput()
 				});
 			}
@@ -178,6 +179,7 @@ const AddProduct = () => {
 		//	}
 
 	}
+	const navigate=useNavigate()
 
 	const modals = useModals();
 	const confirmAddModal = () => {
