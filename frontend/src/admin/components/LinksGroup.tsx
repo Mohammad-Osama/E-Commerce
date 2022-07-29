@@ -27,9 +27,8 @@ const useStyles = createStyles((theme) => ({
     marginLeft: 30,
     fontSize: theme.fontSizes.sm,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-    borderLeft: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
+    borderLeft: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+      }`,
 
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
@@ -47,73 +46,75 @@ interface LinksGroupProps {
   label: string;
   initiallyOpened?: boolean;
   links?: { label: string; route: string }[];
-  handleClick:(t: string) => void
+  handleClick: (t: string) => void
 }
 
-type L= { label: string; route: string }
+type L = { label: string; route: string }
 
-export function LinksGroup({ icon: Icon, label, initiallyOpened, links ,handleClick }: LinksGroupProps) {
+export function LinksGroup({ icon: Icon, label, initiallyOpened, links, handleClick }: LinksGroupProps) {
   const { classes, theme } = useStyles();
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const ChevronIcon = theme.dir === 'ltr' ? ChevronRight : ChevronLeft;
 
-  const getItems = ()=>{
+  const getItems = () => {
 
-    if (links !==undefined) {
-        const items = links.map((link : L) => (
-            <Text 
-             
-              className={classes.link}
-              
-              key={link.label}
-              onClick={()=>navigate(`./${link.route}`)}
-            >
-              {link.label}
-              
-            </Text>
-          ));
-          return items
-      }
-      /* else {
-    
-        const items = [].map((link:any) => (
-            <Text<'a'>
-              component="a"
-              className={classes.link}
-              href={link.link}
-              key={link.label}
-              onClick={()=>console.log(link)}
-            >
-              {link.label}aaaaaaaa
-            </Text>
-          ));
-          return items 
-      } */
-  }
+    if (links !== undefined) {
+      const items = links.map((link: L) => (
+        <Text
+
+          className={classes.link}
+
+          key={link.label}
+          onClick={() => navigate(`./${link.route}`)}
+        >
+          {link.label}
+
+        </Text>
+      ));
+      return items
+    }
+    /* else {
   
- /*  const items = (hasLinks ? links : []).map((link) => (
-    <Text<'a'>
-      component="a"
-      className={classes.link}
-      href={link.link}
-      key={link.label}
-      onClick={(event) => event.preventDefault()}
-    >
-      {link.label}
-    </Text>
-  )); */
- const navigate = useNavigate()
+      const items = [].map((link:any) => (
+          <Text<'a'>
+            component="a"
+            className={classes.link}
+            href={link.link}
+            key={link.label}
+            onClick={()=>console.log(link)}
+          >
+            {link.label}aaaaaaaa
+          </Text>
+        ));
+        return items 
+    } */
+  }
+
+  /*  const items = (hasLinks ? links : []).map((link) => (
+     <Text<'a'>
+       component="a"
+       className={classes.link}
+       href={link.link}
+       key={link.label}
+       onClick={(event) => event.preventDefault()}
+     >
+       {link.label}
+     </Text>
+   )); */
+  const navigate = useNavigate()
   return (
     <>
       <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
         <Group position="apart" spacing={0}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}
-               onClick={ label==="Dashboard"|| label=== "Analytics"
-                       ? ()=>navigate(`/${label}`)
-                       : undefined
-                 }
-                 >
+            onClick={label === "Dashboard"
+              ? () => navigate(`/`)
+              : label === "Analytics" // and others to be added later 
+                ? () => navigate(`/${label}`)
+                : undefined
+            }
+          >
             <ThemeIcon variant="light" size={30}>
               <Icon size={18} />
             </ThemeIcon>

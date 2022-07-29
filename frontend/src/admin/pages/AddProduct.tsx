@@ -145,7 +145,6 @@ const AddProduct = () => {
 
 	//////////////////////////
 	const handelSubmit = () => {
-
 		const values = form.values;
 		axios.post('/api/products', values)
 			.then((response) => {
