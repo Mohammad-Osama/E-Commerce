@@ -10,6 +10,7 @@ import { showNotification } from '@mantine/notifications'
 import { useModals } from '@mantine/modals';
 import { useNavigate } from 'react-router-dom';
 import * as api from "../../helpers/api"
+import AddTitleText from '../components/AddTitleText';
 
 const AddBrand = () => {
 
@@ -134,6 +135,7 @@ const AddBrand = () => {
 
     return (
         <form onSubmit={form.onSubmit(confirmAddModal)}>
+            <AddTitleText title="Add a brand" />
             <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}>
                 <PhotoImport formFunc={logoInput} data={imageData} />
                 <Group direction="column" className="overflow-auto d-inline-block">

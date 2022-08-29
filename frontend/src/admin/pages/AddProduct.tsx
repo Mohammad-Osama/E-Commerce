@@ -14,6 +14,7 @@ import { AlertCircle } from 'tabler-icons-react';
 import { showNotification } from '@mantine/notifications'
 import  { useModals }  from '@mantine/modals';
 import { useNavigate } from 'react-router-dom';
+import AddTitleText from '../components/AddTitleText';
 
 
 
@@ -261,6 +262,7 @@ const AddProduct = () => {
 
 	return (
 		<form onSubmit={form.onSubmit(confirmAddModal)}>
+			<AddTitleText title="Add a Product"/>
 			<SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}>
 				<PhotoImport formFunc={imageInput} data={imageData} />
 				<Group direction="column" className="overflow-auto d-inline-block">
