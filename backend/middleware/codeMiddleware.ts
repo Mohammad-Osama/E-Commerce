@@ -9,7 +9,7 @@ export async function authCode(req: Request, res: Response, next: NextFunction) 
             //  res.status(200).json("right code !")                          
             next()
         } else {
-            res.status(400).json("code doesnt match")
+            res.status(400).json("code doesn`t match")
         }
     }
     else {

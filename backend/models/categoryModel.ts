@@ -8,7 +8,7 @@ export interface ICategory {
 }
 
 export const CategorySchema = new mongoose.Schema<ICategory>({
-    name: { type: String, required: [true, "Please add a name"] },
+    name: { type: String, required: [true, "Please add a name"] ,unique:true },
     description: { type: String, required: [true, "Please add a description"] },
     logo:{ type: String, required: [true, "Please add a logo"] },
 },

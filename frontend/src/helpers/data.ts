@@ -34,6 +34,15 @@ export const navbarAdminData = [
             { label: 'Edit Brand', route: 'editbrand' },
             { label: 'Remove Brand', route: 'removebrand' },
         ],
+    },{
+        label: 'Categories',
+        icon: CalendarStats,
+        links: [
+            { label: 'Overview', route: 'overviewcategories' },
+            { label: 'Add Category', route: 'addcategory' },
+            { label: 'Edit Category', route: 'editcategory' },
+            { label: 'Remove Category', route: 'removecategory' },
+        ],
     },
     { label: 'Analytics', icon: PresentationAnalytics },
     { label: 'Contracts', icon: FileAnalytics },
