@@ -9,6 +9,11 @@ const useStyles = createStyles((theme) => ({
         height: 20,
         borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
             }`,
+            position: "absolute" ,
+          //  left:0,
+            bottom:0,
+           // right:0,  
+            width: "100%" ,  
     },
 
     inner: {
