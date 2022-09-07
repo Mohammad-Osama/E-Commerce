@@ -16,6 +16,7 @@ import AffixApp from "./user/features/AffixApp";
 import Footer from "./user/features/Footer";
 import AdminPanel from "./admin/pages/AdminPanel";
 import NavBarAdmin from "./admin/components/NavBarAdmin";
+import AffixDrawerCart from "./user/features/AffixDrawerCart";
 
 
 
@@ -69,6 +70,7 @@ const App: React.FC = () => {
 
           <AffixApp />
           <Footer />
+          <AffixDrawerCart/>
         </Container>
       }
       
