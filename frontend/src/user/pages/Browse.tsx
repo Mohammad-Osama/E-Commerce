@@ -19,15 +19,19 @@ const Browse = () => {
 
     const emptyProducts: IProduct[] = [];
     const [products, setProducts]: [IProduct[], (category: IProduct[]) => void] = useState(emptyProducts)
+    const [loading, SetLoading] = useState<boolean>(true)
+
 
     async function getProductsByCategory(id: string) {
         const productsData = await api.getProductsByCategory(id)
         setProducts(productsData)
+        SetLoading(false)
     }
 
     async function getProductsByBrand(id: string) {
         const productsData = await api.getProductsByBrand(id)
         setProducts(productsData)
+        SetLoading(false)
     }
 
 
@@ -38,11 +42,12 @@ const Browse = () => {
         else {
             getProductsByBrand(id as string)
         }
-    }, [id])
+    }, [id,loading])
 
 
-    if (products === undefined)
-    return <Loader />
+    if (loading === true)
+    return <Loader  width="100%"
+                    size="xl" />
   else
 
     return (
