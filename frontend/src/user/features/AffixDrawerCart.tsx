@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 export default function AffixDrawerCart() {
 
   const [opened, setOpened] = useState(false);
+  const [mount, setMount] = useState(true);
 
   const cartItems = useSelector(cartState)
 
@@ -19,7 +20,9 @@ export default function AffixDrawerCart() {
         size="lg"
         padding="xl"
         opened={opened}
-        onClose={() => setOpened(false)}
+        onClose={() => {setOpened(false)
+                       setMount(!mount)}
+                        }
         title="Cart"
       >
         <ScrollArea style={{ height: 500 }} type="auto" offsetScrollbars>
@@ -43,9 +46,11 @@ export default function AffixDrawerCart() {
       </Drawer>
 
       <Affix position={{ top: 100, right: 10 }}>
-        <Transition transition="slide-up" mounted={true}>
+        <Transition transition="slide-up" mounted={mount}>
           {(transitionStyles) => (
-            <ActionIcon onClick={() => setOpened(true)} >
+            <ActionIcon onClick={() =>{ setOpened(true)
+                                        setMount(!mount)}
+                                } >
               <ShoppingCart size={30} />
             </ActionIcon>
           )}
