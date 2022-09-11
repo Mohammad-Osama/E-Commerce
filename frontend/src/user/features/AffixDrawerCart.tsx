@@ -32,7 +32,7 @@ export default function AffixDrawerCart() {
       icon: <ShoppingCartX />
     })
   }
-  console.log(cartItems)
+ 
   return (
     <>
 
