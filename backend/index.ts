@@ -8,6 +8,7 @@ import categoryRoutes from "./routes/categoryRoutes"
 import userRoutes from "./routes/userRoutes"
 import reviewRoutes from "./routes/reviewRoutes"
 import cloudinaryRoutes from "./routes/cloudinaryRoutes"
+import couponRoutes from "./routes/couponRoutes"
 import path from "path"
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.listen(port, () :void => {
  app.use("/api/users",userRoutes)
  app.use('/api/reviews',reviewRoutes)
  app.use('/api/cloudnarysignature',cloudinaryRoutes)
+ app.use("/api/coupons",couponRoutes)
 
  // {..} to go one level up from dist folder,which is created after the build using tsc
  // to fix reloading , to direct to the html file 

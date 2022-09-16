@@ -11,7 +11,7 @@ export async function getCoupons(req :Request , res : Response)  {
 
 
 // new coupon 
-export async function addBrand(req :Request , res : Response)  {
+export async function addCoupon(req :Request , res : Response)  {
     const newCoupon : ICoupon = await Coupon.create({
       name: req.body.name ,   
       value: req.body.value,
