@@ -64,6 +64,10 @@ export default function InputText({ data, formFunc } : InputTextProps) {
       mt="md"
       autoComplete="nope"
       radius='md'
+      disabled={data.label==="Coupon Name"
+                ? true
+                :false
+              }
     />
   );
 }
