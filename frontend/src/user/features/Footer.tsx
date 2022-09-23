@@ -1,4 +1,5 @@
-import { createStyles, Container, Group, ActionIcon, Image } from '@mantine/core';
+import { createStyles, Container, Group, ActionIcon, Image, Text } from '@mantine/core';
+import { Link } from 'react-router-dom';
 import { BrandLinkedin } from 'tabler-icons-react';
 
 
@@ -9,11 +10,11 @@ const useStyles = createStyles((theme) => ({
         height: 20,
         borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
             }`,
-            position: "absolute" ,
-          //  left:0,
-            bottom:0,
-           // right:0,  
-            width: "100%" ,  
+        position: "absolute",
+        //  left:0,
+        bottom: 0,
+        // right:0,  
+        width: "100%",
     },
 
     inner: {
@@ -38,6 +39,7 @@ const useStyles = createStyles((theme) => ({
 
 const Footer = () => {
     const { classes } = useStyles();
+
     return (
         <div className={classes.footer}>
             <Container className={classes.inner}>
@@ -46,6 +48,16 @@ const Footer = () => {
                     width={100}
                     height={100}
                 />
+                <Text p="xl"
+                      align="justify"
+                      weight={500}
+                      color="blue"
+                      style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: "30px", minWidth: "60px" }}
+                      component={Link} to={"/cart"}
+                   
+                      >
+                          About
+                    </Text>
                 <Group spacing={0} className={classes.links} position="right" noWrap>
 
                     <ActionIcon size={55}
