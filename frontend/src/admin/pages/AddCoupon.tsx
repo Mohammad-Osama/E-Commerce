@@ -1,15 +1,12 @@
-import { Group, Button, SimpleGrid, Text ,Select  } from '@mantine/core';
+import { Group, Button, SimpleGrid, Text, Select } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
-import { useState} from 'react';
-import PhotoImport from '../components/addProductComponents/PhotoImport';
+import { useState } from 'react';
 import InputText from '../components/addProductComponents/InputText';
-import InputDesc from '../components/addProductComponents/InputDesc';
 import axios from 'axios';
 import { AlertCircle } from 'tabler-icons-react';
 import { showNotification } from '@mantine/notifications'
 import { useModals } from '@mantine/modals';
 import { useNavigate } from 'react-router-dom';
-import * as api from "../../helpers/api"
 import AddTitleText from '../components/AddTitleText';
 
 const AddCoupon = () => {
@@ -25,8 +22,8 @@ const AddCoupon = () => {
 
     const [value, setValue] = useState<string | null>(null);
 
-   // console.log(value)
-   console.log( "formmm", form.values)
+    // console.log(value)
+    //console.log( "formmm", form.values)
 
     function nameInput(input: string) {
         form.setFieldValue('name', input)
@@ -44,31 +41,31 @@ const AddCoupon = () => {
 
     const modals = useModals();
     const confirmAddModal = () => {
-        
-            modals.openConfirmModal({
-                title: 'Add a brand',
-                centered: true,
-                children: (
-                    <Text size="sm">
-                        Are u sure you want to add this coupon ?
-                    </Text>
-                ),
-                labels: { confirm: "Yes , add this coupon", cancel: "Go back" },
-                confirmProps: { color: 'blue' },
-                // onCancel: () => console.log('Cancel'),
-                onConfirm: () => handelSubmit
-            });
-        
+
+        modals.openConfirmModal({
+            title: 'Add a brand',
+            centered: true,
+            children: (
+                <Text size="sm">
+                    Are u sure you want to add this coupon ?
+                </Text>
+            ),
+            labels: { confirm: "Yes , add this coupon", cancel: "Go back" },
+            confirmProps: { color: 'blue' },
+            // onCancel: () => console.log('Cancel'),
+            onConfirm: () => handelSubmit()
+        });
+
     }
 
-    
+
 
 
     const handelSubmit = () => {
         const values = form.values;
         axios.post('/api/coupons', values)
             .then((response) => {
-              //  console.log("resssssssssssss", response)
+                //     console.log("resssssssssssss", response)
                 modals.openConfirmModal({
                     title: 'Coupon added ',
                     centered: true,
@@ -99,16 +96,16 @@ const AddCoupon = () => {
         form.setFieldValue('name', '')
         form.setFieldValue('value', 0)
         form.setFieldValue('code', '')
-    
+
     }
 
     return (
         <form onSubmit={form.onSubmit(confirmAddModal)}>
             <AddTitleText title="Add a coupon" />
             <SimpleGrid cols={1} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}
-                                  >
-            
-                <Group direction="row" style={{ width:"30%"}}>
+            >
+
+                <Group direction="row" style={{ width: "30%" }}>
                     <InputText formFunc={nameInput}
                         data={{
                             label: 'Coupon Name',
@@ -116,19 +113,23 @@ const AddCoupon = () => {
                             value: form.values.name
                         }} />
 
-                <Select  value={value}  
-                         onChange={(x )=>{console.log(x)  
-                                        setValue(x)  
-                                        form.setFieldValue("value", Number(x)) 
-                                        form.setFieldValue("name", String(x)+" % Coupon")     }    } 
-                         data={[
+                    <Select label="Coupon Value"
+                            required
+                            value={value} 
+                        onChange={(x) => {
+                          //  console.log(x)
+                            setValue(x)
+                            form.setFieldValue("value", Number(x))
+                            form.setFieldValue("name", String(x) + " % Coupon")
+                        }}
+                        data={[
                             { value: '5', label: '5 %' },
                             { value: '10', label: '10 %' },
                             { value: '15', label: '15 %' },
                             { value: '20', label: '20 %' },
                             { value: '25', label: '25 %' },
                             { value: '30', label: '30 %' },
-                          ]} />
+                        ]} />
 
                     <InputText formFunc={codeInput}
                         data={{
