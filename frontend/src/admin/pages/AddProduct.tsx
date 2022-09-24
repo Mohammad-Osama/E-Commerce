@@ -1,4 +1,4 @@
-import { useForm } from '@mantine/hooks';
+import { useForm } from '@mantine/form';
 import InputPrice from '../components/addProductComponents/InputPrice';
 import InputStockOrSale from '../components/addProductComponents/InputStockOrSale';
 import InputText from '../components/addProductComponents/InputText';
@@ -265,7 +265,7 @@ const AddProduct = () => {
 			<AddTitleText title="Add a Product"/>
 			<SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}>
 				<PhotoImport formFunc={imageInput} data={imageData} />
-				<Group direction="column" className="overflow-auto d-inline-block">
+				<Group /* direction="column" */ className="overflow-auto d-inline-block">
 					<InputText formFunc={nameInput}
 						data={{
 							label: 'Product Name',

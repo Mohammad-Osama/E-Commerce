@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
     Grid, Container, Image, Loader, Card, Text, Badge, createStyles,
-    useMantineTheme, Group , Indicator
+    useMantineTheme, Group, Indicator
 } from '@mantine/core';
 import * as api from "../../helpers/api"
 import { useParams } from 'react-router'
@@ -9,7 +9,9 @@ import { IProduct, IReview, IReviewInfo } from '../../helpers/types';
 import CartButtons from './CartButtons';
 import Review from './Review';
 import AddReview from './AddReview';
-import { Rating } from '@mui/material';
+//import { Rating } from '@mui/material';
+//import { Rating } from '@mui/material';
+import { Rating } from '@smastrom/react-rating';
 import { authState } from '../redux/slices/authSlice';
 import { useSelector } from 'react-redux';
 
@@ -39,10 +41,10 @@ const ProductFull = () => {
             fontSize: theme.fontSizes.xs,
             fontWeight: 700,
         },
-        container: {   
-            color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],   
+        container: {
+            color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.cyan[1],
-                
+
         }
     }));
 
@@ -72,7 +74,7 @@ const ProductFull = () => {
     async function getProduct(id: string) {
         const resData = await api.getProductById(id)
         setProduct(resData)
-      // console.log("resDataaaa", resData)
+        // console.log("resDataaaa", resData)
     }
 
     async function getReviewInfo(id: string) {
@@ -84,7 +86,7 @@ const ProductFull = () => {
     async function getReviewProductUser(product: string, user: string) {
         const resData = await api.getReviewProductUser(product, user)
         setReviewProductUser(resData)
-     //   console.log("resDataaa-----> ReviewProductUser", resData)
+        //   console.log("resDataaa-----> ReviewProductUser", resData)
     }
 
 
@@ -102,7 +104,7 @@ const ProductFull = () => {
         return <Loader />
     else
         return (
-            <Container mb="xl" px="md" pb="xl" className={classes.container}>  
+            <Container mb="xl" px="md" pb="xl" className={classes.container}>
                 <Grid m="xl" columns={12}>
                     <Grid.Col span={6}>
                         <Image src={product.main_image}
@@ -129,14 +131,19 @@ const ProductFull = () => {
                                               // color="teal"
                                                position="middle-end" 
                                             > </Indicator> */}
-                                        <Rating 
+                                    {/* <Rating 
                                             size="small"
                                             value={product.rating_total === 0|| product.rating_count === 0
                                                 ? 0
                                                 : Math.round((product.rating_total / product.rating_count) ) 
                                             }   
-                                        />
-                                    
+                                        /> */}
+                                    <Rating
+                                        style={{ maxWidth: 100 }}
+                                        value={3}
+                                        readOnly
+                                    />
+
                                 </Group>
 
                             </Card.Section>
@@ -193,7 +200,7 @@ const ProductFull = () => {
                             })}
                         </>
                         : <AddReview productID={id}
-                                       />
+                        />
                     }
 
                     <Text m="xl" size="xl" weight={500}>

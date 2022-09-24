@@ -161,10 +161,12 @@ const CartButtons = ({ product }: X) => {
                 }}
             >
                 {quantity > 0
-                    ? <Tooltip placement="center" label="Add to cart" position="bottom" radius="xl" color="green" >
+                    ? <Tooltip  label="Add to cart" position="bottom" radius="xl" color="green" >
+                        <div>
                        <ShoppingCartPlus size={30} color={'#40bf59'} />
+                       </div>
                      </Tooltip>
-                    : <Tooltip placement="center" label="Decrease from cart" position="bottom" radius="xl" color="grape">
+                    : <Tooltip  label="Decrease from cart" position="bottom" radius="xl" color="grape">
                          <ShoppingCartX size={30} color={'#d279c6'} />
                       </Tooltip>
                 }
@@ -189,7 +191,7 @@ const CartButtons = ({ product }: X) => {
             </ActionIcon>
             {currentQuantity > 0 &&
                 <ActionIcon onClick={() => { removeFromCartFunction(id) }}>
-                    <Tooltip placement="center" label="Remove from cart" position="bottom" radius="xl" color="red" >
+                    <Tooltip  label="Remove from cart" position="bottom" radius="xl" color="red" >
                        <ShoppingCartOff size={30} color={'red'}/>
                     </Tooltip>
                 </ActionIcon>

@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import AppWrapper from './AppWrapper';
+import '@smastrom/react-rating/style.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

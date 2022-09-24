@@ -1,5 +1,5 @@
 import { Group, Button, SimpleGrid, Text } from '@mantine/core';
-import { useForm } from '@mantine/hooks';
+import { useForm } from '@mantine/form';
 import { useState} from 'react';
 import PhotoImport from '../components/addProductComponents/PhotoImport';
 import InputText from '../components/addProductComponents/InputText';
@@ -138,7 +138,7 @@ const AddBrand = () => {
             <AddTitleText title="Add a brand" />
             <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}>
                 <PhotoImport formFunc={logoInput} data={imageData} />
-                <Group direction="column" className="overflow-auto d-inline-block">
+                <Group /* direction="column"  */className="overflow-auto d-inline-block">
                     <InputText formFunc={nameInput}
                         data={{
                             label: 'Brand Name',

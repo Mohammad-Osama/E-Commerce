@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { createStyles, Header, ActionIcon, Group, Burger, Container, Text, Autocomplete ,Avatar} from '@mantine/core';
-import { useBooleanToggle } from '@mantine/hooks';
+import { useDisclosure } from '@mantine/hooks';
 import { ShoppingCart } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -73,7 +73,7 @@ const useStyles = createStyles((theme) => ({
 
 export function Navbar() {
     const emptyProducts: IProduct[] = [];
-    const [opened, toggleOpened] = useBooleanToggle(false);
+    const [opened, { toggle }] = useDisclosure(false);
     const [products, setProducts]: [IProduct[], (category: IProduct[]) => void] = useState(emptyProducts)
     const { classes } = useStyles();
 
@@ -196,7 +196,7 @@ export function Navbar() {
                     <ThemeButton/>
                     <Burger
                         opened={opened}
-                        onClick={() => toggleOpened()}
+                        onClick={toggle}
                         className={classes.burger}
                         size="sm"
                     />

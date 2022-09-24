@@ -1,5 +1,5 @@
 import { Group, Button, SimpleGrid, Text, Select } from '@mantine/core';
-import { useForm } from '@mantine/hooks';
+import { useForm } from '@mantine/form';
 import { useState } from 'react';
 import InputText from '../components/addProductComponents/InputText';
 import axios from 'axios';
@@ -105,7 +105,7 @@ const AddCoupon = () => {
             <SimpleGrid cols={1} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}
             >
 
-                <Group direction="row" style={{ width: "30%" }}>
+                <Group /* direction="row" */ style={{ width: "30%" }}>
                     <InputText formFunc={nameInput}
                         data={{
                             label: 'Coupon Name',

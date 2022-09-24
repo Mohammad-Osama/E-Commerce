@@ -1,5 +1,6 @@
 import React ,{ useEffect }  from 'react'
-import { useForm, useToggle, upperFirst } from '@mantine/hooks';
+import {  useToggle, upperFirst } from '@mantine/hooks';
+import { useForm } from '@mantine/form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import {
@@ -20,8 +21,8 @@ import { AppDispatch } from '../redux/store';
 import ErrorPage from './ErrorPage';
 
 
-const LoginRegister = (props: PaperProps<'div'>) => {
-    const [type, toggle] = useToggle('login', ['login', 'register']);
+const LoginRegister = (props: PaperProps) => {
+    const [type, toggle] = useToggle(['login', 'register']);
   const form = useForm({
     initialValues: {
       email: '',
@@ -30,7 +31,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
       password: '',
       terms: true,
     },
-    validationRules: {
+    validate: {
       /*  email: (val) => /^\S+@\S+$/.test(val), */
       password: (val) => val.length >= 1,
     },
@@ -113,7 +114,7 @@ const LoginRegister = (props: PaperProps<'div'>) => {
       </Text>
       <Divider  my="lg" />
       <form onSubmit={form.onSubmit(handelSubmit)}>
-        <Group direction="column" grow>
+        <Group /* direction="column" */ grow>
           {type === 'register' && (
             <>
               <TextInput

@@ -1,7 +1,9 @@
 
 import { createStyles, Text, Avatar, Group, TypographyStylesProvider, Paper } from '@mantine/core';
 import { IReviewInfo } from '../../helpers/types';
-import { Rating } from '@mui/material';
+//import { Rating } from '@mui/material';
+//import { Rating } from '@mui/material';
+import { Rating } from '@smastrom/react-rating';
 
   
   
@@ -51,11 +53,16 @@ const Review = (  {reviewInfo}  : X ) => {
           <Text size="xs" color="dimmed">
             {updatedAt}
           </Text>
-            <Rating   readOnly={true} 
+            {/* <Rating   readOnly={true} 
                       size="small"
                       value={rating}   
                                 
-                />
+                /> */}
+                <Rating
+            style={{ maxWidth: 100 }}
+            value={3}
+            readOnly
+          />
         </div>
       </Group>
       <Text size="sm" className={classes.body}>{title}</Text>

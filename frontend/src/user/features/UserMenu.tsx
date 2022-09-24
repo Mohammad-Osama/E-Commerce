@@ -53,14 +53,23 @@ const UserMenu = () => {
 
     return (
         <Menu
-            size={222}
+            /* size={222}
             placement="center"
             transition="pop-top-right"
-            className={classes.userMenu}
+            className={classes.userMenu} */
+
+            width={260}
+            position="bottom-end"
+            transition="pop-top-right"
+
             onClose={() => setUserMenuOpened(false)}
             onOpen={() => setUserMenuOpened(true)}
-            control={
-              <UnstyledButton
+            /* control={
+              
+            } */
+          >
+            <Menu.Target>
+            <UnstyledButton
                 className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
               >
                 <Group spacing={7}>
@@ -71,8 +80,8 @@ const UserMenu = () => {
                   <ChevronDown size={12} />
                 </Group>
               </UnstyledButton>
-            }
-          >
+
+            </Menu.Target>
             <Menu.Item  icon={<Settings size={18}/>}
                         component={Link} to={'/dashboard'} 
                                     >

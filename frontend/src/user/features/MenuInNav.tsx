@@ -52,19 +52,24 @@ const MenuInNav = (props :any) => {
     else
         return (
             <>
-                <Menu 
-                    placement="start"
+                <Menu trigger="hover" 
+                   /*  placement="start"
                     gutter={1}
                     position="bottom"
                     control={
-                        <a className={classes.link}>
+                        
+                    } */
+                >
+
+                    <Menu.Target>
+                    <a className={classes.link}>
                             <Center>
                                 <span className={classes.linkLabel}>Categories</span>
                                 <ChevronDown size={12} />
                             </Center>
                         </a>
-                    }
-                >
+
+                    </Menu.Target>
                     {categories?.map((x) => {
                         return <Menu.Item key ={x.id}   // can add an icon if needed 
                                          
@@ -76,19 +81,23 @@ const MenuInNav = (props :any) => {
                           })}
                 </Menu>
 
-                <Menu 
-                    placement="start"
+                <Menu  trigger="hover" 
+                   /*  placement="start"
                     gutter={1}
                     position="bottom"
                     control={
-                        <a className={classes.link} >
+                        
+                    } */
+                >
+                    <Menu.Target>
+
+                    <a className={classes.link} >
                             <Center>
                                 <span className={classes.linkLabel}>Brands</span>
                                 <ChevronDown size={12} />
                             </Center>
                         </a>
-                    }
-                >
+                    </Menu.Target>
                     {brands?.map((x) => {
                         return <Menu.Item key ={x.id}   // can add an icon if needed
                                          
