@@ -51,8 +51,10 @@ const MenuInNav = (props :any) => {
         )
     else
         return (
-            <>
-                <Menu trigger="hover" 
+            <> 
+                <Menu trigger="click" 
+                      withArrow
+                      offset={15}
                    /*  placement="start"
                     gutter={1}
                     position="bottom"
@@ -70,6 +72,8 @@ const MenuInNav = (props :any) => {
                         </a>
 
                     </Menu.Target>
+                    <Menu.Dropdown>
+
                     {categories?.map((x) => {
                         return <Menu.Item key ={x.id}   // can add an icon if needed 
                                          
@@ -79,9 +83,14 @@ const MenuInNav = (props :any) => {
                                     {x.name}
                                 </Menu.Item>
                           })}
+                    </Menu.Dropdown>
+                    
                 </Menu>
 
-                <Menu  trigger="hover" 
+                <Menu  trigger="click" 
+                       withArrow 
+                       offset={15}
+                       width={100}
                    /*  placement="start"
                     gutter={1}
                     position="bottom"
@@ -98,6 +107,7 @@ const MenuInNav = (props :any) => {
                             </Center>
                         </a>
                     </Menu.Target>
+                    <Menu.Dropdown>
                     {brands?.map((x) => {
                         return <Menu.Item key ={x.id}   // can add an icon if needed
                                          
@@ -107,6 +117,9 @@ const MenuInNav = (props :any) => {
                                  {x.name}
                                </Menu.Item>
                        })}
+
+                    </Menu.Dropdown>
+                    
                 </Menu>
             </>
         )

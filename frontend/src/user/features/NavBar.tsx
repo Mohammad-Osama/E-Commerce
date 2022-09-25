@@ -37,6 +37,7 @@ const useStyles = createStyles((theme) => ({
 
     link: {
         display: 'block',
+        cursor:"pointer",
         lineHeight: 1,
         padding: '8px 12px',
         borderRadius: theme.radius.sm,
@@ -52,6 +53,7 @@ const useStyles = createStyles((theme) => ({
 
     linkLabel: {
         marginRight: 5,
+        
     },
     text: {
         display: 'block',
