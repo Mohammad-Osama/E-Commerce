@@ -55,12 +55,6 @@ const MenuInNav = (props :any) => {
                 <Menu trigger="click" 
                       withArrow
                       offset={15}
-                   /*  placement="start"
-                    gutter={1}
-                    position="bottom"
-                    control={
-                        
-                    } */
                 >
 
                     <Menu.Target>
@@ -91,12 +85,6 @@ const MenuInNav = (props :any) => {
                        withArrow 
                        offset={15}
                        width={100}
-                   /*  placement="start"
-                    gutter={1}
-                    position="bottom"
-                    control={
-                        
-                    } */
                 >
                     <Menu.Target>
 

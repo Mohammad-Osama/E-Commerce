@@ -9,8 +9,6 @@ import { IProduct, IReview, IReviewInfo } from '../../helpers/types';
 import CartButtons from './CartButtons';
 import Review from './Review';
 import AddReview from './AddReview';
-//import { Rating } from '@mui/material';
-//import { Rating } from '@mui/material';
 import { Rating } from '@smastrom/react-rating';
 import { authState } from '../redux/slices/authSlice';
 import { useSelector } from 'react-redux';
@@ -30,6 +28,7 @@ const ProductFull = () => {
             paddingLeft: theme.spacing.md,
             paddingRight: theme.spacing.md,
             paddingBottom: theme.spacing.md,
+            paddingTop: theme.spacing.md,
         },
 
         like: {
@@ -105,8 +104,8 @@ const ProductFull = () => {
     else
         return (
             <Container mb="xl" px="md" pb="xl" className={classes.container}>
-                <Grid m="xl" columns={12}>
-                    <Grid.Col span={6}>
+                <Grid m="xl" columns={12} >
+                    <Grid.Col span={6}  >
                         <Image src={product.main_image}
                             alt="Product"
                             radius={10}
@@ -119,7 +118,7 @@ const ProductFull = () => {
                     <Grid.Col span={6}>
                         <Card withBorder radius="md" p="md" className={classes.card}>
 
-                            <Card.Section className={classes.section} mt="md">
+                            <Card.Section className={classes.section} >
                                 <Group position="center">
                                     <Text size="xl" weight={500}>
                                         {product.name}

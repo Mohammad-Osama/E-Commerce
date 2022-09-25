@@ -4,15 +4,12 @@ import {
   Indicator
 } from '@mantine/core';
 
-//import { Rating } from '@mui/material';
-//import { Rating } from "@mui/material";
 import { Rating } from '@smastrom/react-rating';
 import CartButtons from "./CartButtons"
 import { useNavigate } from "react-router-dom";
 
 interface X {
   product: IProduct;
-
 }
 
 
@@ -27,7 +24,7 @@ const Product = ({ product }: X) => {
     <div style={{ width: "90%", margin: 'auto' }} >
       <Card shadow="sm" p="lg">
         <Card.Section mt="xs">
-          <Image src={main_image}
+          <Image src={main_image} mt="xl"
             alt="Product"
             radius={10}
             height={180}
