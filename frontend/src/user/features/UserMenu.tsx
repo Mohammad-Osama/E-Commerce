@@ -60,7 +60,7 @@ const UserMenu = () => {
 
             width={200}
             position="bottom-end"
-           // transition="pop-top-right"
+            transition="pop-top-right"
 
             onClose={() => setUserMenuOpened(false)}
             onOpen={() => setUserMenuOpened(true)}

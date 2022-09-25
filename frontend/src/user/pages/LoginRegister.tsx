@@ -12,7 +12,7 @@ import {
     Button,
     Divider,
     Checkbox,
-    Anchor,PaperProps,Container
+    Anchor,PaperProps,Container , Stack
   } from '@mantine/core';
 import { showNotification } from '@mantine/notifications'
 import { AlertCircle } from 'tabler-icons-react'
@@ -114,7 +114,7 @@ const LoginRegister = (props: PaperProps) => {
       </Text>
       <Divider  my="lg" />
       <form onSubmit={form.onSubmit(handelSubmit)}>
-        <Group /* direction="column" */ grow>
+        <Stack /* direction="column" */ >
           {type === 'register' && (
             <>
               <TextInput
@@ -156,9 +156,9 @@ const LoginRegister = (props: PaperProps) => {
               onChange={(event) => form.setFieldValue('terms', event.currentTarget.checked)}
             />
           )}
-        </Group>
+        </Stack>
         <Group position="apart" mt="xl">
-          <Anchor component="button" type="button" color="gray" onClick={() => toggle()} size="sm">
+          <Anchor component="button" type="button" color="blue" onClick={() => toggle()} size="sm">
             {type === 'register'
               ? 'Already have an account? Login'
               : "Don't have an account? Register"}
