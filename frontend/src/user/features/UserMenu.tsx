@@ -58,9 +58,9 @@ const UserMenu = () => {
             transition="pop-top-right"
             className={classes.userMenu} */
 
-            width={260}
+            width={200}
             position="bottom-end"
-            transition="pop-top-right"
+           // transition="pop-top-right"
 
             onClose={() => setUserMenuOpened(false)}
             onOpen={() => setUserMenuOpened(true)}

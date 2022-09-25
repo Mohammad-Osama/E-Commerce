@@ -12,7 +12,7 @@ import * as api from "../../helpers/api"
 
 
 
-const MenuInNav = (props :any) => {
+const MenuInNav = (props: any) => {
     const classes = props.classes
     const emptyCategories: ICategory[] = [];
     const emptyBrands: IBrand[] = [];
@@ -43,7 +43,7 @@ const MenuInNav = (props :any) => {
             setCategories([])
             setBrands([])
         }
-    },[]);
+    }, []);
 
     if (categories === undefined || brands === undefined)
         return (
@@ -51,14 +51,17 @@ const MenuInNav = (props :any) => {
         )
     else
         return (
-            <> 
-                <Menu trigger="click" 
+            <>
+                <Menu trigger="click"
                       withArrow
                       offset={15}
+                      width={200}
+                      position="bottom-end"
+                      transition="pop-top-right"
                 >
 
                     <Menu.Target>
-                    <a className={classes.link}>
+                        <a className={classes.link}>
                             <Center>
                                 <span className={classes.linkLabel}>Categories</span>
                                 <ChevronDown size={12} />
@@ -68,27 +71,30 @@ const MenuInNav = (props :any) => {
                     </Menu.Target>
                     <Menu.Dropdown>
 
-                    {categories?.map((x) => {
-                        return <Menu.Item key ={x.id}   // can add an icon if needed 
-                                         
-                                          component={Link} to={`/browse/${x.id}`}
-                                          state={{ type: "category" }}
-                                            >
-                                    {x.name}
-                                </Menu.Item>
-                          })}
+                        {categories?.map((x) => {
+                            return <Menu.Item key={x.id}   // can add an icon if needed 
+
+                                component={Link} to={`/browse/${x.id}`}
+                                state={{ type: "category" }}
+                            >
+                                {x.name}
+                            </Menu.Item>
+                        })}
                     </Menu.Dropdown>
-                    
+
                 </Menu>
 
-                <Menu  trigger="click" 
-                       withArrow 
-                       offset={15}
-                       width={100}
+                <Menu trigger="click"
+                      withArrow
+                      offset={15}
+                      width={200}
+                      position="bottom-end"
+                      transition="pop-top-right"
+
                 >
                     <Menu.Target>
 
-                    <a className={classes.link} >
+                        <a className={classes.link} >
                             <Center>
                                 <span className={classes.linkLabel}>Brands</span>
                                 <ChevronDown size={12} />
@@ -96,18 +102,18 @@ const MenuInNav = (props :any) => {
                         </a>
                     </Menu.Target>
                     <Menu.Dropdown>
-                    {brands?.map((x) => {
-                        return <Menu.Item key ={x.id}   // can add an icon if needed
-                                         
-                                          component={Link} to={`/browse/${x.id}`}
-                                          state={{ type: "brand" }}
-                                            >
-                                 {x.name}
-                               </Menu.Item>
-                       })}
+                        {brands?.map((x) => {
+                            return <Menu.Item key={x.id}   // can add an icon if needed
+
+                                component={Link} to={`/browse/${x.id}`}
+                                state={{ type: "brand" }}
+                            >
+                                {x.name}
+                            </Menu.Item>
+                        })}
 
                     </Menu.Dropdown>
-                    
+
                 </Menu>
             </>
         )
