@@ -82,11 +82,21 @@ const UserMenu = () => {
               </UnstyledButton>
 
             </Menu.Target>
+            <Menu.Dropdown>
             <Menu.Item  icon={<Settings size={18}/>}
                         component={Link} to={'/dashboard'} 
                                     >
              Dashboard
             </Menu.Item>
+            <Menu.Item icon={<Logout size={18} />}
+                        onClick={()=>  {  dispatch(logout())
+                                           navigate("./")        
+                                                    }}
+                 >
+                Logout
+            </Menu.Item>
+            </Menu.Dropdown>
+           
    {/*          <Menu.Item icon={<Message size={18}  />}>
             Reviews
             </Menu.Item>
@@ -95,13 +105,7 @@ const UserMenu = () => {
             </Menu.Item>
             <Menu.Label>Settings</Menu.Label>
             <Menu.Item icon={<Settings size={18} />}>Edit Profile</Menu.Item> */}
-            <Menu.Item icon={<Logout size={18} />}
-                        onClick={()=>  {  dispatch(logout())
-                                           navigate("./")        
-                                                    }}
-                 >
-                Logout
-            </Menu.Item>
+            
           </Menu>
     )
 }
