@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { cartState } from '../redux/slices/cartSlice';
-import { ActionIcon, Group, useMantineTheme, Tooltip ,Badge } from '@mantine/core';
+import { ActionIcon, Group, useMantineTheme, Tooltip, Badge } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { Plus, Minus } from 'tabler-icons-react';
 import { useDispatch } from 'react-redux';
-import { ShoppingCartPlus, ShoppingCartX , LetterX ,ShoppingCartOff} from 'tabler-icons-react';
+import { ShoppingCartPlus, ShoppingCartX, LetterX, ShoppingCartOff } from 'tabler-icons-react';
 import { addToCart, removeFromCart } from '../redux/slices/cartSlice';
 import { IProduct, IProductCart } from '../../helpers/types'
 
@@ -16,7 +16,7 @@ interface X {
 
 
 const CartButtons = ({ product }: X) => {
-    const { id, name, main_image, price, currency, stock, rating_count, rating_total, description, model,images, featured, sale ,category,brand } = product
+    const { id, name, main_image, price, currency, stock, rating_count, rating_total, description, model, images, featured, sale, category, brand } = product
     const [quantity, setQuantity] = useState<number>(1)
     const [currentQuantity, setCurrentQuantity] = useState<number>(0)
     const [full, setFull] = useState<boolean>(false)
@@ -70,7 +70,7 @@ const CartButtons = ({ product }: X) => {
         currency: currency,
         stock: stock,
         sale: sale,
-        rating_count:rating_count,
+        rating_count: rating_count,
         rating_total: rating_total,
         quantity: quantity,
         images: images,
@@ -89,7 +89,7 @@ const CartButtons = ({ product }: X) => {
                 message: `${name} cant be added ,no more in stock`,
                 color: 'yellow',
                 icon: <LetterX />
-              })
+            })
             setFull(true)
             return
         }
@@ -111,31 +111,31 @@ const CartButtons = ({ product }: X) => {
         dispatch(removeFromCart(id))
         setQuantity(1)
         showNotification({
-        title: "Cart changed",
-        message: `${name} has been removed from the cart`,
-        color: 'red',
-        icon: <ShoppingCartX />
+            title: "Cart changed",
+            message: `${name} has been removed from the cart`,
+            color: 'red',
+            icon: <ShoppingCartX />
         })
-    setFull(false)
+        setFull(false)
     }
 
 
 
-    const message :any = () => {  // cant figure it out ! 
+    const message: any = () => {  // cant figure it out ! 
         if (quantity === 0)
-          return { title: "invalid amount", message: "0 is not a valid quantity" }
+            return { title: "invalid amount", message: "0 is not a valid quantity" }
         if (currentQuantity === 0)
-          return { title: "Cart changed", message: `${name} has been added to the cart`, icon: <ShoppingCartPlus />, color: "green" }
-    
+            return { title: "Cart changed", message: `${name} has been added to the cart`, icon: <ShoppingCartPlus />, color: "green" }
+
         else if (currentQuantity > 0 && quantity < 0 && currentQuantity === -quantity)
-          return { title: "Cart changed", message: `${name} has been removed from the cart`, icon: <ShoppingCartX />, color: "red" }
-    
+            return { title: "Cart changed", message: `${name} has been removed from the cart`, icon: <ShoppingCartX />, color: "red" }
+
         else if (currentQuantity > 0 && quantity < 0)
-          return { title: "Cart changed", message: `${name} has been decreased by ${-quantity}`, icon: <ShoppingCartX />, color: 'pink' }
-    
+            return { title: "Cart changed", message: `${name} has been decreased by ${-quantity}`, icon: <ShoppingCartX />, color: 'pink' }
+
         else if (currentQuantity > 0 && quantity > 0)
-          return { title: "Cart changed", message: `${name} has been increased by ${quantity}`, icon: <ShoppingCartPlus />, color: "green" }
-      }
+            return { title: "Cart changed", message: `${name} has been increased by ${quantity}`, icon: <ShoppingCartPlus />, color: "green" }
+    }
 
 
     useEffect(() => {
@@ -161,14 +161,16 @@ const CartButtons = ({ product }: X) => {
                 }}
             >
                 {quantity > 0
-                    ? <Tooltip  label="Add to cart" position="bottom" radius="xl" color="green" >
+                    ? <Tooltip label="Add to cart" position="bottom" radius="xl" color="green" >
                         <div>
-                       <ShoppingCartPlus size={30} color={'#40bf59'} />
-                       </div>
-                     </Tooltip>
-                    : <Tooltip  label="Decrease from cart" position="bottom" radius="xl" color="grape">
-                         <ShoppingCartX size={30} color={'#d279c6'} />
-                      </Tooltip>
+                            <ShoppingCartPlus size={30} color={'#40bf59'} />
+                        </div>
+                    </Tooltip>
+                    : <Tooltip label="Decrease from cart" position="bottom" radius="xl" color="grape">
+                        <div>
+                            <ShoppingCartX size={30} color={'#d279c6'} />
+                        </div>
+                    </Tooltip>
                 }
             </ActionIcon>
             <ActionIcon
@@ -191,16 +193,18 @@ const CartButtons = ({ product }: X) => {
             </ActionIcon>
             {currentQuantity > 0 &&
                 <ActionIcon onClick={() => { removeFromCartFunction(id) }}>
-                    <Tooltip  label="Remove from cart" position="bottom" radius="xl" color="red" >
-                       <ShoppingCartOff size={30} color={'red'}/>
+                    <Tooltip label="Remove from cart" position="bottom" radius="xl" color="red" >
+                        <div>
+                        <ShoppingCartOff size={30} color={'red'} />
+                        </div>
                     </Tooltip>
                 </ActionIcon>
-                }
-                {thisProduct?.quantity >0 &&
-                    <Badge color="green" variant="outline" size="md" >
+            }
+            {thisProduct?.quantity > 0 &&
+                <Badge color="green" variant="outline" size="md" >
                     {thisProduct.quantity} in cart
-                  </Badge>
-                }     
+                </Badge>
+            }
         </Group>
     )
 }
