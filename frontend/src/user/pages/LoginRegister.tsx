@@ -33,7 +33,7 @@ const LoginRegister = (props: PaperProps) => {
     },
     validate: {
       /*  email: (val) => /^\S+@\S+$/.test(val), */
-      password: (val) => val.length >= 1,
+     /*  password: (val) => val.length >= 1, */
     },
   });
 

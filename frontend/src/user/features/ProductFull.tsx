@@ -139,7 +139,10 @@ const ProductFull = () => {
                                         /> */}
                                     <Rating
                                         style={{ maxWidth: 100 }}
-                                        value={3}
+                                        value={product.rating_total === 0|| product.rating_count === 0
+                                            ? 0
+                                            : Math.round((product.rating_total / product.rating_count) ) 
+                                        }
                                         readOnly
                                     />
 

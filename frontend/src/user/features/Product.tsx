@@ -54,7 +54,10 @@ const Product = ({ product }: X) => {
 
           <Rating
             style={{ maxWidth: 100 }}
-            value={3}
+            value={rating_total===0 || rating_count === 0
+              ? 0
+              : Math.round((product.rating_total / product.rating_count) )
+            }
             readOnly
           />
         </Group>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Textarea, Text, Paper, Button, Group, TextInput, Stack } from '@mantine/core';
 import { AlertCircle } from 'tabler-icons-react';
-//import { Rating } from '@mui/material';
 import { Rating } from '@smastrom/react-rating';
 import { useForm } from '@mantine/form';
 import { authState } from '../redux/slices/authSlice';
@@ -35,7 +34,7 @@ const AddReview = (props: AddReviewProps) => {
         initialValues: {
             title: '',
             text: '',
-            rating: 0 as number | null,
+            rating: 0 ,
             user: id,
             product: props.productID,
         },
@@ -45,6 +44,7 @@ const AddReview = (props: AddReviewProps) => {
 
     const onConfirmAddReview = async () => {
         const { title, text, rating, user, product } = form.values
+        console.log(form.values)
         const reviewAddInfo: IReviewaddForm = {
             title: title,
             text: text,
@@ -53,8 +53,8 @@ const AddReview = (props: AddReviewProps) => {
             product: product
         }
 
-        await api.addReview(reviewAddInfo)
-        window.location.reload()
+       await api.addReview(reviewAddInfo)
+       window.location.reload()
     }
 
     const onConfirmLogin = () => {
@@ -145,20 +145,12 @@ const AddReview = (props: AddReviewProps) => {
                     />
                 </Stack>
                 <Group spacing="xl" position="center" m="xl">
-
-                    {/*  <Rating  aria-required={true}
-
-                        size="large"
-                        value={form.values.rating}
-                        onChange={(event, newValue) => {
-                            form.setFieldValue('rating', newValue);
-                        }}
-                    /> */}
-
                     <Rating
                         style={{ maxWidth: 100 }}
-                        value={3}
-                        readOnly
+                        value={form.values.rating}
+                        onChange={(newValue) => {
+                            form.setFieldValue('rating', newValue)
+                        }}
                     />
                     <Button type="submit">Add Review</Button>
                 </Group>
