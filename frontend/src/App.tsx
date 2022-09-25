@@ -17,6 +17,7 @@ import Footer from "./user/features/Footer";
 import AdminPanel from "./admin/pages/AdminPanel";
 import NavBarAdmin from "./admin/components/NavBarAdmin";
 import AffixDrawerCart from "./user/features/AffixDrawerCart";
+import About from "./user/pages/About";
 
 
 
@@ -66,6 +67,7 @@ const App: React.FC = () => {
             <Route path='/product/:id' element={<ProductFull />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/about' element={<About />} />
           </Routes>
 
           <AffixApp />

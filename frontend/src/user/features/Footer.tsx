@@ -53,7 +53,7 @@ const Footer = () => {
                       weight={500}
                       color="blue"
                       style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: "30px", minWidth: "60px" }}
-                      component={Link} to={"/cart"}
+                      component={Link} to={"/about"}
                    
                       >
                           About

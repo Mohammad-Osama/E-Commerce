@@ -1,7 +1,7 @@
 import { ShoppingCart, ShoppingCartX, ShoppingCartOff } from 'tabler-icons-react';
 import { Affix, Tooltip, Group, Space, ScrollArea, Avatar, Badge, Button, Text, Transition, ActionIcon, Drawer, SimpleGrid, Divider } from '@mantine/core';
 import React, { useState, useEffect } from 'react';
-import { cartState , emptyAllCart } from '../redux/slices/cartSlice';
+import { cartState, emptyAllCart } from '../redux/slices/cartSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart } from '../redux/slices/cartSlice';
 import { showNotification } from '@mantine/notifications';
@@ -16,12 +16,12 @@ export default function AffixDrawerCart() {
   const totalCost = () => {
     let final = 0
     cartItems.map((item) => {
-        let itemTotal = 0
-        itemTotal = item.quantity * item.price
-        final = final + itemTotal
+      let itemTotal = 0
+      itemTotal = item.quantity * item.price
+      final = final + itemTotal
     })
     return final
-}
+  }
   const dispatch = useDispatch()
   const removeFromCartFunction = (id: string, name: string): void => {
     dispatch(removeFromCart(id))
@@ -32,7 +32,7 @@ export default function AffixDrawerCart() {
       icon: <ShoppingCartX />
     })
   }
- 
+
   return (
     <>
 
@@ -60,8 +60,10 @@ export default function AffixDrawerCart() {
                 </div>
                 <Badge color="green" variant="outline" size="md" >{item.quantity}</Badge>
                 <ActionIcon onClick={() => { removeFromCartFunction(item.id, item.name) }}>
-                  <Tooltip  label="Remove from cart" position="bottom" radius="xl" color="red" >
-                    <ShoppingCartOff size={30} color={'red'} />
+                  <Tooltip label="Remove from cart" position="bottom" radius="xl" color="red" >
+                    <div>
+                      <ShoppingCartOff size={30} color={'red'} />
+                    </div>
                   </Tooltip>
                 </ActionIcon>
               </SimpleGrid>
@@ -70,15 +72,15 @@ export default function AffixDrawerCart() {
           })
           }
           {cartItems.length > 0 &&
-                <SimpleGrid cols={2} spacing="sm" >
-                    <Button fullWidth color="green">
-                        Checkout({totalCost()}) EGP
-                    </Button>
-                    <Button fullWidth color="red"
-                        onClick={() => { dispatch(emptyAllCart()) }}>
-                        Empty the cart </Button>
-                </SimpleGrid>
-            }
+            <SimpleGrid cols={2} spacing="sm" >
+              <Button fullWidth color="green">
+                Checkout({totalCost()}) EGP
+              </Button>
+              <Button fullWidth color="red"
+                onClick={() => { dispatch(emptyAllCart()) }}>
+                Empty the cart </Button>
+            </SimpleGrid>
+          }
         </ScrollArea>
       </Drawer>
 
