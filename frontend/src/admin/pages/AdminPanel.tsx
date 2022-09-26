@@ -18,6 +18,7 @@ import AddProduct from './AddProduct';
 import AddBrand from './AddBrand';
 import AddCategory from './AddCategory';
 import AddCoupon from './AddCoupon';
+import OverviewUsers from './OverviewUsers';
 
 
 export default function AdminPanel() {
@@ -101,6 +102,7 @@ export default function AdminPanel() {
         <Route path='/addbrand' element={<AddBrand/>} />
         <Route path='/addcategory' element={<AddCategory/>} />
         <Route path='/addcoupon' element={<AddCoupon/>} />
+        <Route path='/overviewusers' element={<OverviewUsers/>} />
      </Routes>
 
     </AppShell>

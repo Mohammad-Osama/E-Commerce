@@ -13,7 +13,17 @@ import {
 export const navbarAdminData = [
     { label: 'Dashboard', icon: Gauge,
   //   type: 'dashboard'
-     },
+     },{
+        label: 'Users',
+        icon: ShoppingCart,
+        initiallyOpened: false,
+        links: [
+            { label: 'Overview', route: 'overviewusers' },
+            { label: 'Add User', route: 'adduser' },
+            { label: 'Edit User', route: 'edituser' },
+            { label: 'Remove User', route: 'removeuser' },
+        ],
+    },
     {
         label: 'Products',
         icon: ShoppingCart,
