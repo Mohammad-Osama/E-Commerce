@@ -75,3 +75,10 @@ export const getCloudinarySignature = async () => {
     const data = await axios.get("/api/cloudnarysignature")
     return data.data
 }
+
+export const getAllUsers = async () => {
+    const token = JSON.parse(localStorage.getItem('token') as string)
+    const data = await axios.get<IUser[]>(`/api/users/all`,
+               { headers: { "Authorization": `Bearer ${token}` } })
+    return data.data
+}

@@ -1,4 +1,8 @@
-import { Avatar, Badge, Table, Group, Text, Select, ScrollArea } from '@mantine/core';
+import {useState , useEffect} from 'react'
+import { Avatar, Badge, Table, Group, Text, Select, ScrollArea , Loader } from '@mantine/core';
+import { IUser } from '../../helpers/types';
+import * as api from "../../helpers/api"
+
 
 
 const data =  [
@@ -47,6 +51,18 @@ interface UsersTableProps {
 
 const OverviewUsers = () => {
 
+  const [users, setUsers] = useState<IUser[]>([])
+  const [loading, SetLoading] = useState<boolean>(true)
+
+  const update = async () => {
+    await api.getAllUsers()
+        .then((res) => {
+           console.log("userssssss ", res);
+            setUsers(res as IUser[]);
+        });
+    SetLoading(false);
+}
+
     const rows = data.map((item) => (
         <tr key={item.name}>
           <td>
@@ -78,6 +94,23 @@ const OverviewUsers = () => {
           </td>
         </tr>
       ));
+
+      useEffect(() => {
+     //   window.scrollTo(0, 0)
+        update()
+        return () => {
+            setUsers([]);
+        };
+    }, [loading]);
+
+
+    if (loading === true || users===[] )
+
+        return <Loader width="100%"
+                       size="xl"
+                 />
+
+    else
     
     return (
         <ScrollArea>

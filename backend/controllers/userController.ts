@@ -93,7 +93,7 @@ export async function currentUser(req: Request, res: Response) {
 
 }
 
-export async function allUsers(req: Request, res: Response) {
+export async function getAllUsers(req: Request, res: Response) {
   try {
     // from authjwt middelware 
     const currentUser = ((req as CustomRequest).user)
