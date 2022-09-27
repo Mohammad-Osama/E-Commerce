@@ -79,6 +79,8 @@ export interface IUser {
     country: string;
     address: string;
     coupon: string;
+    role:string;   //newly added
+    status:string;
 };
 
 

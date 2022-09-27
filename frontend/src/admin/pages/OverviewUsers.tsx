@@ -1,52 +1,9 @@
 import {useState , useEffect} from 'react'
-import { Avatar, Badge, Table, Group, Text, Select, ScrollArea , Loader } from '@mantine/core';
+import { Avatar, Badge, Table, Group, Text, Select, ScrollArea , Loader ,
+         ActionIcon ,} from '@mantine/core';
 import { IUser } from '../../helpers/types';
 import * as api from "../../helpers/api"
-
-
-
-const data =  [
-    {
-      "avatar": "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-      "name": "Robert Wolfkisser",
-      "job": "Engineer",
-      "email": "rob_wolf@gmail.com",
-      "role": "Collaborator"
-    },
-    {
-      "avatar": "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-      "name": "Jill Jailbreaker",
-      "job": "Engineer",
-      "email": "jj@breaker.com",
-      "role": "Collaborator"
-    },
-    {
-      "avatar": "https://images.unsplash.com/photo-1632922267756-9b71242b1592?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-      "name": "Henry Silkeater",
-      "job": "Designer",
-      "email": "henry@silkeater.io",
-      "role": "Contractor"
-    },
-    {
-      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-      "name": "Bill Horsefighter",
-      "job": "Designer",
-      "email": "bhorsefighter@gmail.com",
-      "role": "Contractor"
-    },
-    {
-      "avatar": "https://images.unsplash.com/photo-1630841539293-bd20634c5d72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-      "name": "Jeremy Footviewer",
-      "job": "Manager",
-      "email": "jeremy@foot.dev",
-      "role": "Manager"
-    }
-  ]
-interface UsersTableProps {
-    data: { avatar: string; name: string; job: string; email: string; role: string }[];
-  }
-
-  const rolesData = ['Manager', 'Collaborator', 'Contractor'];
+import { UserCircle } from 'tabler-icons-react';
 
 
 const OverviewUsers = () => {
@@ -57,40 +14,53 @@ const OverviewUsers = () => {
   const update = async () => {
     await api.getAllUsers()
         .then((res) => {
-           console.log("userssssss ", res);
+        //   console.log("userssssss ", res);
             setUsers(res as IUser[]);
         });
     SetLoading(false);
 }
 
-    const rows = data.map((item) => (
-        <tr key={item.name}>
+    const rows = users.map((item) => (
+        <tr key={item.id}>
           <td>
             <Group spacing="sm">
-              <Avatar size={40} src={item.avatar} radius={40} />
+            <ActionIcon size='xl' radius='xl'>
+              <UserCircle
+                size={48}
+                strokeWidth={2}
+             //   color={'black'}
+              />
+              </ActionIcon>
               <div>
                 <Text size="sm" weight={500}>
-                  {item.name}
+                  {item.first_name} {item.last_name}
                 </Text>
-                <Text size="xs" color="dimmed">
+               {/*  <Text size="xs" color="dimmed">
                   {item.email}
-                </Text>
+                </Text> */}
               </div>
             </Group>
           </td>
+          <td>
+              <Text size="sm" weight={500}>
+                  {item.email}
+                </Text>
+
+          </td>
     
           <td>
-            <Select data={rolesData} defaultValue={item.role} variant="unstyled" />
+           {item.role==="admin"
+              ?<Badge  color='yellow'>admin</Badge>
+              :<Badge >user</Badge>
+           }
           </td>
-          <td>{Math.floor(Math.random() * 6 + 5)} days ago</td>
           <td>
-            {Math.random() > 0.5 ? (
-              <Badge fullWidth>Active</Badge>
-            ) : (
-              <Badge color="gray" fullWidth>
-                Disabled
-              </Badge>
-            )}
+              {item.status==="active"
+                  ?<Badge  color='green'>active</Badge>
+                  :item.status==="deactivated"
+                  ?<Badge  color='violet'>deactivated</Badge>
+                  :<Badge  color='red'>suspended</Badge>
+              }
           </td>
         </tr>
       ));
@@ -117,10 +87,9 @@ const OverviewUsers = () => {
       <Table sx={{ minWidth: 800 }} verticalSpacing="md">
         <thead>
           <tr>
-            <th>Employee</th>
+            <th>User</th>
+            <th>Email</th>
             <th>Role</th>
-            <th>Last active</th>
-            <th>Status</th>
             <th>Status</th>
           </tr>
         </thead>
