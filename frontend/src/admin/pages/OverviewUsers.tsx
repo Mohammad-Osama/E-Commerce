@@ -84,7 +84,7 @@ const OverviewUsers = () => {
     
     return (
         <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="md">
+      <Table sx={{ minWidth: 800 }} verticalSpacing="md" striped>
         <thead>
           <tr>
             <th>User</th>
