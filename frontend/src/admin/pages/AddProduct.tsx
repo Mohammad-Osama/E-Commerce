@@ -32,7 +32,7 @@ const AddProduct = () => {
 			model: '',
 			stock: 1,
 			price: 0,
-			currency: 'egp',
+			currency: 'USD',
 			description: '',
 			main_image: '',
 			category: '',

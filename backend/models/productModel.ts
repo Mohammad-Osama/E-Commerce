@@ -27,7 +27,7 @@ export interface  IProduct  {
     price: { type: Number, required: [true, "Please add the price"] },
     currency: {
         type: String, 
-        default: "Egp"
+        default: "USD"
     } ,
     stock: { type: Number, required: [true, "Please add the stock"] },
     sale : { type : Number , min: 0, max: 70, default: 0 } ,

@@ -1,9 +1,9 @@
 import { NativeSelect, TextInput } from '@mantine/core';
 
 const data = [
+  { value: 'usd', label: '🇺🇸 USD' },
   { value: 'egp', label: '🇪🇬 EGP' },
   { value: 'eur', label: '🇪🇺 EUR' },
-  { value: 'usd', label: '🇺🇸 USD' },
   { value: 'cad', label: '🇨🇦 CAD' },
   { value: 'gbp', label: '🇬🇧 GBP' },
   { value: 'aud', label: '🇦🇺 AUD' },
