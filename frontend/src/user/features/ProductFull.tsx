@@ -19,7 +19,7 @@ const ProductFull = () => {
     const useStyles = createStyles((theme) => ({
         card: {
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-            minWidth: "100%", minHeight: "100%"
+         //   minWidth: "100%", minHeight: "100%"
         },
 
         section: {
@@ -104,8 +104,8 @@ const ProductFull = () => {
     else
         return (
             <Container mb="xl" px="md" pb="xl" className={classes.container}>
-                <Grid m="xl" columns={12} >
-                    <Grid.Col span={6}  >
+                <Grid m="xl"  >
+                    <Grid.Col  xs={6}  >
                         <Image src={product.main_image}
                             alt="Product"
                             radius={10}
@@ -115,7 +115,7 @@ const ProductFull = () => {
                         />
                     </Grid.Col>
 
-                    <Grid.Col span={6}>
+                    <Grid.Col xs={6}    >
                         <Card withBorder radius="md" p="md" className={classes.card}>
 
                             <Card.Section className={classes.section} >

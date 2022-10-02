@@ -23,7 +23,16 @@ const AppWrapper = () => {
             <PersistGate loading={null} persistor={persistor}>
                 <BrowserRouter>
                     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-                        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+                        <MantineProvider theme={{
+                            colorScheme,
+                            breakpoints: {
+                                xs: 500,
+                                sm: 768,
+                                md: 1000,
+                                lg: 1200,
+                                xl: 1400,
+                            },
+                        }} withGlobalStyles withNormalizeCSS>
                             <NotificationsProvider position="top-center" >
                                 <ModalsProvider>
                                     <App />
