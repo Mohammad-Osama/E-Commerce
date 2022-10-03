@@ -15,7 +15,7 @@ const UserDisplay = () => {
         )
     else
         return (
-            <Text size="sm" component={Link} to="/loginregister" >
+            <Text style={{padding: '8px 12px',}} size="sm" component={Link} to="/loginregister" >
                 Login
             </Text>
         )
