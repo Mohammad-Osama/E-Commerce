@@ -32,7 +32,7 @@ export default function AdminPanel() {
 
   }
 
-  let child;
+  /* let child;
   switch (type) {
     case 'overview products':
       child = <Text>overview products</Text>;
@@ -45,7 +45,7 @@ export default function AdminPanel() {
       break;
     default:
       child = <Text>eeeeeeeeeeeee</Text>;
-  }
+  } */
   useEffect(() => {
 
     return () => {

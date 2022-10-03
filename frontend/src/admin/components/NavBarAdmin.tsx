@@ -96,20 +96,29 @@ const NavBarAdmin = ({ hidden, handleClick }: NavBarAdminProps) => {
             </Navbar.Section>
 
             <Navbar.Section grow className={classes.links}  >
-                <ScrollArea style={{ height: 350 }} offsetScrollbars>
+                <ScrollArea sx={(theme) => ({
+                                [theme.fn.largerThan('sm')]: { height: 350 },
+                                [theme.fn.smallerThan('sm')]: { height: 150 },
+                            })}/* style={{ height: 350 }}  */offsetScrollbars>
                    
                     <div className={classes.linksInner}>{links}</div>
+                    <a href="#" className={classes.link} onClick={(event) => {event.preventDefault()
+                                                                          dispatch(logout())
+                                                                          navigate("/") }                   }>
+                    <Logout className={classes.linkIcon} />
+                    <span>Logout</span>
+                </a>
                 </ScrollArea>
             </Navbar.Section>
 
-            <Navbar.Section mt="xs" className={classes.footer}>
+            {/* <Navbar.Section mt="xs" className={classes.footer}>
                 <a href="#" className={classes.link} onClick={(event) => {event.preventDefault()
                                                                           dispatch(logout())
                                                                           navigate("/") }                   }>
                     <Logout className={classes.linkIcon} />
                     <span>Logout</span>
                 </a>
-            </Navbar.Section>
+            </Navbar.Section> */}
         </Navbar>
     )
 }

@@ -78,7 +78,7 @@ export const navbarAdminData = [
 ];
 
 
-export const about ={ desc:`Its a E-commercer app built from scratch using the Mern stack ,Redux toolkit , Typescript and Mantine liberary.
+export const about ={ desc:`Its a E-commerce app with a simple ui, built from scratch using the Mern stack ,Redux toolkit , Typescript and Mantine liberary.
                             \nTwo types of users can interact with it (user and admin) and each has their own pages.` ,
                       features:`\u2022 Home page sorted by categories,with on-sale and featured at the top
                                 \n\u2022 A full detailed page of the product when clicking the product picture
@@ -88,7 +88,7 @@ export const about ={ desc:`Its a E-commercer app built from scratch using the M
                                 \n\u2022 View products by cateogry/brand
                                 \n\u2022 A drawer that displays the cart
                                 \n\u2022 Authentication
-                                \n\u2022 Notifination with failed login
+                                \n\u2022 Notification with failed login
                                 \n\u2022 Add review/rating
                                 \n\u2022 User profile
                                 \n\u2022 Error page
@@ -115,6 +115,7 @@ export const about ={ desc:`Its a E-commercer app built from scratch using the M
                                 \n\u2022 admin@admin.com  :  admin `  ,
                       issues:`\u2022 error page apears for a split second after login ` ,
                       plans:`\u2022 user- checkout page
+                             \n\u2022 user- responsive dashboard
                              \n\u2022 admin- edit side navbar
                              \n\u2022 admin- search users ` ,  
                         
