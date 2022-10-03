@@ -16,7 +16,7 @@ const UserDisplay = () => {
     else
         return (
             <Text size="sm" component={Link} to="/loginregister" >
-                Login/Register
+                Login
             </Text>
         )
 }

@@ -74,7 +74,7 @@ export default function AffixDrawerCart() {
           {cartItems.length > 0 &&
             <SimpleGrid cols={2} spacing="sm" >
               <Button fullWidth color="green">
-                Checkout({totalCost()}) EGP
+                Checkout({totalCost()}) $
               </Button>
               <Button fullWidth color="red"
                 onClick={() => { dispatch(emptyAllCart()) }}>

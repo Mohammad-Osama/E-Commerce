@@ -1,5 +1,15 @@
 import React, { forwardRef } from 'react'
-import { createStyles, Header, ActionIcon, Group, Burger, Container, Text, Autocomplete ,Avatar} from '@mantine/core';
+import {
+    createStyles,
+    Header,
+    ActionIcon,
+    Group,
+    Burger,
+    Container,
+    Text,
+    Autocomplete, Avatar,
+    Menu,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ShoppingCart } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
@@ -11,6 +21,7 @@ import { IProduct } from '../../helpers/types';
 import * as api from "../../helpers/api"
 import ThemeButton from '../components/ThemeButton';
 import CartIcon from './CartIcon';
+import BurgerMenu from './BurgerMenu';
 
 const useStyles = createStyles((theme) => ({
     search: {
@@ -37,7 +48,7 @@ const useStyles = createStyles((theme) => ({
 
     link: {
         display: 'block',
-        cursor:"pointer",
+        cursor: "pointer",
         lineHeight: 1,
         padding: '8px 12px',
         borderRadius: theme.radius.sm,
@@ -53,16 +64,16 @@ const useStyles = createStyles((theme) => ({
 
     linkLabel: {
         marginRight: 5,
-        
+
     },
     text: {
         display: 'block',
-        
+
         padding: '8px 12px',
         borderRadius: theme.radius.sm,
         textDecoration: 'none',
         color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-     //   fontSize: theme.fontSizes.sm,
+        //   fontSize: theme.fontSizes.sm,
         fontWeight: 700,
 
         '&:hover': {
@@ -78,7 +89,7 @@ export function Navbar() {
     const [opened, { toggle }] = useDisclosure(false);
     const [products, setProducts]: [IProduct[], (category: IProduct[]) => void] = useState(emptyProducts)
     const { classes } = useStyles();
-
+    const [userMenuOpened, setUserMenuOpened] = useState(false);
     const query = useRef<HTMLInputElement>(null);
     const navigate = useNavigate()
 
@@ -116,8 +127,8 @@ export function Navbar() {
 
     useEffect(() => {
         if (query.current !== null) {
-            if (query.current.value === "" 
-                || query.current.value === undefined 
+            if (query.current.value === ""
+                || query.current.value === undefined
                 || query.current.value === null)
                 setProducts([])
             else
@@ -132,17 +143,17 @@ export function Navbar() {
 
     return (
         <Header height={60} mb={12}>
-            <Container size ="xl">
+            <Container size="xl">
                 <div className={classes.inner}>
                     <Link style={{ textDecoration: 'none', color: 'black' }} to="./">
-                        <Text 
-                               size="xl"
-                               color="dimmed"
-                               className={classes.text}>
+                        <Text
+                            size="xl"
+                            color="dimmed"
+                            className={classes.text}>
                             Home
                         </Text>
                     </Link>
-                    <Autocomplete style={{minWidth:"40%"}}
+                    <Autocomplete style={{ minWidth: "40%" }}
                         transition="pop-top-left"
                         transitionDuration={80}
                         transitionTimingFunction="ease"
@@ -153,34 +164,35 @@ export function Navbar() {
 
                         data={SearchedProducts()}
                         ref={query}
-                        itemComponent={forwardRef(({value, id, image,price,...others}, query) => {
-                                // rendered results is causing an error,cant fix it
+                        itemComponent={forwardRef(({ value, id, image, price, ...others }, query) => {
+                            // rendered results is causing an error,cant fix it
                             return (
-                              <div {...others}  ref={query}>                     
-                                                       
-                               <Group noWrap> 
-                                   <Avatar src={image} /> 
-                        
-                                   <div>
-                                      <Text>{value}</Text>
-                                      <Text size="xs" color="dimmed">
-                                        {price}
-                                      </Text>
-                                    </div> 
-                                  </Group>                        
-                                 
-                            </div>  
+                                <div {...others} ref={query}>
+
+                                    <Group noWrap>
+                                        <Avatar src={image} />
+
+                                        <div>
+                                            <Text>{value}</Text>
+                                            <Text size="xs" color="dimmed">
+                                                {price}
+                                            </Text>
+                                        </div>
+                                    </Group>
+
+                                </div>
                             )
-                          })}
-                          onChange={() => { if (query.current !== null){
-                                                 Search(query.current.value) 
-                                                }                   
-                                          }}
-            
-            
-                           onItemSubmit={(item) => 
-                              navigate(`/product/${item.id}`)  
+                        })}
+                        onChange={() => {
+                            if (query.current !== null) {
+                                Search(query.current.value)
                             }
+                        }}
+
+
+                        onItemSubmit={(item) =>
+                            navigate(`/product/${item.id}`)
+                        }
                     />
 
                     <Group spacing={5} className={classes.links} >
@@ -189,19 +201,15 @@ export function Navbar() {
 
                     <Group spacing={5} className={classes.links} >  {/*  maybe remove this group ?! */}
                         <ActionIcon<typeof Link> component={Link} to="/cart" >
-                           <CartIcon/>
+                            <CartIcon />
                         </ActionIcon>
-                        
+
                     </Group>
 
                     <UserDisplay />
-                    <ThemeButton/>
-                    <Burger
-                        opened={opened}
-                        onClick={toggle}
-                        className={classes.burger}
-                        size="sm"
-                    />
+                    <ThemeButton /* hidden={opened} */ />
+
+                    <BurgerMenu/>
                 </div>
             </Container>
         </Header>
