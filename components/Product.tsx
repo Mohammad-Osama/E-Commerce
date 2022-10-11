@@ -16,7 +16,7 @@ interface X {
 
 
 const Product = ({ product }: X) => {
-  const { id, name, main_image, price, currency, stock, rating_count, rating_total, description, model } = product
+  const { _id, name, main_image, price, currency, stock, rating_count, rating_total, description, model } = product
   const theme = useMantineTheme();
 
   const router=useRouter()
@@ -26,7 +26,7 @@ const Product = ({ product }: X) => {
     <div style={{ width: "90%", margin: 'auto' }} >
       <Card shadow="sm" p="lg">
         <Card.Section mt="xs">
-          <Link href='/productFull/[id]' as={`/productFull/${id}`}
+          <Link href='/productFull/[_id]' as={`/productFull/${_id}`}
          /*  href={{
             pathname: 'productFull/[id]',
             query: { post: 'post-1', comment: 'comment-1' },

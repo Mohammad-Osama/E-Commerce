@@ -13,8 +13,9 @@ import AddReview from '../../../components/AddReview';
 import { Rating } from '@smastrom/react-rating';
 import { authState } from '../../../redux/slices/authSlice';
 import { useSelector } from 'react-redux';
-import { GetStaticProps, GetStaticPropsResult, GetServerSideProps, GetStaticPropsContext } from 'next';
+import { GetStaticProps, GetStaticPropsResult, GetServerSideProps, GetStaticPropsContext, GetServerSidePropsResult } from 'next';
 //import { server } from '../../../config';
+import { Product as ProductModel }   from '../../../models/productModel';
 
 
 const ProductFull = ({productProps , loadingProps}:X) => {
@@ -233,14 +234,18 @@ interface X {
     loadingProps: boolean
 }
 const url = process.env.NEXT_PUBLIC_URL
-export async function getStaticProps(context:GetStaticPropsContext): Promise<GetStaticPropsResult<X>> {
+export async function getServerSideProps(context:GetStaticPropsContext): Promise<GetServerSidePropsResult<X>> {
 
     try {
-        const dataProduct = await fetch(`/api/products/${context.params?.id}`)
-        const product = await dataProduct.json() as unknown as IProduct
+        const product = await ProductModel.findById(context.params?._id)
+                                          .lean()
+                                          .select(['-createdAt', '-updatedAt' , '-__v'])
+        product._id = product._id.toString()
+        product.category = product.category.toString()
+        product.brand = product.brand.toString()
         return {
             props: {
-                productProps: JSON.parse(JSON.stringify(product)),
+                productProps: product as IProduct,
                 loadingProps: false
             },
         }
@@ -253,22 +258,10 @@ export async function getStaticProps(context:GetStaticPropsContext): Promise<Get
             },
         }
     }
-
-   /*  const datacategories = await fetch('http://localhost:3000/api/categories')
-    const dataProducts = await fetch('http://localhost:3000/api/products')
-    const categories = await datacategories.json() as unknown as ICategory[]
-    const products = await dataProducts.json() as unknown as IProduct[]
-    return {
-        props: {
-            categoriesProps: JSON.parse(JSON.stringify(categories)),
-            productsProps: JSON.parse(JSON.stringify(products)),
-            loadingProps: false
-        },
-    } */
 } 
 
 
-export async function getStaticPaths() {
+/* export async function getStaticPaths() {
    // const url = process.env.NEXT_PUBLIC_URL
     const data = await fetch(`/api/products`)
     const allProducts = await data.json()as unknown as IProduct[]
@@ -280,4 +273,4 @@ export async function getStaticPaths() {
       paths,
       fallback: false, // can also be true or 'blocking'
     }
-  }
+  } */
