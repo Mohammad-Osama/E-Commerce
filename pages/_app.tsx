@@ -16,7 +16,7 @@ import { GetStaticProps , GetStaticPropsResult } from 'next';
 import { InferGetStaticPropsType } from 'next'
 import * as api from "../helpers/api"
 import axios from "axios"
-
+import '@smastrom/react-rating/style.css';
 
 interface asd extends AppProps {
     ccc: ICategory[]

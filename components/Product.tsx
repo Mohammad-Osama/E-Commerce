@@ -9,6 +9,7 @@ import CartButtons from "./CartButtons"
 import { useRouter } from 'next/router';
 //import { server } from "../config";
 import Link from 'next/link'
+import React, { useState, useEffect } from 'react'
 
 interface X {
   product: IProduct;
@@ -21,7 +22,9 @@ const Product = ({ product }: X) => {
 
   const router=useRouter()
 
-
+useEffect(() => {
+  console.log(product)
+}, [])
   return (
     <div style={{ width: "90%", margin: 'auto' }} >
       <Card shadow="sm" p="lg">
