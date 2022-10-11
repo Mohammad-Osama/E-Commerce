@@ -16,7 +16,7 @@ interface X {
 
 
 const CartButtons = ({ product }: X) => {
-    const { id, name, main_image, price, currency, stock, rating_count, rating_total, description, model, images, featured, sale, category, brand } = product
+    const { _id, name, main_image, price, currency, stock, rating_count, rating_total, description, model, images, featured, sale, category, brand } = product
     const [quantity, setQuantity] = useState<number>(1)
     const [currentQuantity, setCurrentQuantity] = useState<number>(0)
     const [full, setFull] = useState<boolean>(false)
@@ -27,7 +27,7 @@ const CartButtons = ({ product }: X) => {
 
     const cartItems = useSelector(cartState)
     const thisProductInCart = cartItems.filter((item) => {
-        return id === item.id
+        return _id === item._id
     })
     const thisProduct = thisProductInCart[0];
 
@@ -62,7 +62,7 @@ const CartButtons = ({ product }: X) => {
     }
 
     let productToCart: IProductCart = {
-        id: id,
+        _id: _id,
         name: name,
         model: model,
         main_image: main_image,
@@ -107,8 +107,8 @@ const CartButtons = ({ product }: X) => {
 
 
 
-    const removeFromCartFunction = (id: string): void => {
-        dispatch(removeFromCart(id))
+    const removeFromCartFunction = (_id: string): void => {
+        dispatch(removeFromCart(_id))
         setQuantity(1)
         showNotification({
             title: "Cart changed",
@@ -192,7 +192,7 @@ const CartButtons = ({ product }: X) => {
                 <Minus size={16} />
             </ActionIcon>
             {currentQuantity > 0 &&
-                <ActionIcon onClick={() => { removeFromCartFunction(id) }}>
+                <ActionIcon onClick={() => { removeFromCartFunction(_id) }}>
                     <Tooltip label="Remove from cart" position="bottom" radius="xl" color="red" >
                         <div>
                         <ShoppingCartOff size={30} color={'red'} />

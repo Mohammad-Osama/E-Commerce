@@ -17,7 +17,7 @@ const cartSlice = createSlice({
     reducers: {
         addToCart: (state, action: PayloadAction<IProductCart>) => {
             const existingCartItemIndex = state.items.findIndex(
-                (item) => item.id === action.payload.id
+                (item) => item._id === action.payload._id
             );
             const existingCartItem = state.items[existingCartItemIndex];
             let updatedItems;
@@ -45,7 +45,7 @@ const cartSlice = createSlice({
         },
         removeFromCart: (state, action : PayloadAction<string>) => {
 
-            state.items = state.items.filter((item) => item.id !== action.payload);
+            state.items = state.items.filter((item) => item._id !== action.payload);
         } ,
         emptyAllCart: (state) => {
             state.items = []

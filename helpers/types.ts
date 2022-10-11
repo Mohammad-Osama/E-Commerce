@@ -17,7 +17,7 @@ export interface IProduct {
 };
 
 export interface IProductCart {
-    id: string;
+    _id: string;
     name: string;
     model: string;
     main_image: string;
