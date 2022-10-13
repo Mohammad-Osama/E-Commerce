@@ -104,7 +104,7 @@ const MenuInNav = (/* {categories}:X  */) => {
                     <Menu.Dropdown>
 
                         {categories?.map((x) => {
-                            return <Menu.Item key={x._id}   // can add an icon if needed 
+                            return <Menu.Item key={x.name}   // can add an icon if needed 
                                    /*  onClick={()=>
                                         router.push({{ pathname: '/about', query: { name: 'test' } }})
                                     } */
@@ -139,7 +139,7 @@ const MenuInNav = (/* {categories}:X  */) => {
                     </Menu.Target>
                     <Menu.Dropdown>
                         {brands?.map((x) => {
-                            return <Menu.Item key={x._id}   // can add an icon if needed
+                            return <Menu.Item key={x.name}   // can add an icon if needed
 
                             component={NextLink}
                             href={{ pathname: `/browse/${x._id}`, query: { type: 'brand'}}}
