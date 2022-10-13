@@ -191,7 +191,7 @@ export function Navbar(/* {categories}:X */) {
                                         <div>
                                             <Text>{value}</Text>
                                             <Text size="xs" color="dimmed">
-                                                {price}
+                                                {price} $
                                             </Text>
                                         </div>
                                     </Group>

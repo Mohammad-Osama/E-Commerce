@@ -1,12 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import mongoose from "mongoose"
 import { Product, IProduct } from "../../../../models/productModel"
+import clientPromise from "../../../../lib/db"
 
 
-export async function controller(req: NextApiRequest, res: NextApiResponse) {
-    const queryName = req.query.name as any
+export default async function controller(req: NextApiRequest, res: NextApiResponse) {
+    await clientPromise()
+    const queryName = req.query.name 
     try {
-        const products = await Product.find({
+        const products :IProduct[] = await Product.find({
             "name": { "$regex": `${queryName}`, '$options': 'i' },
         }).limit(10)
 
