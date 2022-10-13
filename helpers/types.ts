@@ -44,7 +44,7 @@ export interface ICategory {
 }
 
 export interface IBrand {
-    id?: string;
+    _id: string;
     name: string;
     description: string;
     logo: string
@@ -90,4 +90,16 @@ export interface IReviewaddForm {
     rating: number |null
     user: string |null
     product:string | string[] | undefined
+}
+
+
+export interface CategoriesProps {
+    categories :ICategory[]
+}
+export interface BrandsProps {
+    brands :IBrand[]
+}
+export interface MenuProps {
+    categories :ICategory[]
+    brands :IBrand[]
 }

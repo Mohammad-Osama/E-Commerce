@@ -13,6 +13,7 @@ import clientPromise from '../lib/db';
 //import { server } from '../config';
 import { Product as ProductModel }   from '../models/productModel';
 import { Category as CategoryModel }   from '../models/categoryModel';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = createStyles((theme) => ({
@@ -45,10 +46,8 @@ const Home: NextPage<X> = ({ categoriesProps, productsProps, loadingProps }: X) 
     const [loading, SetLoading] = useState<boolean>(true)
 
 
-
     useEffect(() => {
         window.scrollTo(0, 0)
-        
         setCategories(categoriesProps);
         setProducts(productsProps);
         SetLoading(loadingProps)

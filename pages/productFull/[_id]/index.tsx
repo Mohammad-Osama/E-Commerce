@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { GetStaticProps, GetStaticPropsResult, GetServerSideProps, GetStaticPropsContext, GetServerSidePropsResult } from 'next';
 //import { server } from '../../../config';
 import { Product as ProductModel }   from '../../../models/productModel';
+import clientPromise from '../../../lib/db';
 
 
 const ProductFull = ({productProps , loadingProps}:X) => {
@@ -235,7 +236,7 @@ interface X {
 }
 const url = process.env.NEXT_PUBLIC_URL
 export async function getServerSideProps(context:GetStaticPropsContext): Promise<GetServerSidePropsResult<X>> {
-
+   await clientPromise()
     try {
         const product = await ProductModel.findById(context.params?._id)
                                           .lean()

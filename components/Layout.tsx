@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Container, useMantineTheme, createStyles } from '@mantine/core';
-//import { Navbar } from './navbar/NavBar';
+import { Navbar } from './navbar/NavBar';
 //import AffixApp from './features/AffixApp';
 //import AffixDrawerCart from './features/AffixDrawerCart';
 import clientPromise from '../lib/db';
@@ -8,7 +8,10 @@ import { GetStaticProps , GetStaticPropsResult } from 'next';
 import { InferGetStaticPropsType } from 'next'
 import { ICategory, IBrand } from '../helpers/types';
 import * as api from "../helpers/api"
+import { useState, useEffect } from "react";
 
+import { AppDispatch } from '../redux/store';
+import { useDispatch } from 'react-redux';
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -28,12 +31,18 @@ type LayoutProps = {
    /*  categories:ICategory[] */
 };
 
-const Layout = ({ children }: LayoutProps /* , {categories}:X */) => {
-    const { classes } = useStyles()
+const Layout = ({ children }: LayoutProps , /* {categories}:X */) => {
 
+    
+    const { classes } = useStyles()
+   // const dispatch = useDispatch<AppDispatch>()
+    /* useEffect(() => {
+        console.log(categories)
+        
+    }, []) */
     return (
         <div className={classes.container}>
-            {/* <Navbar categories={categories}/> */}
+            <Navbar /* categories={categories} *//>
               <main>{children}</main>
             {/* <AffixApp />
             <AffixDrawerCart /> */}

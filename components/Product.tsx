@@ -23,7 +23,7 @@ const Product = ({ product }: X) => {
   const router=useRouter()
 
 useEffect(() => {
-  console.log(product)
+  //console.log(product)
 }, [])
   return (
     <div style={{ width: "90%", margin: 'auto' }} >

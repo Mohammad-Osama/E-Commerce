@@ -23,4 +23,4 @@ const BrandSchema = new mongoose.Schema<IBrand>({
         }
     })
 
-export const Brand = mongoose.model<IBrand>('Brand', BrandSchema);
+export const Brand = mongoose.models.Brand || mongoose.model<IBrand>('Brand', BrandSchema);
