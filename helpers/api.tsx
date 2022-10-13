@@ -9,7 +9,7 @@ import {
     IReview
 } from "./types"
 
-
+const apiUrl=process.env.NEXT_PUBLIC_URL
 export const getProducts = async () => {
     const data = await axios.get<IProduct[]>(`/api/products`)
     return data.data
@@ -17,12 +17,12 @@ export const getProducts = async () => {
 
 export const getCategories = async () => {
 
-    const data = await axios.get<ICategory[]>('http://localhost:3000/api/categories')
+    const data = await axios.get<ICategory[]>(`${apiUrl}/api/categories`)
     return data.data
 }
 
 export const getBrands = async () => {
-    const data = await axios.get<IBrand[]>('/api/brands')
+    const data = await axios.get<IBrand[]>(`${apiUrl}/api/brands`)
     return data.data
 }
 

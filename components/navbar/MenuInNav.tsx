@@ -47,7 +47,7 @@ const MenuInNav = (/* {categories}:X  */) => {
     const emptyCategories: ICategory[] = [];
     const emptyBrands: IBrand[] = [];
     const [categories, setCategories]: [ICategory[], (category: ICategory[]) => void] = useState(emptyCategories)
-   // const [brands, setBrands]: [IBrand[], (category: IBrand[]) => void] = useState(emptyBrands)
+    const [brands, setBrands]: [IBrand[], (category: IBrand[]) => void] = useState(emptyBrands)
 
 
     const getCategories = async () => {
@@ -57,27 +57,27 @@ const MenuInNav = (/* {categories}:X  */) => {
             });
     }
 
-    /* const getBrands = async () => {
+    const getBrands = async () => {
         await api.getBrands()
             .then((res) => {
              setBrands(res as IBrand[]);
             });
-    } */
+    }
 
     const router =useRouter()
 
 
     useEffect(() => {
         getCategories()
-     //   getBrands()
+        getBrands()
 
         return () => {
             setCategories([])
-         //  setBrands([])
+            setBrands([])
         }
     }, []);
 
-    if (categories === undefined /* || brands === undefined */)
+    if (categories === undefined || brands === undefined)
         return (
             <Loader />
         )
@@ -138,15 +138,15 @@ const MenuInNav = (/* {categories}:X  */) => {
                         </a>
                     </Menu.Target>
                     <Menu.Dropdown>
-                       {/*  {brands?.map((x) => {
-                            return <Menu.Item key={x.id}   // can add an icon if needed
+                        {brands?.map((x) => {
+                            return <Menu.Item key={x._id}   // can add an icon if needed
 
                             component={NextLink}
-                            href={{ pathname: `/browse/${x.id}`, query: { type: 'brand'}}}
+                            href={{ pathname: `/browse/${x._id}`, query: { type: 'brand'}}}
                             >
                                 {x.name}
                             </Menu.Item>
-                        })} */}
+                        })}
 
                     </Menu.Dropdown>
 

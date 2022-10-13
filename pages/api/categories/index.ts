@@ -3,21 +3,16 @@ import { Category , ICategory } from "../../../models/categoryModel"
 import clientPromise from "../../../lib/db"
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse){
+  await clientPromise()
     try {
-      console.log("file starteddddd")
-       clientPromise()
-     
       
-      
-      
+
       const categories :ICategory[] =  await Category.find()
-  
-      // console.log("in get after find")
-      // console.log("categoriesssssssss" , categories)
+
       res.status(200).json(categories)
-      console.log("in get after send")
+     
     } catch (error) {
-      console.log("errorrrrrrrrrrrrr" ,error)
+      res.status(400).json(`Error==>${error}`);
     }
    
     //  res.json("in get after find ressssss")
