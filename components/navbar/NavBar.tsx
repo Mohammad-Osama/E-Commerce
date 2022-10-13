@@ -92,6 +92,7 @@ const useStyles = createStyles((theme) => ({
 
 
 export function Navbar(/* {categories}:X */) {
+    
     const emptyProducts: IProduct[] = [];
     const [opened, { toggle }] = useDisclosure(false);
     const [products, setProducts]: [IProduct[], (category: IProduct[]) => void] = useState(emptyProducts)
