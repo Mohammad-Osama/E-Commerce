@@ -75,7 +75,7 @@ const useStyles = createStyles((theme) => ({
     },
     text: {
         display: 'block',
-
+        cursor: "pointer",
         padding: '8px 12px',
         borderRadius: theme.radius.sm,
         textDecoration: 'none',
@@ -161,8 +161,10 @@ export function Navbar(/* {categories}:X */) {
         <Header height={60} mb={12}>
             <Container size="xl">
                 <div className={classes.inner}>
-                    <Link style={{ textDecoration: 'none', color: 'black' }} href="./">
-                        <Text
+                    <Link style={{ textDecoration: 'none',
+                                    color: 'black', }}
+                                     href="/">
+                        <Text component="a"
                             size="xl"
                             color="dimmed"
                             className={classes.text}>

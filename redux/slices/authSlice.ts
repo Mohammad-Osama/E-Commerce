@@ -12,6 +12,7 @@ import { RootState } from "../store"
  */
 
 //const userData = parseJwt(token)
+const apiUrl=process.env.NEXT_PUBLIC_URL
 interface IState {
     id: string |null;
     role:  string
@@ -44,7 +45,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (userInput :any , thunkAPI) => {  // type to userinput to be added later ??
     try {
-      const response = await axios.post("/api/users/login", userInput)
+      const response = await axios.post(`${apiUrl}/api/users/login`, userInput)
      // console.log('response login', response);
       if (response.data) {
         localStorage.setItem('token', JSON.stringify(response.data.token))
@@ -77,7 +78,7 @@ export const register = createAsyncThunk(
   "auth/register",
   async (userInput :any, thunkAPI) => {  // type to userinput to be added later ??
     try {
-      const response = await axios.post("/api/users/register", userInput)
+      const response = await axios.post(`${apiUrl}/api/users/register`, userInput)
       console.log('response register', response);
       if (response.data) {
         localStorage.setItem('token', JSON.stringify(response.data.token))
