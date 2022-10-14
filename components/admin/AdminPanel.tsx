@@ -14,6 +14,7 @@ import NavBarAdmin from './NavBarAdmin';
 import ErrorPage from '../../components/ErrorPage';
 import { authState } from "../../redux/slices/authSlice";
 import { useSelector } from "react-redux";
+import AddProduct from './add product/AddProduct';
 /* import {Routes, Route } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import AddBrand from './AddBrand';
@@ -35,8 +36,8 @@ export default function AdminPanel() {
 
   let child;
   switch (type) {
-    case 'overview products':
-      child = <Text>overview products</Text>;
+    case 'Add Product':
+      child = <AddProduct/>
       break;
     case 'Add Product':
       child = <Text>Add Product</Text>;
@@ -45,11 +46,11 @@ export default function AdminPanel() {
       child = <Text>Dashboard</Text>;
       break;
     default:
-      child = <Text>eeeeeeeeeeeee</Text>;
+      child = <Text>Not done yet </Text>;
   }
   const { role } = useSelector(authState)
   useEffect(() => {
-
+console.log("type" , type)
     return () => {
 
     }

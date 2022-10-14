@@ -29,7 +29,7 @@ export const navbarAdminData = [
         icon: ShoppingCart,
         initiallyOpened: false,
         links: [
-            { label: 'Overview', route: 'overviewproducts' },
+            { label: 'Overview Products', route: 'overviewproducts' },
             { label: 'Add Product', route: 'addproduct' },
             { label: 'Edit Product', route: 'editproduct' },
             { label: 'Remove Product', route: 'removeproduct' },

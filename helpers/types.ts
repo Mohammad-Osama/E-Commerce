@@ -36,15 +36,17 @@ export interface IProductCart {
 };
 
 
-export interface ICategory {
+export interface ICategory {  //remove id when data is fixed in mongo
     _id: string;
+    id: string;
     name: string;
     description: string;
     logo: string
 }
 
-export interface IBrand {
+export interface IBrand {  //remove id when data is fixed in mongo
     _id: string;
+    id: string;
     name: string;
     description: string;
     logo: string
