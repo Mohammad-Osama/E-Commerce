@@ -5,6 +5,7 @@ export async function authCode(req: NextApiRequest ,res:NextApiResponse) {
 
     if (req.body.code ) {
         const code = req.body.code
+        console.log("cccccccccc" , code )
         if (code === process.env.SECRET_CODE) {
             //  res.status(200).json("right code !")                          
          

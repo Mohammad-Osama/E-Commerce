@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import mongoose from "mongoose"
 import { User, IUser } from "../../../../models/userModel"
-import { generateToken } from "../../../../helpers/generateToken"
 import bcrypt from "bcryptjs"
 import clientPromise from "../../../../lib/db"
+import * as jose from 'jose';
 
 
 export default async function controller(req: NextApiRequest, res: NextApiResponse) {
@@ -11,11 +11,17 @@ export default async function controller(req: NextApiRequest, res: NextApiRespon
     if (req.method === 'POST') {
         try {
             const { email, password } = req.body
-            const userExists = await User.findOne({ email })
+            const userExists :IUser |null = await User.findOne({ email })
             if (userExists) {
                 const matched = await bcrypt.compare(password, userExists.password)
                 if (matched === true) {
-                    const token = generateToken(userExists.id)
+                    const id = userExists.id
+                    const token =   await new  jose.SignJWT({id})
+                                    .setProtectedHeader({ alg: 'HS256' })
+                                    .setIssuedAt()
+                                    .setExpirationTime('30d')
+                                    .sign(new TextEncoder().encode("process.env.NEXT_PUBLIC_URL" ) );
+                
                     res.status(201).json({
                         id: userExists.id,
                         first_name: userExists.first_name,
