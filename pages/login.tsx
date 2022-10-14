@@ -22,7 +22,7 @@ import { AppDispatch } from '../redux/store';
 import ErrorPage from '../components/ErrorPage';
 
 
-const Login = (props: PaperProps) => {
+const Login = (props: PaperProps ) => {
     const [type, toggle] = useToggle(['login', 'register']);
   const form = useForm({
     initialValues: {
@@ -91,6 +91,7 @@ const Login = (props: PaperProps) => {
 
 
   useEffect(() => {  // maybe use layouteffect instead 
+    
     if (isError) {
       handleError()
     }
@@ -106,8 +107,8 @@ const Login = (props: PaperProps) => {
    dispatch(reset())
 
   }, [isError, isSuccess])
-
-  if (id!==null )  // apprears for a second on login , might need adjustment
+  
+   if (id!==null )  // apprears for a second on login , might need adjustment
    return (
       <ErrorPage/>
    )

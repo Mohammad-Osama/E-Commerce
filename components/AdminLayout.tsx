@@ -1,3 +1,4 @@
+
 import React, { ReactElement } from 'react'
 import { Container, useMantineTheme, createStyles } from '@mantine/core';
 import { Navbar } from './navbar/NavBar';
@@ -14,7 +15,6 @@ import { authState, login, register, reset } from '../redux/slices/authSlice';
 import { AppDispatch } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import TempUser from './TempUser';
-import AdminPanel from './admin/AdminPanel';
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -34,35 +34,23 @@ type LayoutProps = {
     /*  categories:ICategory[] */
 };
 
-const Layout = ({ children }: LayoutProps, /* {categories}:X */) => {
+const AdminLayout = ({ children }: LayoutProps) => {
 
 
     const { classes } = useStyles()
     const userState = useSelector(authState)
 
     const { role } = userState
-    // const dispatch = useDispatch<AppDispatch>()
-    /* useEffect(() => {
-        console.log(categories)
-        
-    }, []) */
-    if (role === "admin")
-        return (<div className={classes.container}>
-                 <AdminPanel/>
-                   
-                </div>
-        )
-    else
+    const dispatch = useDispatch<AppDispatch>()
+
         return (
             <div className={classes.container}>
-                <Navbar /* categories={categories} */ />
-                <main>{children}</main>
-                {/* <AffixApp />
-            <AffixDrawerCart /> */}
+                 <TempUser/>
+                   <main>{children}</main>
             </div>
         )
 }
 
-export default Layout
+export default AdminLayout
 
 

@@ -151,11 +151,11 @@ export function Navbar(/* {categories}:X */) {
         };
     }, [query,role]);
 
-    if (role==="admin")
+    /* if (role==="admin")
 
         return null
 
-    else 
+    else  */
     
     return (
         <Header height={60} mb={12}>

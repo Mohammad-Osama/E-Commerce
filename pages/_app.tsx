@@ -7,40 +7,25 @@ import { persistStore } from 'redux-persist';
 import { NotificationsProvider } from '@mantine/notifications';
 import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
-//import { Navbar } from '../components/navbar/NavBar';
 import Layout from '../components/Layout';
-import { ICategory, IBrand } from '../helpers/types';
-import clientPromise from '../lib/db';
-import { GetStaticProps, GetStaticPropsResult, GetServerSideProps, GetStaticPropsContext, GetServerSidePropsResult } from 'next';
-
 import { InferGetStaticPropsType } from 'next'
-import * as api from "../helpers/api"
-import axios from "axios"
 import '@smastrom/react-rating/style.css';
-import { Category as CategoryModel } from '../models/categoryModel';
-import { useDispatch } from 'react-redux';
-import { useState, useEffect } from "react";
-// import { getCategories } from '../redux/slices/categoriesSlice'
-// import { AppDispatch } from '../redux/store';
+import { useState} from "react";
 
-interface asd extends AppProps {
-    ccc: ICategory[]
-}
 
 let persistor = persistStore(store);
 
+interface CustomPageProps { // <--- your custom page props
+    typelayout: string
+}
 
+function MyApp({ Component, pageProps }: AppProps<CustomPageProps>, /* { categories }: X */) {
 
-function MyApp({ Component, pageProps }: AppProps, /* { categories }: X */) {
-    /*  const dispatch = useDispatch<AppDispatch>()
-     useEffect(() => {
-         dispatch(getCategories(""))
-         
-     }, []) */
 
     const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
     const toggleColorScheme = (value?: ColorScheme) =>
         setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
@@ -58,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps, /* { categories }: X */) {
                         <NotificationsProvider position="top-center" >
                             <ModalsProvider>
                                 <Layout /* categories={categories} */>
-                                    <Component {...pageProps} />
+                                    <Component  {...pageProps} />
                                 </Layout>
                             </ModalsProvider>
                         </NotificationsProvider>
@@ -66,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps, /* { categories }: X */) {
                 </ColorSchemeProvider>
             </PersistGate>
         </Provider>
-
+ 
     )
 }
 
