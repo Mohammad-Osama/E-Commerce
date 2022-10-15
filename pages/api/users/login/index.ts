@@ -20,7 +20,7 @@ export default async function controller(req: NextApiRequest, res: NextApiRespon
                                     .setProtectedHeader({ alg: 'HS256' })
                                     .setIssuedAt()
                                     .setExpirationTime('30d')
-                                    .sign(new TextEncoder().encode("process.env.NEXT_PUBLIC_URL" ) );
+                                    .sign(new TextEncoder().encode(process.env.JWT_SECRET ) );
                 
                     res.status(201).json({
                         id: userExists.id,
