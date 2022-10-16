@@ -90,7 +90,7 @@ const UserMenu = () => {
             </Menu.Item>
             <Menu.Item icon={<Logout size={18} />}
                         onClick={()=>  {  dispatch(logout())
-                                           router.push("./")        
+                                           router.push("/")        
                                                     }}
                  >
                 Logout

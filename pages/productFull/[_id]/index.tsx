@@ -213,7 +213,7 @@ const ProductFull = ({productProps , reviewInfoProps, loadingProps}:X) => {
                                     />
                             })}
                         </>
-                        :  <div>asdasd</div>// <AddReview productID={id}/>
+                        : <AddReview productID={_id}/>
                             
                     }
 
