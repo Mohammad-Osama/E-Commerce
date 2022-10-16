@@ -17,10 +17,11 @@ import { GetStaticProps, GetStaticPropsResult, GetServerSideProps, GetStaticProp
 //import { server } from '../../../config';
 import { Product as ProductModel }   from '../../../models/productModel';
 import clientPromise from '../../../lib/db';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import { Review as ReviewModel }   from '../../../models/reviewModel';
+import mongoose from "mongoose"
 
 
-const ProductFull = ({productProps , loadingProps}:X) => {
+const ProductFull = ({productProps , reviewInfoProps, loadingProps}:X) => {
 
     const useStyles = createStyles((theme) => ({
         card: {
@@ -105,6 +106,8 @@ const ProductFull = ({productProps , loadingProps}:X) => {
        // getProduct(id as string)
        // getReviewInfo(id as string)
        setProduct(productProps)
+       setReviewInfo(reviewInfoProps)
+       console.log(reviewInfo)
     }, [])
 
 
@@ -234,6 +237,7 @@ export default ProductFull
 
 interface X {
     productProps: IProduct
+    reviewInfoProps:IReviewInfo[],
     loadingProps: boolean
 }
 const url = process.env.NEXT_PUBLIC_URL
@@ -246,9 +250,59 @@ export async function getServerSideProps(context:GetStaticPropsContext): Promise
         product._id = product._id.toString()
         product.category = product.category.toString()
         product.brand = product.brand.toString()
+
+
+        const queryIDproduct = context.params?._id as string
+        const ObjectId = mongoose.Types.ObjectId
+        const finalIDproduct = new ObjectId(queryIDproduct);
+        const dataReviews = await ReviewModel.aggregate([
+            {
+                $match: {
+                    product: finalIDproduct
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "user",
+                    foreignField: "_id",
+                    as: "revieweduser"
+                }
+            },
+            {
+                $replaceRoot:
+                {
+                    newRoot: {
+                        $mergeObjects: [{
+                            $arrayElemAt: ["$revieweduser", 0]
+                        }, "$$ROOT"]
+                    }
+                }
+            },
+            {
+                $project:
+                {   _id : 0 ,
+                    id : "$_id" ,
+                    first_name: 1,
+                    last_name: 1,
+                    title: 1,
+                    text: 1,
+                    rating: 1,
+                    updatedAt :1
+                }
+            }
+        ])
+            const reviews = dataReviews.map((r)=>{
+              //  const review = doc.toObject() --- not needed in aggregate 
+                r.updatedAt = r.updatedAt.toString()
+                r.id = r.id.toString()
+                return r as IReviewInfo
+            })
+
         return {
             props: {
                 productProps: product as IProduct,
+                reviewInfoProps: reviews as IReviewInfo[],
                 loadingProps: false
             },
         }
@@ -257,6 +311,7 @@ export async function getServerSideProps(context:GetStaticPropsContext): Promise
         return {
             props: {
                 productProps: {} as IProduct,
+                reviewInfoProps: [],
                 loadingProps: true
             },
         }
