@@ -39,4 +39,4 @@ const ReviewSchema = new mongoose.Schema<IReview>({
         }
 })
 
-export const Review = mongoose.model<IReview>('Review', ReviewSchema);
+export const Review =  mongoose.models.Review ||  mongoose.model<IReview>('Review', ReviewSchema);

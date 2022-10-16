@@ -17,6 +17,7 @@ import { GetStaticProps, GetStaticPropsResult, GetServerSideProps, GetStaticProp
 //import { server } from '../../../config';
 import { Product as ProductModel }   from '../../../models/productModel';
 import clientPromise from '../../../lib/db';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 
 const ProductFull = ({productProps , loadingProps}:X) => {
@@ -55,8 +56,9 @@ const ProductFull = ({productProps , loadingProps}:X) => {
     const { classes } = useStyles();
     const theme = useMantineTheme();
 
-   /*  const router =useRouter()
-    const {id}= router.query */
+    const router =useRouter()
+    const {_id}= router.query
+    
     //const { id } = useParams()
 
     const userState = useSelector(authState)
@@ -97,9 +99,9 @@ const ProductFull = ({productProps , loadingProps}:X) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-       /*  if (userState.id !== null) {
-            getReviewProductUser(id as string, userState.id as string)
-        } */
+        if (userState.id !== null) {
+            getReviewProductUser(_id as string, userState.id as string)
+        }
        // getProduct(id as string)
        // getReviewInfo(id as string)
        setProduct(productProps)

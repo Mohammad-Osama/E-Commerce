@@ -32,7 +32,7 @@ export async function authJwt(req: NextApiRequest , res :NextApiResponse) {
                     '-createdAt', '-updatedAt', '-__v'])
             //  console.log("ttttttttttt" , (req as CustomRequest).user)                                       
                 NextResponse.next()
-          //  console.log("in auth middelware")
+         
         } catch (error) {
             // console.log("eeeeeeeeeee" , error)
             res.status(401).json("Not authorized")

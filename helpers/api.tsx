@@ -65,7 +65,7 @@ export const addReview = async (body: IReviewaddForm) => {
 
     return data.data
 }
-
+//---------->
 export const getReviewProductUser = async (product: string, user: string) => {
     const data = await axios.get<IReview>(`/api/reviews/productuser?product=${product}&user=${user}`)
     return data.data
