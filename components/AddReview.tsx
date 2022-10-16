@@ -45,7 +45,7 @@ const AddReview = (props: AddReviewProps) => {
 
     const onConfirmAddReview = async () => {
         const { title, text, rating, user, product } = form.values
-        console.log(form.values)
+       // console.log(form.values)
         const reviewAddInfo: IReviewaddForm = {
             title: title,
             text: text,

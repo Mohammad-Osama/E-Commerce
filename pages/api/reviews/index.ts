@@ -2,9 +2,11 @@ import { NextApiRequest, NextApiResponse } from "next"
 import mongoose from "mongoose"
 import {IReview, Review } from "../../../models/reviewModel"
 import {Product} from "../../../models/productModel"
+import clientPromise from "../../../lib/db"
 
 
-export async function controller(req: NextApiRequest, res: NextApiResponse) {
+export default async function controller(req: NextApiRequest, res: NextApiResponse) {
+    await clientPromise()
     if (req.method === 'POST') {
         try {
             const newReview: IReview = await Review.create({
