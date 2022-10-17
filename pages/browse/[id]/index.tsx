@@ -38,7 +38,7 @@ const Browse = ({ productsProps, loadingProps }: X) => {
 
           {products.map((product) => {
             return <Product product={product}
-              key={product.id}
+              key={product._id}
             />
           })
           }
