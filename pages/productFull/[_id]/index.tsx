@@ -107,7 +107,6 @@ const ProductFull = ({productProps , reviewInfoProps, loadingProps}:X) => {
        // getReviewInfo(id as string)
        setProduct(productProps)
        setReviewInfo(reviewInfoProps)
-       console.log(reviewInfo)
     }, [])
 
 

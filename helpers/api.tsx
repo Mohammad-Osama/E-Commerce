@@ -25,7 +25,7 @@ export const getBrands = async () => {
     const data = await axios.get<IBrand[]>(`${apiUrl}/api/brands`)
     return data.data
 }
-
+//---------->
 export const getProductsByCategory = async (id: string) => {
     const data = await axios.get<IProduct[]>(`/api/products/bycategory?category=${id}`)
     return data.data

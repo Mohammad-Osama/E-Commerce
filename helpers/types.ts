@@ -1,5 +1,6 @@
-export interface IProduct {
+export interface IProduct { //remove id when data is fixed in mongo
     _id: string;
+    id: string;
     name: string;
     model: string;
     main_image: string;

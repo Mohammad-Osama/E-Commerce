@@ -70,7 +70,7 @@ const MenuInNav = (/* {categories}:X  */) => {
     useEffect(() => {
         getCategories()
         getBrands()
-
+console.log("ccc" , categories)
         return () => {
             setCategories([])
             setBrands([])
@@ -109,7 +109,7 @@ const MenuInNav = (/* {categories}:X  */) => {
                                         router.push({{ pathname: '/about', query: { name: 'test' } }})
                                     } */
                                     component={NextLink}
-                                    href={{ pathname: `/browse/${x._id}`, query: { type: 'category'}}}
+                                    href={{ pathname: `/browse/${x.id}`, query: { type: 'category'}}}
                                /*  component={Link} to={`/browse/${x.id}`}
                                 state={{ type: "category" }} */
                             >
