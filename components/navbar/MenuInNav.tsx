@@ -70,7 +70,6 @@ const MenuInNav = (/* {categories}:X  */) => {
     useEffect(() => {
         getCategories()
         getBrands()
-console.log("ccc" , categories)
         return () => {
             setCategories([])
             setBrands([])
@@ -142,7 +141,7 @@ console.log("ccc" , categories)
                             return <Menu.Item key={x.name}   // can add an icon if needed
 
                             component={NextLink}
-                            href={{ pathname: `/browse/${x._id}`, query: { type: 'brand'}}}
+                            href={{ pathname: `/browse/${x.id}`, query: { type: 'brand'}}}
                             >
                                 {x.name}
                             </Menu.Item>

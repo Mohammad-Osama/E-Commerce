@@ -30,7 +30,7 @@ export const getProductsByCategory = async (id: string) => {
     const data = await axios.get<IProduct[]>(`/api/products/bycategory?category=${id}`)
     return data.data
 }
-
+//---------->
 export const getProductsByBrand = async (id: string) => {
     const data = await axios.get<IProduct[]>(`/api/products/bybrand?brand=${id}`)
     return data.data
