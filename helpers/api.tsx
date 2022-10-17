@@ -50,7 +50,7 @@ export const getReviewInfo = async (id: string) => {
     // console.log("getReviewInfo----->" , data)
     return data.data
 }
-
+//---------->
 export const getUserData = async () => {
     const token = JSON.parse(localStorage.getItem('token') as string)
     const data = await axios.get<IUser>("/api/users/profile",
