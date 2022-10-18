@@ -15,6 +15,7 @@ import TempUser from './TempUser';
 import AdminPanel from './admin/AdminPanel';
 import AffixDrawerCart from './AffixDrawerCart';
 import AffixApp from './AffixApp';
+import Footer from './Footer';
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -59,6 +60,7 @@ const Layout = ({ children }: LayoutProps, /* {categories}:X */) => {
                 <main>{children}</main>
                 <AffixApp />
             <AffixDrawerCart />
+            <Footer/>
             </div>
         )
 }
