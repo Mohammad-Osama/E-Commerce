@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TempUser from './TempUser';
 import AdminPanel from './admin/AdminPanel';
 import AffixDrawerCart from './AffixDrawerCart';
-
+import AffixApp from './AffixApp';
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -57,7 +57,7 @@ const Layout = ({ children }: LayoutProps, /* {categories}:X */) => {
             <div className={classes.container}>
                 <Navbar /* categories={categories} */ />
                 <main>{children}</main>
-               {/*  <AffixApp /> */}
+                <AffixApp />
             <AffixDrawerCart />
             </div>
         )

@@ -33,12 +33,12 @@ export default function AffixDrawerCart() {
       icon: <ShoppingCartX />
     })
   }
-  const { role } = useSelector(authState)
+  /* const { role } = useSelector(authState)
 
   if (role==="admin")
         return null
 
-    else 
+    else  */
   return (
     <>
 
