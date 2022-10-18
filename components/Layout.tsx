@@ -1,8 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Container, useMantineTheme, createStyles } from '@mantine/core';
 import { Navbar } from './navbar/NavBar';
-//import AffixApp from './features/AffixApp';
-//import AffixDrawerCart from './features/AffixDrawerCart';
 import clientPromise from '../lib/db';
 import { GetStaticProps, GetStaticPropsResult } from 'next';
 import { InferGetStaticPropsType } from 'next'
@@ -15,6 +13,8 @@ import { AppDispatch } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import TempUser from './TempUser';
 import AdminPanel from './admin/AdminPanel';
+import AffixDrawerCart from './AffixDrawerCart';
+
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -57,8 +57,8 @@ const Layout = ({ children }: LayoutProps, /* {categories}:X */) => {
             <div className={classes.container}>
                 <Navbar /* categories={categories} */ />
                 <main>{children}</main>
-                {/* <AffixApp />
-            <AffixDrawerCart /> */}
+               {/*  <AffixApp /> */}
+            <AffixDrawerCart />
             </div>
         )
 }
