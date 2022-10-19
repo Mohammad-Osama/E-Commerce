@@ -58,7 +58,7 @@ export default function AffixDrawerCart() {
           }
 
           {cartItems.map((item) => { // to be fixed later 
-            return <React.Fragment key={item.id}>
+            return <React.Fragment key={item._id}>
               <SimpleGrid cols={4} spacing="sm" >
                 <Avatar src={item.main_image} />
                 <div>

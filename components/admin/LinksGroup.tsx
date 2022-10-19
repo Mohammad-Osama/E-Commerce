@@ -69,7 +69,8 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, handleCl
 
           key={link.label}
           onClick={() => {handleClick(`${link.label}`)
-          console.log("small link label" ,link.label)}}
+         // console.log("small link label" ,link.label)
+        }}
         >
           {link.label}
 
@@ -113,7 +114,8 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, handleCl
         <Group position="apart" spacing={0}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}
             onClick={() => {handleClick(`${label}`) 
-                            console.log(label)}}
+                           // console.log(label)
+                          }}
           >
             <ThemeIcon variant="light" size={30}>
               <Icon size={18} />

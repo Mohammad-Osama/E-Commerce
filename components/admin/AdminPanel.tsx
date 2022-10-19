@@ -50,7 +50,7 @@ export default function AdminPanel() {
   }
   const { role } = useSelector(authState)
   useEffect(() => {
-console.log("type" , type)
+  // console.log("type" , type)
     return () => {
 
     }
@@ -102,7 +102,7 @@ else
         </Header>
       }
     >
-{child}
+            {child}
     </AppShell>
   );
 }
