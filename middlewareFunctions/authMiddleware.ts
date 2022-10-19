@@ -15,14 +15,13 @@ interface JoseTokenInterface extends jose.JWTVerifyResult {
     id: string;
 }
 export interface CustomRequest extends NextApiRequest {
-    user: IUser | null
+    user: IUser 
 }
 export async function authJwt(req: NextApiRequest , res :NextApiResponse) {
    await clientPromise()
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             const token=req.headers.authorization.split(' ')[1]
-
             const {payload : decoded} = await jose.jwtVerify(
                 token, new TextEncoder().encode(process.env.JWT_SECRET)
             )  ; /* as JoseTokenInterface  */// any ?!, semicolon important here 
@@ -30,12 +29,13 @@ export async function authJwt(req: NextApiRequest , res :NextApiResponse) {
                 .select(['-password',/* '-role',
                                                                  '-status', */
                     '-createdAt', '-updatedAt', '-__v'])
-            //  console.log("ttttttttttt" , (req as CustomRequest).user)                                       
+            // console.log("user in authmiddleware" , (req as CustomRequest).user)                                       
                 NextResponse.next()
-         
+                
         } catch (error) {
             // console.log("eeeeeeeeeee" , error)
             res.status(401).json("Not authorized")
+         
         }
     }
     else {

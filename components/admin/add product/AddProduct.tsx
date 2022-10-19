@@ -143,9 +143,17 @@ const AddProduct = () => {
 	//////////////////////////
 	const handelSubmit = () => {
 		const values = form.values;
-		axios.post('/api/products', values)
+				// Remove double quotes from token start and end,caused backend problems
+		const token = localStorage.getItem("token")?.replace(/^"(.*)"$/, '$1')
+		const config = {
+			headers: { Authorization: `Bearer ` + token }
+		};
+		
+		axios.post('/api/products',
+					 values,
+					 config)
 			.then((response) => {
-			//	console.log("resssssssssssss", response)		
+				console.log("resssssssssssss", response)		
 				modals.openConfirmModal({
 					title: 'Product added ',
 					centered: true,
@@ -157,7 +165,7 @@ const AddProduct = () => {
 					),
 					labels: { confirm: "add another", cancel: "dashboard" },
 					confirmProps: { color: 'blue' },
-					onCancel: () =>router.push('/adminPanel'),
+					onCancel: () =>router.push('/'),
 					onConfirm: () => clearInput()
 				});
 			}
@@ -249,7 +257,7 @@ const AddProduct = () => {
 	const getBrands = async () => {
 		const data = await api.getBrands()
 		setExistingBrands(data)
-			console.log(data)
+		//	console.log(data)
 	}
 	const brandData = () => {
 		let results: any = []

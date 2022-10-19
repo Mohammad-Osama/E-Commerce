@@ -2,11 +2,17 @@ import { NextApiRequest, NextApiResponse } from "next"
 import mongoose from "mongoose"
 import { Product ,IProduct} from "../../../models/productModel"
 import clientPromise from "../../../lib/db"
+import { authJwt , CustomRequest } from "../../../middlewareFunctions/authMiddleware"
 
 
 export default async function controller(req: NextApiRequest, res: NextApiResponse) {
-    clientPromise()
+   await clientPromise()
+   await authJwt(req,res)
+   const currentUser = ((req as CustomRequest).user)
+    const role=currentUser.role
+    
     if (req.method === 'POST') {
+         if (role==="admin") {
         try {
             const newProduct: IProduct = await Product.create({
             name: req.body.name,
@@ -29,8 +35,12 @@ export default async function controller(req: NextApiRequest, res: NextApiRespon
       catch (error) {
          res.status(400).json(`Error==>${error}`);
       }
+      
     }
-    
+        else {
+            res.status(400).json("not an admin");
+        }
+    }
      else {
         try {
             const page: number = parseInt(req.query.page as string) || 1
