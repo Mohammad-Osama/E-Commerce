@@ -15,6 +15,7 @@ import ErrorPage from '../../components/ErrorPage';
 import { authState } from "../../redux/slices/authSlice";
 import { useSelector } from "react-redux";
 import AddProduct from './add product/AddProduct';
+import AddBrand from './AddBrand';
 /* import {Routes, Route } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import AddBrand from './AddBrand';
@@ -42,12 +43,17 @@ export default function AdminPanel() {
     case 'Add Product':
       child = <Text>Add Product</Text>;
       break;
+    case 'Add Brand':
+    child = <AddBrand/>
+    break;
     case 'Dashboard':
       child = <Text>Dashboard</Text>;
       break;
     default:
       child = <Text>Not done yet </Text>;
   }
+
+
   const { role } = useSelector(authState)
   useEffect(() => {
   // console.log("type" , type)
