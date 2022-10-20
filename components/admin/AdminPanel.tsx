@@ -16,6 +16,7 @@ import { authState } from "../../redux/slices/authSlice";
 import { useSelector } from "react-redux";
 import AddProduct from './add product/AddProduct';
 import AddBrand from './AddBrand';
+import AddCategory from './AddCategory';
 /* import {Routes, Route } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import AddBrand from './AddBrand';
@@ -45,6 +46,9 @@ export default function AdminPanel() {
       break;
     case 'Add Brand':
     child = <AddBrand/>
+    break;
+    case 'Add Category':
+    child = <AddCategory/>
     break;
     case 'Dashboard':
       child = <Text>Dashboard</Text>;

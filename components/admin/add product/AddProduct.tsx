@@ -143,7 +143,7 @@ const AddProduct = () => {
 	//////////////////////////
 	const handelSubmit = () => {
 		const values = form.values;
-				// Remove double quotes from token start and end,caused backend problems
+				// Removes double quotes from token start and end,caused backend problems
 		const token = localStorage.getItem("token")?.replace(/^"(.*)"$/, '$1')
 		const config = {
 			headers: { Authorization: `Bearer ` + token }

@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import * as api from "../../helpers/api"
 import AddTitleText from './AddTitleText';
 
-const AddBrand = () => {
+const AddCategory = () => {
 
     const form = useForm({
         initialValues: {
@@ -61,10 +61,10 @@ const AddBrand = () => {
                 centered: true,
                 children: (
                     <Text size="sm">
-                        Are u sure you want to add this brand ?
+                        Are u sure you want to add this category ?
                     </Text>
                 ),
-                labels: { confirm: "Yes , add this brand", cancel: "Go back" },
+                labels: { confirm: "Yes , add this category", cancel: "Go back" },
                 confirmProps: { color: 'blue' },
                 // onCancel: () => console.log('Cancel'),
                 onConfirm: () => getImageUrl(handelSubmit)
@@ -96,23 +96,23 @@ const AddBrand = () => {
     //////////////////////////
     const handelSubmit = () => {
         const values = form.values;
-        	// Removes double quotes from token start and end,caused backend problems
+        // Removes double quotes from token start and end,caused backend problems
 		const token = localStorage.getItem("token")?.replace(/^"(.*)"$/, '$1')
 		const config = {
 			headers: { Authorization: `Bearer ` + token }
 		};
-        axios.post('/api/brands',
-                     values,
-                     config)
+        axios.post('/api/categories', 
+                        values ,
+                        config )
             .then((response) => {
               //  console.log("resssssssssssss", response)
                 modals.openConfirmModal({
-                    title: 'Brand added ',
+                    title: 'Category added ',
                     centered: true,
                     cancelProps: undefined,
                     children: (
                         <Text size="sm">
-                            Brand succesfully added  !
+                            Category succesfully added  !
                         </Text>
                     ),
                     labels: { confirm: "add another", cancel: "dashboard" },
@@ -142,14 +142,14 @@ const AddBrand = () => {
 
     return (
         <form onSubmit={form.onSubmit(confirmAddModal)}>
-            <AddTitleText title="Add a brand" />
+            <AddTitleText title="Add a Category" />
             <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'xs', cols: 2 }]}>
                 <PhotoImport formFunc={logoInput} data={imageData} />
                 <Group /* direction="column"  */className="overflow-auto d-inline-block">
                     <InputText formFunc={nameInput}
                         data={{
-                            label: 'Brand Name',
-                            placeholder: 'Brand Name',
+                            label: 'Category Name',
+                            placeholder: 'Category Name',
                             value: form.values.name
                         }} />
 
@@ -167,7 +167,7 @@ const AddBrand = () => {
                             value: form.values.code
                         }} />
                     <Group position="right" mt="md">
-                        <Button type="submit">Add Brand</Button>
+                        <Button type="submit">Add Category</Button>
                     </Group>
                 </Group>
             </SimpleGrid>
@@ -175,4 +175,4 @@ const AddBrand = () => {
     )
 }
 
-export default AddBrand
+export default AddCategory
