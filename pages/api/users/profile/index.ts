@@ -7,6 +7,7 @@ import clientPromise from "../../../../lib/db"
 export default async function controller(req: NextApiRequest, res: NextApiResponse) {
  await clientPromise()
  await authJwt(req,res)
+ 
     try {
         // from authjwt middelware 
         const currentUser = ((req as CustomRequest).user)

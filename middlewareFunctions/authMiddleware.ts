@@ -30,7 +30,7 @@ export async function authJwt(req: NextApiRequest , res :NextApiResponse) {
                                                                  '-status', */
                     '-createdAt', '-updatedAt', '-__v'])
             // console.log("user in authmiddleware" , (req as CustomRequest).user)                                       
-                NextResponse.next()
+              //  NextResponse.next()  
                 
         } catch (error) {
             // console.log("eeeeeeeeeee" , error)
