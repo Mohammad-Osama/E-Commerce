@@ -18,7 +18,7 @@ export const navbarAdminData = [
         icon: ShoppingCart,
         initiallyOpened: false,
         links: [
-            { label: 'Overview', route: 'overviewusers' },
+            { label: 'Overview Users', route: 'overviewusers' },
             { label: 'Add User', route: 'adduser' },
             { label: 'Edit User', route: 'edituser' },
             { label: 'Remove User', route: 'removeuser' },

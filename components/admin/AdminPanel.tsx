@@ -18,6 +18,7 @@ import AddProduct from './add product/AddProduct';
 import AddBrand from './AddBrand';
 import AddCategory from './AddCategory';
 import AddCoupon from './AddCoupon';
+import OverviewUsers from './OverviewUsers';
 /* import {Routes, Route } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import AddBrand from './AddBrand';
@@ -54,9 +55,12 @@ export default function AdminPanel() {
     case 'Add Coupon':
     child = <AddCoupon/>
     break;
+    case 'Overview Users':
+      child = <OverviewUsers/>
+    break;
     case 'Dashboard':
       child = <Text>Dashboard</Text>;
-      break;
+    break;
     default:
       child = <Text>Not done yet </Text>;
   }
