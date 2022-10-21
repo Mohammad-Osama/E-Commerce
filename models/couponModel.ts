@@ -28,4 +28,4 @@ const CouponSchema = new mongoose.Schema<ICoupon>({
     }
 })
 
-export const Coupon = mongoose.model<ICoupon>('Coupon', CouponSchema);
+export const Coupon = mongoose.models.Coupon || mongoose.model<ICoupon>('Coupon', CouponSchema);
