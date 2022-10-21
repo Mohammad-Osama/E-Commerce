@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import AddProduct from './add product/AddProduct';
 import AddBrand from './AddBrand';
 import AddCategory from './AddCategory';
+import AddCoupon from './AddCoupon';
 /* import {Routes, Route } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import AddBrand from './AddBrand';
@@ -49,6 +50,9 @@ export default function AdminPanel() {
     break;
     case 'Add Category':
     child = <AddCategory/>
+    break;
+    case 'Add Coupon':
+    child = <AddCoupon/>
     break;
     case 'Dashboard':
       child = <Text>Dashboard</Text>;
