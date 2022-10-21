@@ -74,7 +74,7 @@ const OverviewUsers = () => {
     }, [loading]);
 
 
-    if (loading === true || users===[] )
+    if (loading === true /* || users===[]  */)
 
         return <Loader width="100%"
                        size="xl"

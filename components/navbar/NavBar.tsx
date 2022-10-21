@@ -123,7 +123,7 @@ export function Navbar(/* {categories}:X */) {
         products?.forEach((x) => {
             results.push({
                 value: x.name,
-                id: x._id,
+                id: x._id as string,
                 image: x.main_image,
                 price: x.price
             })

@@ -114,7 +114,7 @@ export const about ={ desc:`Its a E-commerce app with a simple ui, built from sc
                                 \n Only one account for the admin 
                                 \n\u2022 admin@admin.com  :  admin `  ,
                       issues:`\u2022 error page apears for a split second after login ` ,
-                      plans:`\u2022 migrate to Next.js
+                      plans:`\u2022 
                              \n\u2022 user- checkout page
                              \n\u2022 user- responsive dashboard
                              \n\u2022 user- burgermenu items 

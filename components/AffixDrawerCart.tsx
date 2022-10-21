@@ -65,7 +65,7 @@ export default function AffixDrawerCart() {
                   <Text>{item.name}</Text>
                 </div>
                 <Badge color="green" variant="outline" size="md" >{item.quantity}</Badge>
-                <ActionIcon onClick={() => { removeFromCartFunction(item._id, item.name) }}>
+                <ActionIcon onClick={() => { removeFromCartFunction(item._id as string, item.name) }}>
                   <Tooltip label="Remove from cart" position="bottom" radius="xl" color="red" >
                     <div>
                       <ShoppingCartOff size={30} color={'red'} />

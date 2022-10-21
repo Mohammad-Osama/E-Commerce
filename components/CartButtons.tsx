@@ -192,7 +192,7 @@ const CartButtons = ({ product }: X) => {
                 <Minus size={16} />
             </ActionIcon>
             {currentQuantity > 0 &&
-                <ActionIcon onClick={() => { removeFromCartFunction(_id) }}>
+                <ActionIcon onClick={() => { removeFromCartFunction(_id as string) }}>
                     <Tooltip label="Remove from cart" position="bottom" radius="xl" color="red" >
                         <div>
                         <ShoppingCartOff size={30} color={'red'} />

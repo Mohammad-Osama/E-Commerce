@@ -18,8 +18,8 @@ export interface IProduct { //remove id when data is fixed in mongo
 };
 
 export interface IProductCart {
-    _id: string;
-    id: string;
+    _id?: string;
+    id?: string;
     name: string;
     model: string;
     main_image: string;
